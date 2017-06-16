@@ -1,0 +1,19 @@
+#Indirizzo WS
+URLWS=http://192.168.200.201:8080/IRIDE/jbfServices/JBFService
+
+#Da Login per WS
+USERADT=ADMINISTRATOR
+PWDADT=ADMINTEST
+ENTITAADT=LIS_DIANO
+
+#TIPOINSTALLAZIONE; TORINO=1, FIRENZE=2, ecc..., per effettuare eventuali differenze all'interno di script groovy
+TIPOINSTALLAZIONE=1
+
+#Dati fissi HL7(modificabile a seconda di Location e/o analisi diverse)
+DATIFISSI=<AuthorityDomicilio>H</AuthorityDomicilio><AuthorityResidenza>L</AuthorityResidenza><AuthorityNascita>B</AuthorityNascita><AuthorityAnagCentrale>PZCE</AuthorityAnagCentrale><AuthorityAnagLocale>PZLO</AuthorityAnagLocale><AuthorityCodFisc>NNITA</AuthorityCodFisc><AuthoritySTP>PNT</AuthoritySTP> <AuthorityTessSan>SS</AuthorityTessSan><AuthorityTeam>HC</AuthorityTeam><SendingFacility>ESEL</SendingFacility> <SendingApplication>ADTWEB</SendingApplication><ReceivingApplication>FSATO2</ReceivingApplication><ReceivingFacility>CSI</ReceivingFacility><AuthorityIdentificativo>SDO</AuthorityIdentificativo><TipoAccesso>I</TipoAccesso><TipoDocumento>RIC</TipoDocumento><DocStatoVal>AU</DocStatoVal><FormatoDoc>MU</FormatoDoc><ConfidentailStatusDoc>R</ConfidentailStatusDoc>
+
+#tipo di gestione errore per mancato invio (TCP non raggiungibile): S=Blocco(Rosso), N=Gestisto(Verde)
+bloccoPerErroreInvio=S
+
+#tipo di gestione errore per mancata connessione WS (WS non raggiungibile, errore login, ecc.): S=Blocco(Rosso), N=Gestisto(Verde)
+bloccoPerErroreWS=S

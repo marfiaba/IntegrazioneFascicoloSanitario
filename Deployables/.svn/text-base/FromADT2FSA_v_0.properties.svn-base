@@ -1,0 +1,19 @@
+SEQ_PREFIX=x
+responseTimeout=30000
+remoteHost=127.0.0.1
+bloccoPerErroreWS=S
+ENTITAADT=ESEL
+remotePort=8082
+USERADT=UT_SPAGIC
+DB_ADT=java:comp/env/jdbc/ADTdb
+periodoPoller=10000
+queryPoller=select to_char(a.ah_dt_ins,'yyyy-mm-dd hh24:mi:ss') DATAINS,to_char(a.ah_dt_contatto,'yyyymmddhh24mi') AH_DT_CONTATTOC,to_char(a.ah_dt_evento,'yyyymmddhh24mi') AH_DT_EVENTOC,  a.*, b.at_file, c.SA_VERSIONE VERSIONEREFERTO from aa_ADT2HL7 a, si_attach b , aa_stampe_attach c, si_attachfile d where  a.ah_id>? and a.ah_read_status_fsa is null and a.ah_at_id = c.sa_id (+) and  c.SA_REPORT  || '_' || c.SA_PRESIDIO || '_' || c.SA_NOSOLOGICO || '_' || c.SA_ID = d.AT_CHIAVE (+) and d.AT_ID  = b. AT_ID (+) order by a.ah_id
+packageMapping=it.eng.spagic.marshall.adt.fsa.to2
+IDInizioElaborazioneFSA=1000000
+retryCount=2
+HL7_SEQ_DS=java:comp/env/jdbc/ADTdb
+URLWS=http://192.168.200.201:8080/IRIDE/jbfServices/JBFService
+PWDADT=12345678
+retryNumber=2
+maxMessagesPerPollingUnit=1
+retryDelay=10000

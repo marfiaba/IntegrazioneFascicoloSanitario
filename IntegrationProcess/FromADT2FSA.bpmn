@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:BpmnDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:bpmn="http://stp.eclipse.org/bpmn" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmi:id="_5srb8ZFIEd2nhI2-K3OUJA" iD="_5srb8JFIEd2nhI2-K3OUJA">
+  <pools xmi:type="bpmn:Pool" xmi:id="_5s1M8ZFIEd2nhI2-K3OUJA" iD="_5s1M8JFIEd2nhI2-K3OUJA" name="FromADT2FSA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gEiusJFJEd2nhI2-K3OUJA" source="technology">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gEiusZFJEd2nhI2-K3OUJA" key="TechnologyName" value="JBI - Apache ServiceMix"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gEiuspFJEd2nhI2-K3OUJA" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+    </eAnnotations>
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Z4gfcJRYEd2vqYoGyXJ4rA" source="parameters">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrEBbMEeKvb9BY_3egxw" key="retryNumber" value="2"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrERbMEeKvb9BY_3egxw" key="USERADT" value="UT_SPAGIC"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrEhbMEeKvb9BY_3egxw" key="packageMapping" value="it.eng.spagic.marshall.adt.fsa.to2"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrExbMEeKvb9BY_3egxw" key="queryPoller" value="SELECT   TO_CHAR (a.ah_dt_ins, 'yyyy-mm-dd hh24:mi:ss') datains, TO_CHAR (a.ah_dt_contatto, 'yyyymmddhh24mi') ah_dt_contattoc, TO_CHAR (a.ah_dt_evento, 'yyyymmddhh24mi') ah_dt_eventoc, a.*,b.at_file FROM aa_adt2hl7 a, si_attach b WHERE a.ah_id > ? AND a.ah_read_status_fsa IS NULL AND a.ah_at_id = b.at_id(+)  AND a.AH_TIPO_MSG in ('A01','A11','A03','A13','A45','MDMT02','MDMT10','LETDIM','LETDIMV') ORDER BY a.ah_id"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrFBbMEeKvb9BY_3egxw" key="SEQ_PREFIX" value="x"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrFRbMEeKvb9BY_3egxw" key="remotePort" value="8082"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrFhbMEeKvb9BY_3egxw" key="maxMessagesPerPollingUnit" value="1"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrFxbMEeKvb9BY_3egxw" key="ENTITAADT" value="ESEL"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrGBbMEeKvb9BY_3egxw" key="remoteHost" value="127.0.0.1"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrGRbMEeKvb9BY_3egxw" key="IDInizioElaborazioneFSA" value="1000000"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrGhbMEeKvb9BY_3egxw" key="retryDelay" value="10000"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrGxbMEeKvb9BY_3egxw" key="responseTimeout" value="30000"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrHBbMEeKvb9BY_3egxw" key="URLWS" value="http://192.168.200.201:8080/IRIDE/jbfServices/JBFService"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrHRbMEeKvb9BY_3egxw" key="periodoPoller" value="10000"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrHhbMEeKvb9BY_3egxw" key="bloccoPerErroreWS" value="S"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrHxbMEeKvb9BY_3egxw" key="retryCount" value="2"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrIBbMEeKvb9BY_3egxw" key="PWDADT" value="12345678"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrIRbMEeKvb9BY_3egxw" key="DB_ADT" value="java:comp/env/jdbc/ADTdb"/>
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7cLrIhbMEeKvb9BY_3egxw" key="HL7_SEQ_DS" value="java:comp/env/jdbc/ADTdb"/>
+    </eAnnotations>
+    <artifacts xmi:type="bpmn:DataObject" xmi:id="_9ifMASm7Ed6tuswVSYnBiw" iD="_9ifMACm7Ed6tuswVSYnBiw" name="TIPOMSG">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lGQmUCm-Ed6tuswVSYnBiw" source="imobsattribute">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lGQmUSm-Ed6tuswVSYnBiw" key="im.obsattribute[1].ruleid" value="123"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lGQmUim-Ed6tuswVSYnBiw" key="im.obsattribute[1].rulename" value="//AH_TIPO_MSG"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lGQmUym-Ed6tuswVSYnBiw" key="im.obsattribute[1].id" value="123"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lGQmVCm-Ed6tuswVSYnBiw" key="im.obsattribute[1].rulelanguage" value="XPath"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lGQmVSm-Ed6tuswVSYnBiw" key="im.obsattribute[1].flagrulesubjecttocondition" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lGQmVim-Ed6tuswVSYnBiw" key="im.obsattribute[1].conditionrulelanguage" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lGQmVym-Ed6tuswVSYnBiw" key="im.obsattribute[1].name" value="TipoMsgADT"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lGQmWCm-Ed6tuswVSYnBiw" key="im.obsattribute.list.size" value="1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lGQmWSm-Ed6tuswVSYnBiw" key="im.obsattribute[1].conditionruleexpression" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lGQmWim-Ed6tuswVSYnBiw" key="im.obsattribute[1].ruleexpression" value="//AH_TIPO_MSG"/>
+      </eAnnotations>
+      <associations xmi:type="bpmn:Association" xmi:id="_D0Z2UFfHEeGxcIkDfvwizA"/>
+    </artifacts>
+    <artifacts xmi:type="bpmn:DataObject" xmi:id="_6KvWUXfkEeGVwp_TvuXBTQ" iD="_6KvWUHfkEeGVwp_TvuXBTQ" name="idPaziente">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BHP1cHflEeGVwp_TvuXBTQ" source="imobsattribute">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BHP1cXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].ruleexpression" value="//idPaziente"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BHP1cnflEeGVwp_TvuXBTQ" key="im.obsattribute[1].flagrulesubjecttocondition" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BHP1c3flEeGVwp_TvuXBTQ" key="im.obsattribute[1].id" value="2"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BHP1dHflEeGVwp_TvuXBTQ" key="im.obsattribute[1].conditionruleexpression" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BHP1dXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].rulelanguage" value="XPath"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BHP1dnflEeGVwp_TvuXBTQ" key="im.obsattribute[1].ruleid" value="2"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BHP1d3flEeGVwp_TvuXBTQ" key="im.obsattribute[1].name" value="IDPazienteXMPI"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BHP1eHflEeGVwp_TvuXBTQ" key="im.obsattribute.list.size" value="1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BHP1eXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].conditionrulelanguage" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BHP1enflEeGVwp_TvuXBTQ" key="im.obsattribute[1].rulename" value="//idPaziente"/>
+      </eAnnotations>
+      <associations xmi:type="bpmn:Association" xmi:id="_JfYlEHflEeGVwp_TvuXBTQ"/>
+    </artifacts>
+    <artifacts xmi:type="bpmn:DataObject" xmi:id="_8lQ4AXfkEeGVwp_TvuXBTQ" iD="_8lQ4AHfkEeGVwp_TvuXBTQ" name="Cognome">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IoQIwHflEeGVwp_TvuXBTQ" source="imobsattribute">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IoQIwXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].ruleexpression" value="//cognomePaziente"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IoQIwnflEeGVwp_TvuXBTQ" key="im.obsattribute[1].flagrulesubjecttocondition" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IoQIw3flEeGVwp_TvuXBTQ" key="im.obsattribute[1].id" value="152"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IoQIxHflEeGVwp_TvuXBTQ" key="im.obsattribute[1].conditionruleexpression" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IoQIxXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].rulelanguage" value="XPath"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IoQIxnflEeGVwp_TvuXBTQ" key="im.obsattribute[1].ruleid" value="115"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IoQIx3flEeGVwp_TvuXBTQ" key="im.obsattribute[1].name" value="CognomePazXMPI"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IoQIyHflEeGVwp_TvuXBTQ" key="im.obsattribute.list.size" value="1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IoQIyXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].conditionrulelanguage" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IoQIynflEeGVwp_TvuXBTQ" key="im.obsattribute[1].rulename" value="//cognomePaziente"/>
+      </eAnnotations>
+      <associations xmi:type="bpmn:Association" xmi:id="_J-06IHflEeGVwp_TvuXBTQ"/>
+    </artifacts>
+    <artifacts xmi:type="bpmn:DataObject" xmi:id="_AOxVUXflEeGVwp_TvuXBTQ" iD="_AOxVUHflEeGVwp_TvuXBTQ" name="Nome">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JEHlYHflEeGVwp_TvuXBTQ" source="imobsattribute">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JEHlYXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].ruleexpression" value="//nomePaziente"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JEHlYnflEeGVwp_TvuXBTQ" key="im.obsattribute[1].flagrulesubjecttocondition" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JEHlY3flEeGVwp_TvuXBTQ" key="im.obsattribute[1].id" value="153"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JEHlZHflEeGVwp_TvuXBTQ" key="im.obsattribute[1].conditionruleexpression" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JEHlZXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].rulelanguage" value="XPath"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JEHlZnflEeGVwp_TvuXBTQ" key="im.obsattribute[1].ruleid" value="116"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JEHlZ3flEeGVwp_TvuXBTQ" key="im.obsattribute[1].name" value="NomePazXMPI"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JEHlaHflEeGVwp_TvuXBTQ" key="im.obsattribute.list.size" value="1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JEHlaXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].conditionrulelanguage" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JEHlanflEeGVwp_TvuXBTQ" key="im.obsattribute[1].rulename" value="//nomePaziente"/>
+      </eAnnotations>
+      <associations xmi:type="bpmn:Association" xmi:id="_KcfGgHflEeGVwp_TvuXBTQ"/>
+    </artifacts>
+    <artifacts xmi:type="bpmn:DataObject" xmi:id="_QBqmUXflEeGVwp_TvuXBTQ" iD="_QBqmUHflEeGVwp_TvuXBTQ" name="Nosologico">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_RPS3EHflEeGVwp_TvuXBTQ" source="imobsattribute">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RPS3EXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].ruleexpression" value="//AH_CODNOSO"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RPS3EnflEeGVwp_TvuXBTQ" key="im.obsattribute[1].flagrulesubjecttocondition" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RPS3E3flEeGVwp_TvuXBTQ" key="im.obsattribute[1].id" value="421"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RPS3FHflEeGVwp_TvuXBTQ" key="im.obsattribute[1].conditionruleexpression" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RPS3FXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].rulelanguage" value="XPath"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RPS3FnflEeGVwp_TvuXBTQ" key="im.obsattribute[1].ruleid" value="381"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RPS3F3flEeGVwp_TvuXBTQ" key="im.obsattribute[1].name" value="Nosologico_adt"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RPS3GHflEeGVwp_TvuXBTQ" key="im.obsattribute.list.size" value="1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RPS3GXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].conditionrulelanguage" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_RPS3GnflEeGVwp_TvuXBTQ" key="im.obsattribute[1].rulename" value="//AH_CODNOSO"/>
+      </eAnnotations>
+      <associations xmi:type="bpmn:Association" xmi:id="_RjQ78HflEeGVwp_TvuXBTQ"/>
+    </artifacts>
+    <artifacts xmi:type="bpmn:DataObject" xmi:id="_rRZHAXflEeGVwp_TvuXBTQ" iD="_rRZHAHflEeGVwp_TvuXBTQ" name="completed">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yBrvEHflEeGVwp_TvuXBTQ" source="imobsattribute">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yBrvEXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].ruleexpression" value="//completed"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yBrvEnflEeGVwp_TvuXBTQ" key="im.obsattribute[1].flagrulesubjecttocondition" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yBrvE3flEeGVwp_TvuXBTQ" key="im.obsattribute[1].id" value="164"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yBrvFHflEeGVwp_TvuXBTQ" key="im.obsattribute[1].conditionruleexpression" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yBrvFXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].rulelanguage" value="XPath"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yBrvFnflEeGVwp_TvuXBTQ" key="im.obsattribute[1].ruleid" value="127"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yBrvF3flEeGVwp_TvuXBTQ" key="im.obsattribute[1].name" value="FlussoCompletato"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yBrvGHflEeGVwp_TvuXBTQ" key="im.obsattribute.list.size" value="1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yBrvGXflEeGVwp_TvuXBTQ" key="im.obsattribute[1].conditionrulelanguage" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yBrvGnflEeGVwp_TvuXBTQ" key="im.obsattribute[1].rulename" value="//completed"/>
+      </eAnnotations>
+      <associations xmi:type="bpmn:Association" xmi:id="_selS4HflEeGVwp_TvuXBTQ"/>
+    </artifacts>
+    <vertices xmi:type="bpmn:Activity" xmi:id="_ZvTssZRDEd2vqYoGyXJ4rA" iD="_ZvTssJRDEd2vqYoGyXJ4rA" outgoingEdges="_dD36AVfIEeGxcIkDfvwizA" incomingEdges="_Wy4dEVfIEeGxcIkDfvwizA _XQrzYVfIEeGxcIkDfvwizA" name="TCP-Snd" looping="false">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_fR814JRDEd2vqYoGyXJ4rA" source="im">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR814ZRDEd2vqYoGyXJ4rA" key="RemoteHost" value="${remoteHost}"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR814pRDEd2vqYoGyXJ4rA" key="OutgoingEndianness" value="true"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR8145RDEd2vqYoGyXJ4rA" key="im.servicename" value="TaskService"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR815JRDEd2vqYoGyXJ4rA" key="LogFileName" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR815ZRDEd2vqYoGyXJ4rA" key="ConnectionMode" value="CONN_MODE_DISCONNECT"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR815pRDEd2vqYoGyXJ4rA" key="LogExtraInfo" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR8155RDEd2vqYoGyXJ4rA" key="OutgoingWrapper" value="WRAPPER_USER"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR816JRDEd2vqYoGyXJ4rA" key="NormalizedMessageOutputEnvelope" value="PLAIN-HL7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR816ZRDEd2vqYoGyXJ4rA" key="LogData" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR816pRDEd2vqYoGyXJ4rA" key="IncomingWrapper" value="WRAPPER_USER"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR8165RDEd2vqYoGyXJ4rA" key="FlagBase64EncodeMessage" value="TRUE"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR817JRDEd2vqYoGyXJ4rA" key="ResponseTimeOut" value="${responseTimeout}"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR817ZRDEd2vqYoGyXJ4rA" key="TcpOutInReceiverClassName" value="org.spagic.smx.components.tcp.ConsoleTCPReceiver"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR817pRDEd2vqYoGyXJ4rA" key="LogConnections" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR8175RDEd2vqYoGyXJ4rA" key="OutgoingTrailer" value="0x1C 0x0D"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR818JRDEd2vqYoGyXJ4rA" key="IncomingEndianness" value="true"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR818ZRDEd2vqYoGyXJ4rA" key="NormalizedMessageInputEnvelope" value="PLAIN-HL7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR818pRDEd2vqYoGyXJ4rA" key="RetryType" value="RETRY_TYPE_NO_RETRY"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR8185RDEd2vqYoGyXJ4rA" key="ConnectionPointType" value="POINT_TYPE_CLIENT"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR819JRDEd2vqYoGyXJ4rA" key="IncomingHeader" value="0x0B"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR819ZRDEd2vqYoGyXJ4rA" key="ConnectionPointMode" value="OPERATION_MODE_BIDIRECTIONAL"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR819pRDEd2vqYoGyXJ4rA" key="LogDataInExadecimal" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR8195RDEd2vqYoGyXJ4rA" key="FailAction" value="FAIL_ACTION_CLOSE_CONN"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR81-JRDEd2vqYoGyXJ4rA" key="RetryNumber" value="${retryNumber}"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR81-ZRDEd2vqYoGyXJ4rA" key="RetryCount" value="${retryCount}"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR81-pRDEd2vqYoGyXJ4rA" key="StripWrapping" value="true"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR81-5RDEd2vqYoGyXJ4rA" key="im.servicebindingname" value="JBI-TCPIP-Pipeline"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR81_JRDEd2vqYoGyXJ4rA" key="FlagIsSslEnabled" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR81_ZRDEd2vqYoGyXJ4rA" key="IncomingTrailer" value="0x1C 0x0D"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR81_pRDEd2vqYoGyXJ4rA" key="RetryDelay" value="${retryDelay}"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR81_5RDEd2vqYoGyXJ4rA" key="OutgoingHeader" value="0x0B"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR82AJRDEd2vqYoGyXJ4rA" key="RemotePort" value="${remotePort}"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR82AZRDEd2vqYoGyXJ4rA" key="FlagBase64DecodeMessage" value="TRUE"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fR82ApRDEd2vqYoGyXJ4rA" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QejNcA4dEd64NP3je2rDdw" key="sendFaultsToTarget" value="false"/>
+      </eAnnotations>
+    </vertices>
+    <vertices xmi:type="bpmn:Activity" xmi:id="_iHELYZRPEd2vqYoGyXJ4rA" iD="_iHELYJRPEd2vqYoGyXJ4rA" associations="_JfYlEHflEeGVwp_TvuXBTQ _J-06IHflEeGVwp_TvuXBTQ _KcfGgHflEeGVwp_TvuXBTQ" outgoingEdges="_VqKhgVfIEeGxcIkDfvwizA _WA0G8VfIEeGxcIkDfvwizA _3JeP0aP5EeGVmsr4xKoNTw" incomingEdges="_f9xpsRI9Ed6hNoKKmRxh6g" name="RouterTypeMsg" activityType="GatewayDataBasedExclusive">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jRaeoJRPEd2vqYoGyXJ4rA" source="im">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jRaeoZRPEd2vqYoGyXJ4rA" key="im.servicename" value="RouterService"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jRaeopRPEd2vqYoGyXJ4rA" key="im.servicebindingname" value="JBI-Router"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jRaeo5RPEd2vqYoGyXJ4rA" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </eAnnotations>
+    </vertices>
+    <vertices xmi:type="bpmn:Activity" xmi:id="_TZBFwZRTEd2vqYoGyXJ4rA" iD="_TZBFwJRTEd2vqYoGyXJ4rA" outgoingEdges="_d5hIkVfIEeGxcIkDfvwizA" incomingEdges="_dD36AVfIEeGxcIkDfvwizA" name="ReadAckAndLog">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YArNYJRTEd2vqYoGyXJ4rA" source="im">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YArNYZRTEd2vqYoGyXJ4rA" key="im.servicename" value="TaskService"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YArNYpRTEd2vqYoGyXJ4rA" key="im.servicebindingname" value="JBI-GroovyScriptingComponent"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YArNY5RTEd2vqYoGyXJ4rA" key="GroovyScript" value="Scripts/FROMADT2FSA_ReadACK.groovy"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YArNZJRTEd2vqYoGyXJ4rA" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </eAnnotations>
+    </vertices>
+    <vertices xmi:type="bpmn:Activity" xmi:id="_VmrTARI9Ed6hNoKKmRxh6g" iD="_VmrTABI9Ed6hNoKKmRxh6g" outgoingEdges="_f9xpsRI9Ed6hNoKKmRxh6g" incomingEdges="_ClIm0VfHEeGxcIkDfvwizA" name="GroovyGetUpdateDati">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VWf9YCkEEd6DSoSXbd_6cQ" source="im">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VWf9YSkEEd6DSoSXbd_6cQ" key="im.servicename" value="TaskService"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VWf9YikEEd6DSoSXbd_6cQ" key="im.servicebindingname" value="JBI-GroovyScriptingComponent"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VWf9YykEEd6DSoSXbd_6cQ" key="GroovyScript" value="Scripts/FROMADT2FSA_decodifiche_WS.groovy"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VWf9ZCkEEd6DSoSXbd_6cQ" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </eAnnotations>
+    </vertices>
+    <vertices xmi:type="bpmn:Activity" xmi:id="_TUiCgRJDEd6hNoKKmRxh6g" iD="_TUiCgBJDEd6hNoKKmRxh6g" associations="_selS4HflEeGVwp_TvuXBTQ" incomingEdges="_d5hIkVfIEeGxcIkDfvwizA" name="ConsoleEnd" activityType="EventEndEmpty">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jWecIBJDEd6hNoKKmRxh6g" source="im">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jWecIRJDEd6hNoKKmRxh6g" key="im.servicename" value="EndService"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jWecIhJDEd6hNoKKmRxh6g" key="im.servicebindingname" value="JBI-ConsoleOutputBindingComponent"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jWecIxJDEd6hNoKKmRxh6g" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </eAnnotations>
+    </vertices>
+    <vertices xmi:type="bpmn:Activity" xmi:id="_uKYyUXdnEd6NW8JrzPk2pw" iD="_uKYyUHdnEd6NW8JrzPk2pw" outgoingEdges="_CPhjMVfHEeGxcIkDfvwizA" name="JDBCPoller" activityType="EventStartEmpty">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_vnrPsHdnEd6NW8JrzPk2pw" source="im">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPsXdnEd6NW8JrzPk2pw" key="NumberOfSubQueries" value="0"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPsndnEd6NW8JrzPk2pw" key="im.servicename" value="StartService"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPs3dnEd6NW8JrzPk2pw" key="MainQueryName" value="MainQuery"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPtHdnEd6NW8JrzPk2pw" key="JndiDataSource" value="ADTdb"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPtXdnEd6NW8JrzPk2pw" key="Period" value="${periodoPoller}"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPtndnEd6NW8JrzPk2pw" key="DatabaseType" value="Oracle"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPt3dnEd6NW8JrzPk2pw" key="RequireJndiDataSource" value="true"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPuHdnEd6NW8JrzPk2pw" key="InitialKeyValue" value="${IDInizioElaborazioneFSA}"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPuXdnEd6NW8JrzPk2pw" key="maxMessagesPerUnit" value="${maxMessagesPerPollingUnit}"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPundnEd6NW8JrzPk2pw" key="im.servicebindingname" value="JBI-JDBCPollerBindingComponent"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPu3dnEd6NW8JrzPk2pw" key="KeyColumn" value="AH_ID"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPvHdnEd6NW8JrzPk2pw" key="RowsForEachMessage" value="1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPvXdnEd6NW8JrzPk2pw" key="CommPointID" value="IDELABORAZIONEADT_FSA"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPvndnEd6NW8JrzPk2pw" key="ColNameAsAttribute" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPv3dnEd6NW8JrzPk2pw" key="RowNameAsAttribute" value="false"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPwHdnEd6NW8JrzPk2pw" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPwXdnEd6NW8JrzPk2pw" key="MainQuerySQL" value="${queryPoller}"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vnrPwndnEd6NW8JrzPk2pw" key="ValueAsAttribute" value="false"/>
+      </eAnnotations>
+    </vertices>
+    <vertices xmi:type="bpmn:Activity" xmi:id="_07AOkVfFEeGxcIkDfvwizA" iD="_07AOkFfFEeGxcIkDfvwizA" associations="_D0Z2UFfHEeGxcIkDfvwizA _RjQ78HflEeGVwp_TvuXBTQ" outgoingEdges="_9dmsUVfGEeGxcIkDfvwizA" incomingEdges="_CPhjMVfHEeGxcIkDfvwizA" name="AddProcessProperties">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__szu0FfGEeGxcIkDfvwizA" source="im">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__szu0VfGEeGxcIkDfvwizA" key="im.servicebindingname" value="JBI-GroovyScriptingComponent"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__szu0lfGEeGxcIkDfvwizA" key="im.servicename" value="TaskService"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__szu01fGEeGxcIkDfvwizA" key="GroovyScript" value="Scripts/AggiuntaProcessProperties.groovy"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__szu1FfGEeGxcIkDfvwizA" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </eAnnotations>
+    </vertices>
+    <vertices xmi:type="bpmn:Activity" xmi:id="_1byAYVfFEeGxcIkDfvwizA" iD="_1byAYFfFEeGxcIkDfvwizA" outgoingEdges="_ClIm0VfHEeGxcIkDfvwizA" incomingEdges="_9dmsUVfGEeGxcIkDfvwizA" name="SetPayload">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AEf2EFfHEeGxcIkDfvwizA" source="im">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AEf2EVfHEeGxcIkDfvwizA" key="im.servicebindingname" value="JBI-GroovyScriptingComponent"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AEf2ElfHEeGxcIkDfvwizA" key="im.servicename" value="TaskService"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AEf2E1fHEeGxcIkDfvwizA" key="GroovyScript" value="Scripts/SetPayloadInProperties.groovy"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AEf2FFfHEeGxcIkDfvwizA" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </eAnnotations>
+    </vertices>
+    <vertices xmi:type="bpmn:Activity" xmi:id="_Qyb9kVfIEeGxcIkDfvwizA" iD="_Qyb9kFfIEeGxcIkDfvwizA" outgoingEdges="_Wy4dEVfIEeGxcIkDfvwizA" incomingEdges="_VqKhgVfIEeGxcIkDfvwizA" name="mappingDatiADT">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_on5hYFfJEeGxcIkDfvwizA" source="im">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_on5hYVfJEeGxcIkDfvwizA" key="im.servicebindingname" value="JBI-GroovyScriptingComponent"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_on5hYlfJEeGxcIkDfvwizA" key="im.servicename" value="TaskService"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_on5hY1fJEeGxcIkDfvwizA" key="GroovyScript" value="Scripts/FROMADT2FSA_mappingADTToHL7.groovy"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_on5hZFfJEeGxcIkDfvwizA" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </eAnnotations>
+    </vertices>
+    <vertices xmi:type="bpmn:Activity" xmi:id="_RUQ4QVfIEeGxcIkDfvwizA" iD="_RUQ4QFfIEeGxcIkDfvwizA" outgoingEdges="_XQrzYVfIEeGxcIkDfvwizA" incomingEdges="_WA0G8VfIEeGxcIkDfvwizA" name="mappingDatiMDM">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_o_StsFfJEeGxcIkDfvwizA" source="im">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_o_StsVfJEeGxcIkDfvwizA" key="im.servicebindingname" value="JBI-GroovyScriptingComponent"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_o_StslfJEeGxcIkDfvwizA" key="im.servicename" value="TaskService"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_o_Sts1fJEeGxcIkDfvwizA" key="GroovyScript" value="Scripts/FROMADT2FSA_mappingMDMToHL7.groovy"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_o_SttFfJEeGxcIkDfvwizA" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </eAnnotations>
+    </vertices>
+    <vertices xmi:type="bpmn:Activity" xmi:id="_sejlQaP5EeGVmsr4xKoNTw" iD="_sejlQKP5EeGVmsr4xKoNTw" incomingEdges="_3JeP0aP5EeGVmsr4xKoNTw" name="END_NOSEND" activityType="EventEndEmpty">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7hxFwKP5EeGVmsr4xKoNTw" source="im">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7hxFwaP5EeGVmsr4xKoNTw" key="im.servicebindingname" value="JBI-ConsoleOutputBindingComponent"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7hxFwqP5EeGVmsr4xKoNTw" key="im.servicename" value="EndService"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7hxFw6P5EeGVmsr4xKoNTw" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </eAnnotations>
+    </vertices>
+    <sequenceEdges xmi:type="bpmn:SequenceEdge" xmi:id="_f9xpsRI9Ed6hNoKKmRxh6g" iD="_f9xpsBI9Ed6hNoKKmRxh6g"/>
+    <sequenceEdges xmi:type="bpmn:SequenceEdge" xmi:id="_9dmsUVfGEeGxcIkDfvwizA" iD="_9dmsUFfGEeGxcIkDfvwizA"/>
+    <sequenceEdges xmi:type="bpmn:SequenceEdge" xmi:id="_CPhjMVfHEeGxcIkDfvwizA" iD="_CPhjMFfHEeGxcIkDfvwizA"/>
+    <sequenceEdges xmi:type="bpmn:SequenceEdge" xmi:id="_ClIm0VfHEeGxcIkDfvwizA" iD="_ClIm0FfHEeGxcIkDfvwizA"/>
+    <sequenceEdges xmi:type="bpmn:SequenceEdge" xmi:id="_VqKhgVfIEeGxcIkDfvwizA" iD="_VqKhgFfIEeGxcIkDfvwizA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_h0DI0FfmEeGxcIkDfvwizA" source="imtransition">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_h0DI0VfmEeGxcIkDfvwizA" key="im.transition.type" value="ExpressionCondition"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_h0DI0lfmEeGxcIkDfvwizA" key="ExpressionLanguage" value="XPath"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_h0DI01fmEeGxcIkDfvwizA" key="Expression" value="(//TipoMessaggio!='MDMT02' and //TipoMessaggio!='MDMT10' and  //TipoMessaggio!='NOSEND')"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_h0DI1FfmEeGxcIkDfvwizA" key="im.transition.conditionname" value="Boolean XPath Expression"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_h0DI1VfmEeGxcIkDfvwizA" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </eAnnotations>
+    </sequenceEdges>
+    <sequenceEdges xmi:type="bpmn:SequenceEdge" xmi:id="_WA0G8VfIEeGxcIkDfvwizA" iD="_WA0G8FfIEeGxcIkDfvwizA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hYoYIFfmEeGxcIkDfvwizA" source="imtransition">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hYoYIVfmEeGxcIkDfvwizA" key="im.transition.type" value="ExpressionCondition"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hYoYIlfmEeGxcIkDfvwizA" key="ExpressionLanguage" value="XPath"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hYoYI1fmEeGxcIkDfvwizA" key="Expression" value="(//TipoMessaggio='MDMT02' or //TipoMessaggio='MDMT10')"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hYoYJFfmEeGxcIkDfvwizA" key="im.transition.conditionname" value="Boolean XPath Expression"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hYoYJVfmEeGxcIkDfvwizA" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </eAnnotations>
+    </sequenceEdges>
+    <sequenceEdges xmi:type="bpmn:SequenceEdge" xmi:id="_Wy4dEVfIEeGxcIkDfvwizA" iD="_Wy4dEFfIEeGxcIkDfvwizA"/>
+    <sequenceEdges xmi:type="bpmn:SequenceEdge" xmi:id="_XQrzYVfIEeGxcIkDfvwizA" iD="_XQrzYFfIEeGxcIkDfvwizA"/>
+    <sequenceEdges xmi:type="bpmn:SequenceEdge" xmi:id="_dD36AVfIEeGxcIkDfvwizA" iD="_dD36AFfIEeGxcIkDfvwizA"/>
+    <sequenceEdges xmi:type="bpmn:SequenceEdge" xmi:id="_d5hIkVfIEeGxcIkDfvwizA" iD="_d5hIkFfIEeGxcIkDfvwizA"/>
+    <sequenceEdges xmi:type="bpmn:SequenceEdge" xmi:id="_3JeP0aP5EeGVmsr4xKoNTw" iD="_3JeP0KP5EeGVmsr4xKoNTw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8yOoEKP5EeGVmsr4xKoNTw" source="imtransition">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8yOoEaP5EeGVmsr4xKoNTw" key="im.transition.type" value="ExpressionCondition"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8yOoEqP5EeGVmsr4xKoNTw" key="ExpressionLanguage" value="XPath"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8yOoE6P5EeGVmsr4xKoNTw" key="Expression" value="//TipoMessaggio='NOSEND'"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8yOoFKP5EeGVmsr4xKoNTw" key="im.transition.conditionname" value="Boolean XPath Expression"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8yOoFaP5EeGVmsr4xKoNTw" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </eAnnotations>
+    </sequenceEdges>
+  </pools>
+</bpmn:BpmnDiagram>

@@ -1,0 +1,10 @@
+Alter table AA_ADT2HL7 add AH_READ_STATUS_FSA  VARCHAR2(1 BYTE);
+COMMENT ON COLUMN AA_ADT2HL7.AH_READ_STATUS_FSA IS 'Stato esportazione per Fascicolo: default NULL da esportare, 1 presa in carico(non spedito se rimane in questo stato), 2 spedito correttamente, 3 spedito con errori';
+
+CREATE SEQUENCE HL7_MSG_SEQ
+  START WITH 1
+  MAXVALUE 999999999999999999999999999
+  MINVALUE 1
+  NOCYCLE
+  CACHE 20
+  NOORDER;

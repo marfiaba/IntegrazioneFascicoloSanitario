@@ -1,0 +1,53 @@
+8
+
+dir
+4193
+https://10.1.0.3:444/svn/Spagic/IntegrazioneFascicoloSanitario/trunk/Other/DB
+https://10.1.0.3:444/svn/Spagic
+
+
+
+2012-05-18T08:19:36.054698Z
+4193
+marfiaba
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+cfabb259-0b5d-0410-abce-c4c6c71365d2
+
+F_MATRICOLA.fnc
+file
+4212
+
+
+
+2012-05-22T09:16:03.687000Z
+661d470b0a814858c235281d1782c261
+2012-05-28T09:35:31.870493Z
+4212
+marfiaba
+
+ModificheDB.txt
+file
+4212
+
+
+
+2012-05-22T13:06:03.609000Z
+fafd8e61a1daa8e8d2d2c9097efc5c7e
+2012-05-28T09:35:31.870493Z
+4212
+marfiaba
+has-props
+

@@ -1,0 +1,44 @@
+#Chiave fissa
+DB_ADT=java:comp/env/jdbc/ADTdb
+#Chiave fissa
+HL7_SEQ_DS=java:comp/env/jdbc/ADTdb
+#Query
+queryPoller=SELECT   TO_CHAR (a.ah_dt_ins, 'yyyy-mm-dd hh24:mi:ss') datains, TO_CHAR (a.ah_dt_contatto, 'yyyymmddhh24mi') ah_dt_contattoc, TO_CHAR (a.ah_dt_evento, 'yyyymmddhh24mi') ah_dt_eventoc, a.*,b.at_file FROM aa_adt2hl7 a, si_attach b WHERE a.ah_id > ? AND a.ah_read_status_fsa IS NULL AND a.ah_at_id = b.at_id(+)  AND a.AH_TIPO_MSG in ('A01','A11','A03','A13','A45','MDMT02','MDMT10','LETDIM','LETDIMV') ORDER BY a.ah_id
+#Periodo di poller query in millisecondi
+periodoPoller=30000
+#Numero di messaggi elaborati alla volta
+maxMessagesPerPollingUnit=1
+#Id di inzizio laborazione(serve solo per installazione, cambiare successivamente su db(key_values)
+IDInizioElaborazioneFSA=1000000
+
+#Tempo di timeout in millesecondi
+responseTimeout=30000
+#retryCount
+retryCount=2
+#retryNumber
+retryNumber=2
+#retryDelay in millesecondi
+retryDelay=10000
+
+#Ip o host del fascicolo
+remoteHost=10.102.41.92
+#Porta di ascolto del fascicolo
+remotePort=8250
+
+
+#Indirizzo WS di ADT
+URLWS=http://10.192.5.114:8080/ORBADEF/jbfServices/JBFService
+
+#Login , pwd e entita per collegamento WS ADT
+USERADT=UT_SPAGIC
+PWDADT=12345678
+ENTITAADT=ESEL
+
+#Percorso classi di mappatura, cambia la parte finale(biella o to1)
+packageMapping=it.eng.spagic.marshall.adt.fsa.to1
+
+#Prefisso per id messaggio hl7
+SEQ_PREFIX=
+
+#Chiave fissa
+bloccoPerErroreWS=S

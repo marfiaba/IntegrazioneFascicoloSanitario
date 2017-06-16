@@ -1,0 +1,2188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DEPLOY>
+<BASE_NAMESPACE>urn:eng:spagic:processes:</BASE_NAMESPACE>
+<NAMESPACES> 
+<NAMESPACES_REPOSITORY> 
+</NAMESPACES_REPOSITORY>
+</NAMESPACES> 
+<OBSERVABLE_ATTRIBUTE_REPOSITORY>
+<ObservableAttributeRepository><Attribute name="IdPaziente" type="0"/><Attribute name="TipoMsgADT" type="0"/><Attribute name="PazCognome" type="0"/><Attribute name="PazNome" type="0"/><Attribute name="EsitoAck" type="0"/><Attribute name="SDO" type="0"/><Rule referredAttributeName="IdPaziente" name="/msgstorico/pazcode" expr="//msgstorico/pazcode" condexpr="null" startdate="null" enddate="null" ruleType="null" ruleUsage="0"/><Rule referredAttributeName="TipoMsgADT" name="//AH_TIPO_MSG" expr="//AH_TIPO_MSG" condexpr="null" startdate="null" enddate="null" ruleType="null" ruleUsage="0"/><Rule referredAttributeName="PazCognome" name="/msgstorico/pazcogn" expr="/msgstorico/pazcogn" condexpr="null" startdate="null" enddate="null" ruleType="null" ruleUsage="0"/><Rule referredAttributeName="PazNome" name="/msgstorico/paznome" expr="/msgstorico/paznome" condexpr="null" startdate="null" enddate="null" ruleType="null" ruleUsage="0"/><Rule referredAttributeName="EsitoAck" name="/esitoack" expr="/esitoack" condexpr="null" startdate="null" enddate="null" ruleType="null" ruleUsage="0"/><Rule referredAttributeName="SDO" name="/msgstorico/noso" expr="/msgstorico/noso" condexpr="null" startdate="null" enddate="null" ruleType="null" ruleUsage="0"/></ObservableAttributeRepository>
+</OBSERVABLE_ATTRIBUTE_REPOSITORY>
+<INTERMEDIATE_MODEL>
+<im:StpIntermediateModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:im="http://eclipse.org/stp/im">
+  <properties key="im.iter.version">
+    <value xsi:type="im:BasicProperty" key="im.iter.version" value="0"/>
+  </properties>
+  <processCollection>
+    <processes name="FromADT2FSA_xsl">
+      <properties key="im.process.version">
+        <value xsi:type="im:BasicProperty" key="im.process.version" value="0"/>
+      </properties>
+      <properties key="TechnologyName">
+        <value xsi:type="im:BasicProperty" key="TechnologyName" value="JBI - Apache ServiceMix"/>
+      </properties>
+      <properties key="im.pool.runtimeID">
+        <value xsi:type="im:BasicProperty" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </properties>
+      <properties key="im.process.parameters">
+        <value xsi:type="im:MapProperty" key="im.process.parameters">
+          <value key="maxMessagesPerPollingUnit">
+            <value xsi:type="im:BasicProperty" key="maxMessagesPerPollingUnit" value="1"/>
+          </value>
+          <value key="retryNumber">
+            <value xsi:type="im:BasicProperty" key="retryNumber" value="2"/>
+          </value>
+          <value key="remoteHost">
+            <value xsi:type="im:BasicProperty" key="remoteHost" value="127.0.0.1"/>
+          </value>
+          <value key="retryCount">
+            <value xsi:type="im:BasicProperty" key="retryCount" value="2"/>
+          </value>
+          <value key="responseTimeout">
+            <value xsi:type="im:BasicProperty" key="responseTimeout" value="30000"/>
+          </value>
+          <value key="periodoPoller">
+            <value xsi:type="im:BasicProperty" key="periodoPoller" value="10000"/>
+          </value>
+          <value key="retryDelay">
+            <value xsi:type="im:BasicProperty" key="retryDelay" value="10000"/>
+          </value>
+          <value key="queryPoller">
+            <value xsi:type="im:BasicProperty" key="queryPoller" value="select to_char(a.ah_dt_ins,'yyyy-mm-dd hh24:mi:ss') DATAINS,to_char(a.ah_dt_contatto,'yyyymmddhh24mi') AH_DT_CONTATTOC,to_char(a.ah_dt_evento,'yyyymmddhh24mi') AH_DT_EVENTOC,  a.*, b.at_file, c.SA_VERSIONE VERSIONEREFERTO from aa_ADT2HL7 a, si_attach b , aa_stampe_attach c, si_attachfile d where  to_char(a.ah_dt_ins,'yyyy-mm-dd hh24:mi:ss')>=? and a.ah_dt_var is null and a.ah_at_id = c.sa_id (+) and  c.SA_REPORT  || '_' || c.SA_PRESIDIO || '_' || c.SA_NOSOLOGICO || '_' || c.SA_ID = d.AT_CHIAVE (+) and d.AT_ID  = b. AT_ID (+) order by a.ah_dt_ins"/>
+          </value>
+          <value key="remotePort">
+            <value xsi:type="im:BasicProperty" key="remotePort" value="8082"/>
+          </value>
+          <value key="dataInizioElaborazione">
+            <value xsi:type="im:BasicProperty" key="dataInizioElaborazione" value="2015-01-01 08:00:00"/>
+          </value>
+        </value>
+      </properties>
+      <properties key="im.process.technology">
+        <value xsi:type="im:BasicProperty" key="im.process.technology" value="JBI"/>
+      </properties>
+      <steps serviceModel="//@serviceCollection/@services.2" name="TCP-Snd" description=" Description for TCP-Snd" sourceTransitions="//@processCollection/@processes.0/@transitions.40 //@processCollection/@processes.0/@transitions.49" targetTransitions="//@processCollection/@processes.0/@transitions.16 //@processCollection/@processes.0/@transitions.17 //@processCollection/@processes.0/@transitions.18 //@processCollection/@processes.0/@transitions.26 //@processCollection/@processes.0/@transitions.27 //@processCollection/@processes.0/@transitions.44 //@processCollection/@processes.0/@transitions.45 //@processCollection/@processes.0/@transitions.46 //@processCollection/@processes.0/@transitions.50" stepbindings="//@servicebindings.9">
+        <properties key="RemoteHost">
+          <value xsi:type="im:BasicProperty" key="RemoteHost" value="${remoteHost}"/>
+        </properties>
+        <properties key="OutgoingEndianness">
+          <value xsi:type="im:BasicProperty" key="OutgoingEndianness" value="true"/>
+        </properties>
+        <properties key="ResponseTimeOut">
+          <value xsi:type="im:BasicProperty" key="ResponseTimeOut" value="${responseTimeout}"/>
+        </properties>
+        <properties key="FlagBase64EncodeMessage">
+          <value xsi:type="im:BasicProperty" key="FlagBase64EncodeMessage" value="TRUE"/>
+        </properties>
+        <properties key="RetryType">
+          <value xsi:type="im:BasicProperty" key="RetryType" value="RETRY_TYPE_NO_RETRY"/>
+        </properties>
+        <properties key="OutgoingHeader">
+          <value xsi:type="im:BasicProperty" key="OutgoingHeader" value="0x0B"/>
+        </properties>
+        <properties key="FlagBase64DecodeMessage">
+          <value xsi:type="im:BasicProperty" key="FlagBase64DecodeMessage" value="TRUE"/>
+        </properties>
+        <properties key="LogData">
+          <value xsi:type="im:BasicProperty" key="LogData" value="false"/>
+        </properties>
+        <properties key="RemotePort">
+          <value xsi:type="im:BasicProperty" key="RemotePort" value="${remotePort}"/>
+        </properties>
+        <properties key="ConnectionPointType">
+          <value xsi:type="im:BasicProperty" key="ConnectionPointType" value="POINT_TYPE_CLIENT"/>
+        </properties>
+        <properties key="StripWrapping">
+          <value xsi:type="im:BasicProperty" key="StripWrapping" value="true"/>
+        </properties>
+        <properties key="ConnectionMode">
+          <value xsi:type="im:BasicProperty" key="ConnectionMode" value="CONN_MODE_DISCONNECT"/>
+        </properties>
+        <properties key="IncomingHeader">
+          <value xsi:type="im:BasicProperty" key="IncomingHeader" value="0x0B"/>
+        </properties>
+        <properties key="RetryNumber">
+          <value xsi:type="im:BasicProperty" key="RetryNumber" value="${retryNumber}"/>
+        </properties>
+        <properties key="IncomingWrapper">
+          <value xsi:type="im:BasicProperty" key="IncomingWrapper" value="WRAPPER_USER"/>
+        </properties>
+        <properties key="LogDataInExadecimal">
+          <value xsi:type="im:BasicProperty" key="LogDataInExadecimal" value="false"/>
+        </properties>
+        <properties key="FlagIsSslEnabled">
+          <value xsi:type="im:BasicProperty" key="FlagIsSslEnabled" value="false"/>
+        </properties>
+        <properties key="NormalizedMessageOutputEnvelope">
+          <value xsi:type="im:BasicProperty" key="NormalizedMessageOutputEnvelope" value="PLAIN-HL7"/>
+        </properties>
+        <properties key="TcpOutInReceiverClassName">
+          <value xsi:type="im:BasicProperty" key="TcpOutInReceiverClassName" value="org.spagic.smx.components.tcp.ConsoleTCPReceiver"/>
+        </properties>
+        <properties key="OutgoingTrailer">
+          <value xsi:type="im:BasicProperty" key="OutgoingTrailer" value="0x1C 0x0D"/>
+        </properties>
+        <properties key="ConnectionPointMode">
+          <value xsi:type="im:BasicProperty" key="ConnectionPointMode" value="OPERATION_MODE_BIDIRECTIONAL"/>
+        </properties>
+        <properties key="RetryCount">
+          <value xsi:type="im:BasicProperty" key="RetryCount" value="${retryCount}"/>
+        </properties>
+        <properties key="RetryDelay">
+          <value xsi:type="im:BasicProperty" key="RetryDelay" value="${retryDelay}"/>
+        </properties>
+        <properties key="LogFileName">
+          <value xsi:type="im:BasicProperty" key="LogFileName"/>
+        </properties>
+        <properties key="LogExtraInfo">
+          <value xsi:type="im:BasicProperty" key="LogExtraInfo" value="false"/>
+        </properties>
+        <properties key="NormalizedMessageInputEnvelope">
+          <value xsi:type="im:BasicProperty" key="NormalizedMessageInputEnvelope" value="PLAIN-HL7"/>
+        </properties>
+        <properties key="LogConnections">
+          <value xsi:type="im:BasicProperty" key="LogConnections" value="false"/>
+        </properties>
+        <properties key="IncomingTrailer">
+          <value xsi:type="im:BasicProperty" key="IncomingTrailer" value="0x1C 0x0D"/>
+        </properties>
+        <properties key="sendFaultsToTarget">
+          <value xsi:type="im:BasicProperty" key="sendFaultsToTarget" value="false"/>
+        </properties>
+        <properties key="FailAction">
+          <value xsi:type="im:BasicProperty" key="FailAction" value="FAIL_ACTION_CLOSE_CONN"/>
+        </properties>
+        <properties key="OutgoingWrapper">
+          <value xsi:type="im:BasicProperty" key="OutgoingWrapper" value="WRAPPER_USER"/>
+        </properties>
+        <properties key="IncomingEndianness">
+          <value xsi:type="im:BasicProperty" key="IncomingEndianness" value="true"/>
+        </properties>
+        <properties key="transformerStepName">
+          <value xsi:type="im:BasicProperty" key="transformerStepName" value="TCP-Snd_Transformer"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.3" name="RouterTypeMsg" description=" Description for RouterTypeMsg" sourceTransitions="//@processCollection/@processes.0/@transitions.0 //@processCollection/@processes.0/@transitions.1 //@processCollection/@processes.0/@transitions.2 //@processCollection/@processes.0/@transitions.3 //@processCollection/@processes.0/@transitions.13 //@processCollection/@processes.0/@transitions.21 //@processCollection/@processes.0/@transitions.22 //@processCollection/@processes.0/@transitions.28 //@processCollection/@processes.0/@transitions.30 //@processCollection/@processes.0/@transitions.37 //@processCollection/@processes.0/@transitions.38 //@processCollection/@processes.0/@transitions.39" targetTransitions="//@processCollection/@processes.0/@transitions.15" stepbindings="//@servicebindings.43">
+        <properties key="im.isExclusiveGateway">
+          <value xsi:type="im:BasicProperty" key="im.isExclusiveGateway" value="true"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA01" description=" Description for trasformaDatiA01" sourceTransitions="//@processCollection/@processes.0/@transitions.4" targetTransitions="//@processCollection/@processes.0/@transitions.0" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA02" description=" Description for trasformaDatiA02" sourceTransitions="//@processCollection/@processes.0/@transitions.5" targetTransitions="//@processCollection/@processes.0/@transitions.1" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA03" description=" Description for trasformaDatiA03" sourceTransitions="//@processCollection/@processes.0/@transitions.6" targetTransitions="//@processCollection/@processes.0/@transitions.2" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA08" description=" Description for trasformaDatiA08" sourceTransitions="//@processCollection/@processes.0/@transitions.7" targetTransitions="//@processCollection/@processes.0/@transitions.3" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA01A08" description=" Description for groovyupdatemsgA01A08" sourceTransitions="//@processCollection/@processes.0/@transitions.8" targetTransitions="//@processCollection/@processes.0/@transitions.4 //@processCollection/@processes.0/@transitions.7" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA02A12" description=" Description for groovyupdatemsgA02A12" sourceTransitions="//@processCollection/@processes.0/@transitions.9" targetTransitions="//@processCollection/@processes.0/@transitions.5 //@processCollection/@processes.0/@transitions.19" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA03A13" description=" Description for groovyupdatemsgA03A13" sourceTransitions="//@processCollection/@processes.0/@transitions.10" targetTransitions="//@processCollection/@processes.0/@transitions.6 //@processCollection/@processes.0/@transitions.20" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA01A08" description=" Description for FromXmlToPlainA01A08" sourceTransitions="//@processCollection/@processes.0/@transitions.17" targetTransitions="//@processCollection/@processes.0/@transitions.8" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA01"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA02A12" description=" Description for FromXmlToPlainA02A12" sourceTransitions="//@processCollection/@processes.0/@transitions.16" targetTransitions="//@processCollection/@processes.0/@transitions.9" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA01"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA03A13" description=" Description for FromXmlToPlainA03A13" sourceTransitions="//@processCollection/@processes.0/@transitions.18" targetTransitions="//@processCollection/@processes.0/@transitions.10" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA01"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="GroovyReadAck" description=" Description for GroovyReadAck" sourceTransitions="//@processCollection/@processes.0/@transitions.12" targetTransitions="//@processCollection/@processes.0/@transitions.41 //@processCollection/@processes.0/@transitions.43" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_ReadACK.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="GroovyInsStorico" description=" Description for GroovyInsStorico" sourceTransitions="//@processCollection/@processes.0/@transitions.11" targetTransitions="//@processCollection/@processes.0/@transitions.12" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_preInsertStorico.groovy"/>
+        </properties>
+        <observableAttributes idAttribute="21" name="EsitoAck">
+          <observableAttributeExtractRule idRule="21" name="/esitoack" expression="/esitoack" expressionLanguage="XPath"/>
+        </observableAttributes>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="JdbcInsStorico" description=" Description for JdbcInsStorico" sourceTransitions="//@processCollection/@processes.0/@transitions.47" targetTransitions="//@processCollection/@processes.0/@transitions.11" stepbindings="//@servicebindings.56">
+        <properties key="SqlQueryParameters[pazcogn].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[pazcogn].ParameterName" value="pazcogn"/>
+        </properties>
+        <properties key="SqlQueryParameters[erroreSintDesc].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[erroreSintDesc].ParameterName" value="erroreSintDesc"/>
+        </properties>
+        <properties key="SqlQueryParameters[repcode].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[repcode].XPathExpression" value="/msgstorico/repcode"/>
+        </properties>
+        <properties key="SqlQueryParameters[tipomsg].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[tipomsg].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[facsnd].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[facsnd].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[pazcode].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[pazcode].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[repcode].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[repcode].ParameterName" value="repcode"/>
+        </properties>
+        <properties key="SqlQueryParameters[facsnd].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[facsnd].XPathExpression" value="/msgstorico/facsnd"/>
+        </properties>
+        <properties key="SqlQueryParameters[apprcv].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[apprcv].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[idack].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[idack].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="ErrorHandlingPolicy">
+          <value xsi:type="im:BasicProperty" key="ErrorHandlingPolicy" value="FLOW"/>
+        </properties>
+        <properties key="SqlQueryParameters[idack].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[idack].XPathExpression" value="/msgstorico/idack"/>
+        </properties>
+        <properties key="SqlQueryParameters[pazcogn].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[pazcogn].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[paznome].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[paznome].XPathExpression" value="/msgstorico/paznome"/>
+        </properties>
+        <properties key="SqlQueryParameters[paznome].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[paznome].ParameterName" value="paznome"/>
+        </properties>
+        <properties key="FlagEnrichInputMessage">
+          <value xsi:type="im:BasicProperty" key="FlagEnrichInputMessage" value="false"/>
+        </properties>
+        <properties key="SqlQueryParameters[erroreSintDesc].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[erroreSintDesc].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="RowXmlEnvelop">
+          <value xsi:type="im:BasicProperty" key="RowXmlEnvelop" value="row"/>
+        </properties>
+        <properties key="SqlQueryParameters[repcode].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[repcode].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[erroreSemDesc].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[erroreSemDesc].ParameterName" value="erroreSemDesc"/>
+        </properties>
+        <properties key="SqlQueryParameters[paznome].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[paznome].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[esito].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[esito].ParameterName" value="esito"/>
+        </properties>
+        <properties key="SqlQueryParameters[pazcode].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[pazcode].XPathExpression" value="/msgstorico/pazcode"/>
+        </properties>
+        <properties key="SqlQueryParameters[apprcv].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[apprcv].XPathExpression" value="/msgstorico/apprcv"/>
+        </properties>
+        <properties key="SqlQueryParameters[facrcv].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[facrcv].ParameterName" value="facrcv"/>
+        </properties>
+        <properties key="SqlQueryParameters[richiestaid].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[richiestaid].ParameterName" value="richiestaid"/>
+        </properties>
+        <properties key="FlagIsStoredProcdure">
+          <value xsi:type="im:BasicProperty" key="FlagIsStoredProcdure" value="false"/>
+        </properties>
+        <properties key="SqlQueryParameters[noso].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[noso].XPathExpression" value="/msgstorico/noso"/>
+        </properties>
+        <properties key="SqlQueryParameters[erroreSemDesc].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[erroreSemDesc].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[esito].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[esito].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[facrcv].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[facrcv].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[pazcogn].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[pazcogn].XPathExpression" value="/msgstorico/pazcogn"/>
+        </properties>
+        <properties key="SqlQueryParameters[richiestaid].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[richiestaid].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[tipomsg].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[tipomsg].XPathExpression" value="/msgstorico/tipomsg"/>
+        </properties>
+        <properties key="SqlQueryParameters[timemsg].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[timemsg].ParameterName" value="timemsg"/>
+        </properties>
+        <properties key="SqlQueryParameters[noso].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[noso].ParameterName" value="noso"/>
+        </properties>
+        <properties key="SqlQueryParameters[appsnd].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[appsnd].ParameterName" value="appsnd"/>
+        </properties>
+        <properties key="SqlQueryParameters[erroreSintDesc].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[erroreSintDesc].XPathExpression" value="/msgstorico/erroreSintDesc"/>
+        </properties>
+        <properties key="SqlQueryParameters[appsnd].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[appsnd].XPathExpression" value="/msgstorico/appsnd"/>
+        </properties>
+        <properties key="SqlQueryParameters[timemsg].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[timemsg].XPathExpression" value="/msgstorico/timemsg"/>
+        </properties>
+        <properties key="SqlQueryParameters[esito].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[esito].XPathExpression" value="/msgstorico/esito"/>
+        </properties>
+        <properties key="SqlQueryParameters[richiestaid].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[richiestaid].XPathExpression" value="/msgstorico/richiestaid"/>
+        </properties>
+        <properties key="SqlQueryParameters[timemsg].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[timemsg].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[noso].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[noso].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[appsnd].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[appsnd].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="Query">
+          <value xsi:type="im:BasicProperty" key="Query" value="insert into STORICOMSG (IDMESSAGGIOHL7,COGNOMEPAZIENTE,NOMEPAZIENTE,CODICEPAZIENTE,TIPOMSGHL7,CODICERICHIESTA,CODICECONTATTO,CODICEREPARTO,ORATIMEMESSAGGIO,ERRCOD,APPLICATIONSENDHL7,FACILITYSENDHL7,APPLICATIONRECVHL7,FACILITYRECVHL7,IDMESSAGGIOACKHL7,ERRORESINTATTICO,ERRORESEMANTICO) values ($idmsghl7,$pazcogn,$paznome,$pazcode,$tipomsg,$richiestaid,$noso,$repcode,to_date($timemsg,'yyyymmddhh24miss'),$esito,$appsnd,$facsnd,$apprcv,$facrcv,$idack,$erroreSintDesc, $erroreSemDesc)"/>
+        </properties>
+        <properties key="RowsXmlEnvelop">
+          <value xsi:type="im:BasicProperty" key="RowsXmlEnvelop" value="rows"/>
+        </properties>
+        <properties key="DatabaseType">
+          <value xsi:type="im:BasicProperty" key="DatabaseType" value="Oracle"/>
+        </properties>
+        <properties key="SqlQueryParameters[idmsghl7].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[idmsghl7].XPathExpression" value="/msgstorico/idmsghl7"/>
+        </properties>
+        <properties key="SqlQueryParameters[erroreSemDesc].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[erroreSemDesc].XPathExpression" value="/msgstorico/erroreSemDesc"/>
+        </properties>
+        <properties key="SqlQueryParameters[facrcv].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[facrcv].XPathExpression" value="/msgstorico/facrcv"/>
+        </properties>
+        <properties key="SqlQueryParameters[idmsghl7].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[idmsghl7].ParameterName" value="idmsghl7"/>
+        </properties>
+        <properties key="SqlQueryParameters[tipomsg].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[tipomsg].ParameterName" value="tipomsg"/>
+        </properties>
+        <properties key="SqlQueryParameters[facsnd].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[facsnd].ParameterName" value="facsnd"/>
+        </properties>
+        <properties key="SqlQueryParameters[pazcode].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[pazcode].ParameterName" value="pazcode"/>
+        </properties>
+        <properties key="JndiDataSource">
+          <value xsi:type="im:BasicProperty" key="JndiDataSource" value="metadb"/>
+        </properties>
+        <properties key="SqlQueryParameters[apprcv].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[apprcv].ParameterName" value="apprcv"/>
+        </properties>
+        <properties key="SqlQueryParameters[idack].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[idack].ParameterName" value="idack"/>
+        </properties>
+        <properties key="RequireJndiDataSource">
+          <value xsi:type="im:BasicProperty" key="RequireJndiDataSource" value="true"/>
+        </properties>
+        <properties key="XmlEnvelop">
+          <value xsi:type="im:BasicProperty" key="XmlEnvelop"/>
+        </properties>
+        <properties key="SqlQueryParameters[idmsghl7].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[idmsghl7].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <observableAttributes idAttribute="3" name="PazCognome">
+          <observableAttributeExtractRule idRule="3" name="/msgstorico/pazcogn" expression="/msgstorico/pazcogn" expressionLanguage="XPath"/>
+        </observableAttributes>
+        <observableAttributes idAttribute="4" name="PazNome">
+          <observableAttributeExtractRule idRule="4" name="/msgstorico/paznome" expression="/msgstorico/paznome" expressionLanguage="XPath"/>
+        </observableAttributes>
+        <observableAttributes idAttribute="2" name="IdPaziente">
+          <observableAttributeExtractRule idRule="2" name="/msgstorico/pazcode" expression="/msgstorico/pazcode" expressionLanguage="XPath"/>
+        </observableAttributes>
+        <observableAttributes idAttribute="143" name="SDO">
+          <observableAttributeExtractRule idRule="144" name="/msgstorico/noso" expression="/msgstorico/noso" expressionLanguage="XPath"/>
+        </observableAttributes>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA11" description=" Description for trasformaDatiA11" sourceTransitions="//@processCollection/@processes.0/@transitions.14" targetTransitions="//@processCollection/@processes.0/@transitions.13" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA11" description=" Description for groovyupdatemsgA11" sourceTransitions="//@processCollection/@processes.0/@transitions.23" targetTransitions="//@processCollection/@processes.0/@transitions.14" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="GroovyGetUpdateDati" description=" Description for GroovyGetUpdateDati" sourceTransitions="//@processCollection/@processes.0/@transitions.15" targetTransitions="//@processCollection/@processes.0/@transitions.48" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_decodifiche_WS.groovy"/>
+        </properties>
+        <observableAttributes idAttribute="123" name="TipoMsgADT">
+          <observableAttributeExtractRule idRule="123" name="//AH_TIPO_MSG" expression="//AH_TIPO_MSG" expressionLanguage="XPath"/>
+        </observableAttributes>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA12" description=" Description for trasformaDatiA12" sourceTransitions="//@processCollection/@processes.0/@transitions.19" targetTransitions="//@processCollection/@processes.0/@transitions.28" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA13" description=" Description for trasformaDatiA13" sourceTransitions="//@processCollection/@processes.0/@transitions.20" targetTransitions="//@processCollection/@processes.0/@transitions.21" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiMDM_TO2" description=" Description for trasformaDatiMDM_TO2" sourceTransitions="//@processCollection/@processes.0/@transitions.24" targetTransitions="//@processCollection/@processes.0/@transitions.22" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatoDB2MDM.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgMDM_TO2" description=" Description for groovyupdatemsgMDM_TO2" sourceTransitions="//@processCollection/@processes.0/@transitions.25" targetTransitions="//@processCollection/@processes.0/@transitions.24 //@processCollection/@processes.0/@transitions.29" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA11" description=" Description for FromXmlToPlainA11" sourceTransitions="//@processCollection/@processes.0/@transitions.26" targetTransitions="//@processCollection/@processes.0/@transitions.23" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA01"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainMDMT02T10" description=" Description for FromXmlToPlainMDMT02T10" sourceTransitions="//@processCollection/@processes.0/@transitions.27" targetTransitions="//@processCollection/@processes.0/@transitions.25" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7mdmT02"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.1" name="ConsoleEnd" description=" Description for ConsoleEnd" targetTransitions="//@processCollection/@processes.0/@transitions.47" stepbindings="//@servicebindings.55">
+        <properties key="im.isStepEndEvent">
+          <value xsi:type="im:BasicProperty" key="im.isStepEndEvent" value="true"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiMDM_T10" description=" Description for trasformaDatiMDM_T10" sourceTransitions="//@processCollection/@processes.0/@transitions.29" targetTransitions="//@processCollection/@processes.0/@transitions.30" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatoDB2MDM.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA05" description=" Description for trasformaDatiA05" sourceTransitions="//@processCollection/@processes.0/@transitions.31" targetTransitions="//@processCollection/@processes.0/@transitions.37" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/vuoto.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA05" description=" Description for FromXmlToPlainA05" sourceTransitions="//@processCollection/@processes.0/@transitions.44" targetTransitions="//@processCollection/@processes.0/@transitions.34" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA01"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA38" description=" Description for FromXmlToPlainA38" sourceTransitions="//@processCollection/@processes.0/@transitions.45" targetTransitions="//@processCollection/@processes.0/@transitions.35" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA11"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA45" description=" Description for FromXmlToPlainA45" sourceTransitions="//@processCollection/@processes.0/@transitions.46" targetTransitions="//@processCollection/@processes.0/@transitions.36" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA40"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA45" description=" Description for trasformaDatiA45" sourceTransitions="//@processCollection/@processes.0/@transitions.33" targetTransitions="//@processCollection/@processes.0/@transitions.39" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/vuoto.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA38" description=" Description for trasformaDatiA38" sourceTransitions="//@processCollection/@processes.0/@transitions.32" targetTransitions="//@processCollection/@processes.0/@transitions.38" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/vuoto.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA05" description=" Description for groovyupdatemsgA05" sourceTransitions="//@processCollection/@processes.0/@transitions.34" targetTransitions="//@processCollection/@processes.0/@transitions.31" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA38" description=" Description for groovyupdatemsgA38" sourceTransitions="//@processCollection/@processes.0/@transitions.35" targetTransitions="//@processCollection/@processes.0/@transitions.32" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA45" description=" Description for groovyupdatemsgA45" sourceTransitions="//@processCollection/@processes.0/@transitions.36" targetTransitions="//@processCollection/@processes.0/@transitions.33" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.3" name="RtAck" description=" Description for RtAck" sourceTransitions="//@processCollection/@processes.0/@transitions.41 //@processCollection/@processes.0/@transitions.42" targetTransitions="//@processCollection/@processes.0/@transitions.40" stepbindings="//@servicebindings.43">
+        <properties key="im.isExclusiveGateway">
+          <value xsi:type="im:BasicProperty" key="im.isExclusiveGateway" value="true"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="ACK2XML" description=" Description for ACK2XML" sourceTransitions="//@processCollection/@processes.0/@transitions.43" targetTransitions="//@processCollection/@processes.0/@transitions.42" stepbindings="//@servicebindings.70">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToACK"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="plain2xml"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.0" name="JDBCPoller" description=" Description for JDBCPoller" sourceTransitions="//@processCollection/@processes.0/@transitions.48" stepbindings="//@servicebindings.23">
+        <properties key="im.isStepStartEvent">
+          <value xsi:type="im:BasicProperty" key="im.isStepStartEvent" value="true"/>
+        </properties>
+        <properties key="CommPointID">
+          <value xsi:type="im:BasicProperty" key="CommPointID" value="ELABORAZIONEADT"/>
+        </properties>
+        <properties key="MainQueryName">
+          <value xsi:type="im:BasicProperty" key="MainQueryName" value="MainQuery"/>
+        </properties>
+        <properties key="ValueAsAttribute">
+          <value xsi:type="im:BasicProperty" key="ValueAsAttribute" value="false"/>
+        </properties>
+        <properties key="JndiDataSource">
+          <value xsi:type="im:BasicProperty" key="JndiDataSource" value="ADTdb"/>
+        </properties>
+        <properties key="MainQuerySQL">
+          <value xsi:type="im:BasicProperty" key="MainQuerySQL" value="${queryPoller}"/>
+        </properties>
+        <properties key="DatabaseType">
+          <value xsi:type="im:BasicProperty" key="DatabaseType" value="Oracle"/>
+        </properties>
+        <properties key="RowsForEachMessage">
+          <value xsi:type="im:BasicProperty" key="RowsForEachMessage" value="1"/>
+        </properties>
+        <properties key="NumberOfSubQueries">
+          <value xsi:type="im:BasicProperty" key="NumberOfSubQueries" value="0"/>
+        </properties>
+        <properties key="Period">
+          <value xsi:type="im:BasicProperty" key="Period" value="${periodoPoller}"/>
+        </properties>
+        <properties key="InitialKeyValue">
+          <value xsi:type="im:BasicProperty" key="InitialKeyValue" value="${dataInizioElaborazione}"/>
+        </properties>
+        <properties key="ColNameAsAttribute">
+          <value xsi:type="im:BasicProperty" key="ColNameAsAttribute" value="false"/>
+        </properties>
+        <properties key="RequireJndiDataSource">
+          <value xsi:type="im:BasicProperty" key="RequireJndiDataSource" value="true"/>
+        </properties>
+        <properties key="KeyColumn">
+          <value xsi:type="im:BasicProperty" key="KeyColumn" value="DATAINS"/>
+        </properties>
+        <properties key="maxMessagesPerUnit">
+          <value xsi:type="im:BasicProperty" key="maxMessagesPerUnit" value="${maxMessagesPerPollingUnit}"/>
+        </properties>
+        <properties key="RowNameAsAttribute">
+          <value xsi:type="im:BasicProperty" key="RowNameAsAttribute" value="false"/>
+        </properties>
+      </steps>
+      <steps name="TCP-Snd_Transformer" sourceTransitions="//@processCollection/@processes.0/@transitions.50" targetTransitions="//@processCollection/@processes.0/@transitions.49" stepbindings="//@servicebindings.60">
+        <properties key="ConnectionMode">
+          <value xsi:type="im:BasicProperty" key="ConnectionMode" value="CONN_MODE_DISCONNECT"/>
+        </properties>
+        <properties key="IncomingWrapper">
+          <value xsi:type="im:BasicProperty" key="IncomingWrapper" value="WRAPPER_USER"/>
+        </properties>
+        <properties key="LogData">
+          <value xsi:type="im:BasicProperty" key="LogData" value="false"/>
+        </properties>
+        <properties key="sendFaultsToTarget">
+          <value xsi:type="im:BasicProperty" key="sendFaultsToTarget" value="false"/>
+        </properties>
+        <properties key="LogConnections">
+          <value xsi:type="im:BasicProperty" key="LogConnections" value="false"/>
+        </properties>
+        <properties key="RetryDelay">
+          <value xsi:type="im:BasicProperty" key="RetryDelay" value="${retryDelay}"/>
+        </properties>
+        <properties key="IncomingTrailer">
+          <value xsi:type="im:BasicProperty" key="IncomingTrailer" value="0x1C 0x0D"/>
+        </properties>
+        <properties key="ResponseTimeOut">
+          <value xsi:type="im:BasicProperty" key="ResponseTimeOut" value="${responseTimeout}"/>
+        </properties>
+        <properties key="LogFileName">
+          <value xsi:type="im:BasicProperty" key="LogFileName"/>
+        </properties>
+        <properties key="StripWrapping">
+          <value xsi:type="im:BasicProperty" key="StripWrapping" value="true"/>
+        </properties>
+        <properties key="RemoteHost">
+          <value xsi:type="im:BasicProperty" key="RemoteHost" value="${remoteHost}"/>
+        </properties>
+        <properties key="FlagIsSslEnabled">
+          <value xsi:type="im:BasicProperty" key="FlagIsSslEnabled" value="false"/>
+        </properties>
+        <properties key="FlagBase64EncodeMessage">
+          <value xsi:type="im:BasicProperty" key="FlagBase64EncodeMessage" value="TRUE"/>
+        </properties>
+        <properties key="RetryNumber">
+          <value xsi:type="im:BasicProperty" key="RetryNumber" value="${retryNumber}"/>
+        </properties>
+        <properties key="LogDataInExadecimal">
+          <value xsi:type="im:BasicProperty" key="LogDataInExadecimal" value="false"/>
+        </properties>
+        <properties key="LogExtraInfo">
+          <value xsi:type="im:BasicProperty" key="LogExtraInfo" value="false"/>
+        </properties>
+        <properties key="OutgoingHeader">
+          <value xsi:type="im:BasicProperty" key="OutgoingHeader" value="0x0B"/>
+        </properties>
+        <properties key="RemotePort">
+          <value xsi:type="im:BasicProperty" key="RemotePort" value="${remotePort}"/>
+        </properties>
+        <properties key="OutgoingWrapper">
+          <value xsi:type="im:BasicProperty" key="OutgoingWrapper" value="WRAPPER_USER"/>
+        </properties>
+        <properties key="NormalizedMessageOutputEnvelope">
+          <value xsi:type="im:BasicProperty" key="NormalizedMessageOutputEnvelope" value="PLAIN-HL7"/>
+        </properties>
+        <properties key="RetryType">
+          <value xsi:type="im:BasicProperty" key="RetryType" value="RETRY_TYPE_NO_RETRY"/>
+        </properties>
+        <properties key="RetryCount">
+          <value xsi:type="im:BasicProperty" key="RetryCount" value="${retryCount}"/>
+        </properties>
+        <properties key="TcpOutInReceiverClassName">
+          <value xsi:type="im:BasicProperty" key="TcpOutInReceiverClassName" value="org.spagic.smx.components.tcp.ConsoleTCPReceiver"/>
+        </properties>
+        <properties key="FailAction">
+          <value xsi:type="im:BasicProperty" key="FailAction" value="FAIL_ACTION_CLOSE_CONN"/>
+        </properties>
+        <properties key="ConnectionPointType">
+          <value xsi:type="im:BasicProperty" key="ConnectionPointType" value="POINT_TYPE_CLIENT"/>
+        </properties>
+        <properties key="IncomingHeader">
+          <value xsi:type="im:BasicProperty" key="IncomingHeader" value="0x0B"/>
+        </properties>
+        <properties key="OutgoingTrailer">
+          <value xsi:type="im:BasicProperty" key="OutgoingTrailer" value="0x1C 0x0D"/>
+        </properties>
+        <properties key="OutgoingEndianness">
+          <value xsi:type="im:BasicProperty" key="OutgoingEndianness" value="true"/>
+        </properties>
+        <properties key="ConnectionPointMode">
+          <value xsi:type="im:BasicProperty" key="ConnectionPointMode" value="OPERATION_MODE_BIDIRECTIONAL"/>
+        </properties>
+        <properties key="FlagBase64DecodeMessage">
+          <value xsi:type="im:BasicProperty" key="FlagBase64DecodeMessage" value="TRUE"/>
+        </properties>
+        <properties key="IncomingEndianness">
+          <value xsi:type="im:BasicProperty" key="IncomingEndianness" value="true"/>
+        </properties>
+        <properties key="NormalizedMessageInputEnvelope">
+          <value xsi:type="im:BasicProperty" key="NormalizedMessageInputEnvelope" value="PLAIN-HL7"/>
+        </properties>
+        <properties key="IsTransformerPipeline">
+          <value xsi:type="im:BasicProperty" key="IsTransformerPipeline" value="true"/>
+        </properties>
+      </steps>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.2">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A01"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.3">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A02"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.4">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A03"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.5">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A08"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.2" target="//@processCollection/@processes.0/@steps.6"/>
+      <transitions source="//@processCollection/@processes.0/@steps.3" target="//@processCollection/@processes.0/@steps.7"/>
+      <transitions source="//@processCollection/@processes.0/@steps.4" target="//@processCollection/@processes.0/@steps.8"/>
+      <transitions source="//@processCollection/@processes.0/@steps.5" target="//@processCollection/@processes.0/@steps.6"/>
+      <transitions source="//@processCollection/@processes.0/@steps.6" target="//@processCollection/@processes.0/@steps.9"/>
+      <transitions source="//@processCollection/@processes.0/@steps.7" target="//@processCollection/@processes.0/@steps.10"/>
+      <transitions source="//@processCollection/@processes.0/@steps.8" target="//@processCollection/@processes.0/@steps.11"/>
+      <transitions source="//@processCollection/@processes.0/@steps.13" target="//@processCollection/@processes.0/@steps.14"/>
+      <transitions source="//@processCollection/@processes.0/@steps.12" target="//@processCollection/@processes.0/@steps.13"/>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.15">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A11"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.15" target="//@processCollection/@processes.0/@steps.16"/>
+      <transitions source="//@processCollection/@processes.0/@steps.17" target="//@processCollection/@processes.0/@steps.1"/>
+      <transitions source="//@processCollection/@processes.0/@steps.10" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.9" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.11" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.18" target="//@processCollection/@processes.0/@steps.7"/>
+      <transitions source="//@processCollection/@processes.0/@steps.19" target="//@processCollection/@processes.0/@steps.8"/>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.19">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A13"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.20">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="MDMT02"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.16" target="//@processCollection/@processes.0/@steps.22"/>
+      <transitions source="//@processCollection/@processes.0/@steps.20" target="//@processCollection/@processes.0/@steps.21"/>
+      <transitions source="//@processCollection/@processes.0/@steps.21" target="//@processCollection/@processes.0/@steps.23"/>
+      <transitions source="//@processCollection/@processes.0/@steps.22" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.23" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.18">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A12"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.25" target="//@processCollection/@processes.0/@steps.21"/>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.25">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="MDMT10"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.26" target="//@processCollection/@processes.0/@steps.32"/>
+      <transitions source="//@processCollection/@processes.0/@steps.31" target="//@processCollection/@processes.0/@steps.33"/>
+      <transitions source="//@processCollection/@processes.0/@steps.30" target="//@processCollection/@processes.0/@steps.34"/>
+      <transitions source="//@processCollection/@processes.0/@steps.32" target="//@processCollection/@processes.0/@steps.27"/>
+      <transitions source="//@processCollection/@processes.0/@steps.33" target="//@processCollection/@processes.0/@steps.28"/>
+      <transitions source="//@processCollection/@processes.0/@steps.34" target="//@processCollection/@processes.0/@steps.29"/>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.26">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A05"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.31">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A38"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.30">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A45"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.0" target="//@processCollection/@processes.0/@steps.35"/>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.35" target="//@processCollection/@processes.0/@steps.12">
+        <condition xsi:type="im:ExpressionCondition" expression="count(//ERROR)>0" expressionLanguage="XPath"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.35" target="//@processCollection/@processes.0/@steps.36">
+        <condition xsi:type="im:ExpressionCondition" expression="count(//ERROR)=0" expressionLanguage="XPath"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.36" target="//@processCollection/@processes.0/@steps.12"/>
+      <transitions source="//@processCollection/@processes.0/@steps.27" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.28" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.29" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.14" target="//@processCollection/@processes.0/@steps.24"/>
+      <transitions source="//@processCollection/@processes.0/@steps.37" target="//@processCollection/@processes.0/@steps.17"/>
+      <transitions source="//@processCollection/@processes.0/@steps.0" target="//@processCollection/@processes.0/@steps.38"/>
+      <transitions source="//@processCollection/@processes.0/@steps.38" target="//@processCollection/@processes.0/@steps.0"/>
+    </processes>
+  </processCollection>
+  <servicebindings name="JBI-HumanTaskEvent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-Deployer">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-GroovyScriptingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-AttachmentSplitter">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="Start-Component">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-AdvancedEmailSender">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="VelocityTemplate">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-SignalEvent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-Access">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-TCPIP-Pipeline">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-JMSInputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-HTTPInputOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-JdbcSimpleService">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-SplitterAggregator">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="SAP-ProducerBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-ProcessSynchronizer">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-SubProcessBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JDBCStore-SyncComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-EncodeAttachments">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-EventMatcher">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-XPathSplitter">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-CXF-InputOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="SMS-Sender">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-JDBCPollerBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JavaCaller-SyncComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-FTP-WriterBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-Restart">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="SAP-ConsumerBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-SubProcess">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-JMSAdvancedInputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-JMSAdvancedOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-DroolsValidator">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-QuartzTimer">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="WebserviceEventBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-SchematronValidator">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-Empty">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="WS-Invoke">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="FileEventBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-HTTPInputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-DecodeAttachments">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-WaitExternalEvent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-FTP-PollerBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBPMWorkflowService">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-Router">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-ServiceRegistryInvoker">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="Fax-Sender">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-RecipientList">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-MessageFilter">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-FileInputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-AdvancedWebServicePipeline">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-XSLT-Transformer">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-EndpointManager">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-FileOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-CXF-OutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-EventJobComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-ConsoleOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-AdvancedJDBCService">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-XML2HL7">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="ProcessControl-Component">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-Reply">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-TcpIp-InputOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-QueueChecker">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-TalendScript">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-RecipientListAggregator">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-HibernateTransactedReply">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-ServiceResolver">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-AdvancedEmailInputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-XSD-SyntaxValidator">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-JMSOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="FTPEventBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-HL72XML">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-WrapToEvent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-WebServicePipeline">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-RestartOnFailure">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-GetResources">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-AdvancedHTTPInputOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-CXF-InputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-HTTPOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-CXF-Pipeline">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-GenericSignalInvoker">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="BAPICaller">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <serviceCollection>
+    <services serviceName="StartService" serviceType="BPMN-Service" bindings="//@servicebindings.38 //@servicebindings.11 //@servicebindings.60 //@servicebindings.66 //@servicebindings.10 //@servicebindings.29 //@servicebindings.23 //@servicebindings.48 //@servicebindings.32 //@servicebindings.76 //@servicebindings.21 //@servicebindings.41 //@servicebindings.16 //@servicebindings.75"/>
+    <services serviceName="EndService" serviceType="BPMN-Service" bindings="//@servicebindings.55 //@servicebindings.77 //@servicebindings.68 //@servicebindings.30 //@servicebindings.52 //@servicebindings.53 //@servicebindings.25 //@servicebindings.59 //@servicebindings.64 //@servicebindings.35 //@servicebindings.5"/>
+    <services serviceName="TaskService" serviceType="BPMN-Service" bindings="//@servicebindings.67 //@servicebindings.31 //@servicebindings.50 //@servicebindings.3 //@servicebindings.18 //@servicebindings.39 //@servicebindings.2 //@servicebindings.62 //@servicebindings.12 //@servicebindings.56 //@servicebindings.47 //@servicebindings.72 //@servicebindings.9 //@servicebindings.78 //@servicebindings.20 //@servicebindings.13 //@servicebindings.6 //@servicebindings.44 //@servicebindings.28 //@servicebindings.34 //@servicebindings.49"/>
+    <services xsi:type="im:RouterControl" serviceName="RouterService" serviceType="BPMN-Service" bindings="//@servicebindings.43"/>
+    <services xsi:type="im:SplitControl" serviceName="ParallelSplitService" serviceType="BPMN-Service" bindings="//@servicebindings.46"/>
+    <services xsi:type="im:JoinControl" serviceName="JoinParallelSplitService" serviceType="BPMN-Service" bindings="//@servicebindings.63"/>
+    <services serviceName="WaitForEventService" serviceType="BPMN-Service" bindings="//@servicebindings.0 //@servicebindings.40"/>
+    <services serviceName="EventUtilitiesService" serviceType="BPMN-Service" bindings="//@servicebindings.79 //@servicebindings.54 //@servicebindings.71"/>
+    <services serviceName="WorkflowService" serviceType="BPMN-Service" bindings="//@servicebindings.42"/>
+    <services serviceName="ExternalEventService" serviceType="BPMN-Service" bindings="//@servicebindings.37 //@servicebindings.33 //@servicebindings.69"/>
+    <services serviceName="InternalUseService" serviceType="BPMN-Service" bindings="//@servicebindings.1 //@servicebindings.7 //@servicebindings.74 //@servicebindings.26 //@servicebindings.73 //@servicebindings.65 //@servicebindings.51 //@servicebindings.8 //@servicebindings.61 //@servicebindings.15"/>
+    <services serviceName="Syncronous Support Components" serviceType="BPMN-Service" bindings="//@servicebindings.4 //@servicebindings.58"/>
+    <services serviceName="SAPServices" serviceType="BPMN-Service" bindings="//@servicebindings.80"/>
+    <services serviceName="SMSServices" serviceType="BPMN-Service" bindings="//@servicebindings.22"/>
+    <services serviceName="FaxServices" serviceType="BPMN-Service" bindings="//@servicebindings.45"/>
+    <services serviceName="HealthCareService" serviceType="BPMN-Service" bindings="//@servicebindings.70 //@servicebindings.57"/>
+    <services serviceName="Syncronous Components" serviceType="BPMN-Service" bindings="//@servicebindings.17 //@servicebindings.24"/>
+    <services serviceName="WebServiceInvoker" serviceType="BPMN-Service" bindings="//@servicebindings.36"/>
+  </serviceCollection>
+</im:StpIntermediateModel>
+</INTERMEDIATE_MODEL>
+<PROCESS>
+<GRAPH>
+<svg width="854pt" height="920pt"
+ viewBox="0.00 0.00 854.00 920.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 916)">
+<title>graph1332927276675</title>
+<polygon style="fill:white;stroke:white;" points="-4,4 -4,-916 850,-916 850,4 -4,4"/>
+<!-- FromADT2FSA_xsl.JDBCPoller_v_0 -->
+<g id="node1" class="node"><title>FromADT2FSA_xsl.JDBCPoller_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<ellipse style="fill:none;stroke:gray;" cx="423" cy="-891" rx="21.2132" ry="21.2132"/>
+<text text-anchor="middle" x="423" y="-889" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.GroovyGetUpdateDati_v_0 -->
+<g id="node19" class="node"><title>FromADT2FSA_xsl.GroovyGetUpdateDati_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="438,-834 408,-834 396,-822 396,-810 408,-798 438,-798 450,-810 450,-822 438,-834"/>
+<path style="fill:white;stroke:white;" d="M408,-834C402,-834 396,-828 396,-822"/>
+<path style="fill:white;stroke:white;" d="M396,-810C396,-804 402,-798 408,-798"/>
+<path style="fill:white;stroke:white;" d="M438,-798C444,-798 450,-804 450,-810"/>
+<path style="fill:white;stroke:white;" d="M450,-822C450,-828 444,-834 438,-834"/>
+<polyline style="fill:none;stroke:gray;" points="438,-834 408,-834 "/>
+<path style="fill:none;stroke:gray;" d="M408,-834C402,-834 396,-828 396,-822"/>
+<polyline style="fill:none;stroke:gray;" points="396,-822 396,-810 "/>
+<path style="fill:none;stroke:gray;" d="M396,-810C396,-804 402,-798 408,-798"/>
+<polyline style="fill:none;stroke:gray;" points="408,-798 438,-798 "/>
+<path style="fill:none;stroke:gray;" d="M438,-798C444,-798 450,-804 450,-810"/>
+<polyline style="fill:none;stroke:gray;" points="450,-810 450,-822 "/>
+<path style="fill:none;stroke:gray;" d="M450,-822C450,-828 444,-834 438,-834"/>
+<text text-anchor="middle" x="423" y="-814" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.JDBCPoller_v_0&#45;&gt;FromADT2FSA_xsl.GroovyGetUpdateDati_v_0 -->
+<g id="edge98" class="edge"><title>FromADT2FSA_xsl.JDBCPoller_v_0&#45;&gt;FromADT2FSA_xsl.GroovyGetUpdateDati_v_0</title>
+<path style="fill:none;stroke:black;" d="M423,-870C423,-862 423,-853 423,-844"/>
+<polygon style="fill:black;stroke:black;" points="426.5,-844 423,-834 419.5,-844 426.5,-844"/>
+</g>
+<!-- FromADT2FSA_xsl.TCP&#45;Snd_v_0 -->
+<g id="node2" class="node"><title>FromADT2FSA_xsl.TCP&#45;Snd_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="510,-474 480,-474 468,-462 468,-450 480,-438 510,-438 522,-450 522,-462 510,-474"/>
+<path style="fill:white;stroke:white;" d="M480,-474C474,-474 468,-468 468,-462"/>
+<path style="fill:white;stroke:white;" d="M468,-450C468,-444 474,-438 480,-438"/>
+<path style="fill:white;stroke:white;" d="M510,-438C516,-438 522,-444 522,-450"/>
+<path style="fill:white;stroke:white;" d="M522,-462C522,-468 516,-474 510,-474"/>
+<polyline style="fill:none;stroke:gray;" points="510,-474 480,-474 "/>
+<path style="fill:none;stroke:gray;" d="M480,-474C474,-474 468,-468 468,-462"/>
+<polyline style="fill:none;stroke:gray;" points="468,-462 468,-450 "/>
+<path style="fill:none;stroke:gray;" d="M468,-450C468,-444 474,-438 480,-438"/>
+<polyline style="fill:none;stroke:gray;" points="480,-438 510,-438 "/>
+<path style="fill:none;stroke:gray;" d="M510,-438C516,-438 522,-444 522,-450"/>
+<polyline style="fill:none;stroke:gray;" points="522,-450 522,-462 "/>
+<path style="fill:none;stroke:gray;" d="M522,-462C522,-468 516,-474 510,-474"/>
+<text text-anchor="middle" x="495" y="-454" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RtAck_v_0 -->
+<g id="node36" class="node"><title>FromADT2FSA_xsl.RtAck_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:none;stroke:gray;" points="423,-402 396,-384 423,-366 450,-384 423,-402"/>
+<text text-anchor="middle" x="423" y="-382" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.TCP&#45;Snd_v_0&#45;&gt;FromADT2FSA_xsl.RtAck_v_0 -->
+<g id="edge82" class="edge"><title>FromADT2FSA_xsl.TCP&#45;Snd_v_0&#45;&gt;FromADT2FSA_xsl.RtAck_v_0</title>
+<path style="fill:none;stroke:black;" d="M477,-438C466,-427 453,-414 441,-402"/>
+<polygon style="fill:black;stroke:black;" points="443.546,-399.596 434,-395 438.596,-404.546 443.546,-399.596"/>
+</g>
+<!-- FromADT2FSA_xsl.TCP&#45;Snd_Transformer_v_0 -->
+<g id="node38" class="node"><title>FromADT2FSA_xsl.TCP&#45;Snd_Transformer_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="510,-402 480,-402 468,-390 468,-378 480,-366 510,-366 522,-378 522,-390 510,-402"/>
+<path style="fill:white;stroke:white;" d="M480,-402C474,-402 468,-396 468,-390"/>
+<path style="fill:white;stroke:white;" d="M468,-378C468,-372 474,-366 480,-366"/>
+<path style="fill:white;stroke:white;" d="M510,-366C516,-366 522,-372 522,-378"/>
+<path style="fill:white;stroke:white;" d="M522,-390C522,-396 516,-402 510,-402"/>
+<polyline style="fill:none;stroke:gray;" points="510,-402 480,-402 "/>
+<path style="fill:none;stroke:gray;" d="M480,-402C474,-402 468,-396 468,-390"/>
+<polyline style="fill:none;stroke:gray;" points="468,-390 468,-378 "/>
+<path style="fill:none;stroke:gray;" d="M468,-378C468,-372 474,-366 480,-366"/>
+<polyline style="fill:none;stroke:gray;" points="480,-366 510,-366 "/>
+<path style="fill:none;stroke:gray;" d="M510,-366C516,-366 522,-372 522,-378"/>
+<polyline style="fill:none;stroke:gray;" points="522,-378 522,-390 "/>
+<path style="fill:none;stroke:gray;" d="M522,-390C522,-396 516,-402 510,-402"/>
+<text text-anchor="middle" x="495" y="-382" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.TCP&#45;Snd_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_Transformer_v_0 -->
+<g id="edge100" class="edge"><title>FromADT2FSA_xsl.TCP&#45;Snd_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_Transformer_v_0</title>
+<path style="fill:none;stroke:black;" d="M489,-438C488,-430 488,-421 488,-412"/>
+<polygon style="fill:black;stroke:black;" points="491.488,-412.299 489,-402 484.522,-411.602 491.488,-412.299"/>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0 -->
+<g id="node3" class="node"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:none;stroke:gray;" points="423,-762 396,-744 423,-726 450,-744 423,-762"/>
+<text text-anchor="middle" x="423" y="-742" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA01_v_0 -->
+<g id="node4" class="node"><title>FromADT2FSA_xsl.trasformaDatiA01_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="42,-690 12,-690 2.13163e-014,-678 1.42109e-014,-666 12,-654 42,-654 54,-666 54,-678 42,-690"/>
+<path style="fill:white;stroke:white;" d="M12,-690C6,-690 2.4869e-014,-684 2.13163e-014,-678"/>
+<path style="fill:white;stroke:white;" d="M1.42109e-014,-666C1.06581e-014,-660 6,-654 12,-654"/>
+<path style="fill:white;stroke:white;" d="M42,-654C48,-654 54,-660 54,-666"/>
+<path style="fill:white;stroke:white;" d="M54,-678C54,-684 48,-690 42,-690"/>
+<polyline style="fill:none;stroke:gray;" points="42,-690 12,-690 "/>
+<path style="fill:none;stroke:gray;" d="M12,-690C6,-690 2.4869e-014,-684 2.13163e-014,-678"/>
+<polyline style="fill:none;stroke:gray;" points="2.13163e-014,-678 1.42109e-014,-666 "/>
+<path style="fill:none;stroke:gray;" d="M1.42109e-014,-666C1.06581e-014,-660 6,-654 12,-654"/>
+<polyline style="fill:none;stroke:gray;" points="12,-654 42,-654 "/>
+<path style="fill:none;stroke:gray;" d="M42,-654C48,-654 54,-660 54,-666"/>
+<polyline style="fill:none;stroke:gray;" points="54,-666 54,-678 "/>
+<path style="fill:none;stroke:gray;" d="M54,-678C54,-684 48,-690 42,-690"/>
+<text text-anchor="middle" x="27" y="-670" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA01_v_0 -->
+<g id="edge2" class="edge"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA01_v_0</title>
+<path style="fill:none;stroke:black;" d="M397,-743C339,-740 191,-729 64,-689"/>
+<polygon style="fill:black;stroke:black;" points="64.584,-685.521 54,-686 62.5725,-692.226 64.584,-685.521"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA02_v_0 -->
+<g id="node5" class="node"><title>FromADT2FSA_xsl.trasformaDatiA02_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="186,-690 156,-690 144,-678 144,-666 156,-654 186,-654 198,-666 198,-678 186,-690"/>
+<path style="fill:white;stroke:white;" d="M156,-690C150,-690 144,-684 144,-678"/>
+<path style="fill:white;stroke:white;" d="M144,-666C144,-660 150,-654 156,-654"/>
+<path style="fill:white;stroke:white;" d="M186,-654C192,-654 198,-660 198,-666"/>
+<path style="fill:white;stroke:white;" d="M198,-678C198,-684 192,-690 186,-690"/>
+<polyline style="fill:none;stroke:gray;" points="186,-690 156,-690 "/>
+<path style="fill:none;stroke:gray;" d="M156,-690C150,-690 144,-684 144,-678"/>
+<polyline style="fill:none;stroke:gray;" points="144,-678 144,-666 "/>
+<path style="fill:none;stroke:gray;" d="M144,-666C144,-660 150,-654 156,-654"/>
+<polyline style="fill:none;stroke:gray;" points="156,-654 186,-654 "/>
+<path style="fill:none;stroke:gray;" d="M186,-654C192,-654 198,-660 198,-666"/>
+<polyline style="fill:none;stroke:gray;" points="198,-666 198,-678 "/>
+<path style="fill:none;stroke:gray;" d="M198,-678C198,-684 192,-690 186,-690"/>
+<text text-anchor="middle" x="171" y="-670" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA02_v_0 -->
+<g id="edge4" class="edge"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA02_v_0</title>
+<path style="fill:none;stroke:black;" d="M402,-740C364,-733 283,-716 208,-690"/>
+<polygon style="fill:black;stroke:black;" points="208.585,-686.464 198,-686 205.985,-692.964 208.585,-686.464"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA03_v_0 -->
+<g id="node6" class="node"><title>FromADT2FSA_xsl.trasformaDatiA03_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="330,-690 300,-690 288,-678 288,-666 300,-654 330,-654 342,-666 342,-678 330,-690"/>
+<path style="fill:white;stroke:white;" d="M300,-690C294,-690 288,-684 288,-678"/>
+<path style="fill:white;stroke:white;" d="M288,-666C288,-660 294,-654 300,-654"/>
+<path style="fill:white;stroke:white;" d="M330,-654C336,-654 342,-660 342,-666"/>
+<path style="fill:white;stroke:white;" d="M342,-678C342,-684 336,-690 330,-690"/>
+<polyline style="fill:none;stroke:gray;" points="330,-690 300,-690 "/>
+<path style="fill:none;stroke:gray;" d="M300,-690C294,-690 288,-684 288,-678"/>
+<polyline style="fill:none;stroke:gray;" points="288,-678 288,-666 "/>
+<path style="fill:none;stroke:gray;" d="M288,-666C288,-660 294,-654 300,-654"/>
+<polyline style="fill:none;stroke:gray;" points="300,-654 330,-654 "/>
+<path style="fill:none;stroke:gray;" d="M330,-654C336,-654 342,-660 342,-666"/>
+<polyline style="fill:none;stroke:gray;" points="342,-666 342,-678 "/>
+<path style="fill:none;stroke:gray;" d="M342,-678C342,-684 336,-690 330,-690"/>
+<text text-anchor="middle" x="315" y="-670" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA03_v_0 -->
+<g id="edge6" class="edge"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA03_v_0</title>
+<path style="fill:none;stroke:black;" d="M409,-735C394,-725 370,-709 350,-696"/>
+<polygon style="fill:black;stroke:black;" points="352.1,-693.2 342,-690 347.9,-698.8 352.1,-693.2"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA08_v_0 -->
+<g id="node7" class="node"><title>FromADT2FSA_xsl.trasformaDatiA08_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="114,-690 84,-690 72,-678 72,-666 84,-654 114,-654 126,-666 126,-678 114,-690"/>
+<path style="fill:white;stroke:white;" d="M84,-690C78,-690 72,-684 72,-678"/>
+<path style="fill:white;stroke:white;" d="M72,-666C72,-660 78,-654 84,-654"/>
+<path style="fill:white;stroke:white;" d="M114,-654C120,-654 126,-660 126,-666"/>
+<path style="fill:white;stroke:white;" d="M126,-678C126,-684 120,-690 114,-690"/>
+<polyline style="fill:none;stroke:gray;" points="114,-690 84,-690 "/>
+<path style="fill:none;stroke:gray;" d="M84,-690C78,-690 72,-684 72,-678"/>
+<polyline style="fill:none;stroke:gray;" points="72,-678 72,-666 "/>
+<path style="fill:none;stroke:gray;" d="M72,-666C72,-660 78,-654 84,-654"/>
+<polyline style="fill:none;stroke:gray;" points="84,-654 114,-654 "/>
+<path style="fill:none;stroke:gray;" d="M114,-654C120,-654 126,-660 126,-666"/>
+<polyline style="fill:none;stroke:gray;" points="126,-666 126,-678 "/>
+<path style="fill:none;stroke:gray;" d="M126,-678C126,-684 120,-690 114,-690"/>
+<text text-anchor="middle" x="99" y="-670" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA08_v_0 -->
+<g id="edge8" class="edge"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA08_v_0</title>
+<path style="fill:none;stroke:black;" d="M399,-742C351,-737 237,-723 135,-689"/>
+<polygon style="fill:black;stroke:black;" points="136.594,-685.842 126,-686 134.38,-692.483 136.594,-685.842"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA11_v_0 -->
+<g id="node17" class="node"><title>FromADT2FSA_xsl.trasformaDatiA11_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="474,-690 444,-690 432,-678 432,-666 444,-654 474,-654 486,-666 486,-678 474,-690"/>
+<path style="fill:white;stroke:white;" d="M444,-690C438,-690 432,-684 432,-678"/>
+<path style="fill:white;stroke:white;" d="M432,-666C432,-660 438,-654 444,-654"/>
+<path style="fill:white;stroke:white;" d="M474,-654C480,-654 486,-660 486,-666"/>
+<path style="fill:white;stroke:white;" d="M486,-678C486,-684 480,-690 474,-690"/>
+<polyline style="fill:none;stroke:gray;" points="474,-690 444,-690 "/>
+<path style="fill:none;stroke:gray;" d="M444,-690C438,-690 432,-684 432,-678"/>
+<polyline style="fill:none;stroke:gray;" points="432,-678 432,-666 "/>
+<path style="fill:none;stroke:gray;" d="M432,-666C432,-660 438,-654 444,-654"/>
+<polyline style="fill:none;stroke:gray;" points="444,-654 474,-654 "/>
+<path style="fill:none;stroke:gray;" d="M474,-654C480,-654 486,-660 486,-666"/>
+<polyline style="fill:none;stroke:gray;" points="486,-666 486,-678 "/>
+<path style="fill:none;stroke:gray;" d="M486,-678C486,-684 480,-690 474,-690"/>
+<text text-anchor="middle" x="459" y="-670" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA11_v_0 -->
+<g id="edge28" class="edge"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA11_v_0</title>
+<path style="fill:none;stroke:black;" d="M430,-730C434,-721 440,-710 446,-699"/>
+<polygon style="fill:black;stroke:black;" points="449.137,-700.56 450,-690 442.74,-697.717 449.137,-700.56"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA12_v_0 -->
+<g id="node20" class="node"><title>FromADT2FSA_xsl.trasformaDatiA12_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="258,-690 228,-690 216,-678 216,-666 228,-654 258,-654 270,-666 270,-678 258,-690"/>
+<path style="fill:white;stroke:white;" d="M228,-690C222,-690 216,-684 216,-678"/>
+<path style="fill:white;stroke:white;" d="M216,-666C216,-660 222,-654 228,-654"/>
+<path style="fill:white;stroke:white;" d="M258,-654C264,-654 270,-660 270,-666"/>
+<path style="fill:white;stroke:white;" d="M270,-678C270,-684 264,-690 258,-690"/>
+<polyline style="fill:none;stroke:gray;" points="258,-690 228,-690 "/>
+<path style="fill:none;stroke:gray;" d="M228,-690C222,-690 216,-684 216,-678"/>
+<polyline style="fill:none;stroke:gray;" points="216,-678 216,-666 "/>
+<path style="fill:none;stroke:gray;" d="M216,-666C216,-660 222,-654 228,-654"/>
+<polyline style="fill:none;stroke:gray;" points="228,-654 258,-654 "/>
+<path style="fill:none;stroke:gray;" d="M258,-654C264,-654 270,-660 270,-666"/>
+<polyline style="fill:none;stroke:gray;" points="270,-666 270,-678 "/>
+<path style="fill:none;stroke:gray;" d="M270,-678C270,-684 264,-690 258,-690"/>
+<text text-anchor="middle" x="243" y="-670" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA12_v_0 -->
+<g id="edge58" class="edge"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA12_v_0</title>
+<path style="fill:none;stroke:black;" d="M405,-738C379,-729 329,-711 279,-690"/>
+<polygon style="fill:black;stroke:black;" points="280.56,-686.863 270,-686 277.717,-693.26 280.56,-686.863"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA13_v_0 -->
+<g id="node21" class="node"><title>FromADT2FSA_xsl.trasformaDatiA13_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="402,-690 372,-690 360,-678 360,-666 372,-654 402,-654 414,-666 414,-678 402,-690"/>
+<path style="fill:white;stroke:white;" d="M372,-690C366,-690 360,-684 360,-678"/>
+<path style="fill:white;stroke:white;" d="M360,-666C360,-660 366,-654 372,-654"/>
+<path style="fill:white;stroke:white;" d="M402,-654C408,-654 414,-660 414,-666"/>
+<path style="fill:white;stroke:white;" d="M414,-678C414,-684 408,-690 402,-690"/>
+<polyline style="fill:none;stroke:gray;" points="402,-690 372,-690 "/>
+<path style="fill:none;stroke:gray;" d="M372,-690C366,-690 360,-684 360,-678"/>
+<polyline style="fill:none;stroke:gray;" points="360,-678 360,-666 "/>
+<path style="fill:none;stroke:gray;" d="M360,-666C360,-660 366,-654 372,-654"/>
+<polyline style="fill:none;stroke:gray;" points="372,-654 402,-654 "/>
+<path style="fill:none;stroke:gray;" d="M402,-654C408,-654 414,-660 414,-666"/>
+<polyline style="fill:none;stroke:gray;" points="414,-666 414,-678 "/>
+<path style="fill:none;stroke:gray;" d="M414,-678C414,-684 408,-690 402,-690"/>
+<text text-anchor="middle" x="387" y="-670" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA13_v_0 -->
+<g id="edge44" class="edge"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA13_v_0</title>
+<path style="fill:none;stroke:black;" d="M416,-730C412,-721 406,-710 400,-699"/>
+<polygon style="fill:black;stroke:black;" points="403.26,-697.717 396,-690 396.863,-700.56 403.26,-697.717"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiMDM_TO2_v_0 -->
+<g id="node22" class="node"><title>FromADT2FSA_xsl.trasformaDatiMDM_TO2_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="546,-690 516,-690 504,-678 504,-666 516,-654 546,-654 558,-666 558,-678 546,-690"/>
+<path style="fill:white;stroke:white;" d="M516,-690C510,-690 504,-684 504,-678"/>
+<path style="fill:white;stroke:white;" d="M504,-666C504,-660 510,-654 516,-654"/>
+<path style="fill:white;stroke:white;" d="M546,-654C552,-654 558,-660 558,-666"/>
+<path style="fill:white;stroke:white;" d="M558,-678C558,-684 552,-690 546,-690"/>
+<polyline style="fill:none;stroke:gray;" points="546,-690 516,-690 "/>
+<path style="fill:none;stroke:gray;" d="M516,-690C510,-690 504,-684 504,-678"/>
+<polyline style="fill:none;stroke:gray;" points="504,-678 504,-666 "/>
+<path style="fill:none;stroke:gray;" d="M504,-666C504,-660 510,-654 516,-654"/>
+<polyline style="fill:none;stroke:gray;" points="516,-654 546,-654 "/>
+<path style="fill:none;stroke:gray;" d="M546,-654C552,-654 558,-660 558,-666"/>
+<polyline style="fill:none;stroke:gray;" points="558,-666 558,-678 "/>
+<path style="fill:none;stroke:gray;" d="M558,-678C558,-684 552,-690 546,-690"/>
+<text text-anchor="middle" x="531" y="-670" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiMDM_TO2_v_0 -->
+<g id="edge46" class="edge"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiMDM_TO2_v_0</title>
+<path style="fill:none;stroke:black;" d="M437,-735C452,-725 476,-709 496,-696"/>
+<polygon style="fill:black;stroke:black;" points="498.1,-698.8 504,-690 493.9,-693.2 498.1,-698.8"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiMDM_T10_v_0 -->
+<g id="node26" class="node"><title>FromADT2FSA_xsl.trasformaDatiMDM_T10_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="618,-690 588,-690 576,-678 576,-666 588,-654 618,-654 630,-666 630,-678 618,-690"/>
+<path style="fill:white;stroke:white;" d="M588,-690C582,-690 576,-684 576,-678"/>
+<path style="fill:white;stroke:white;" d="M576,-666C576,-660 582,-654 588,-654"/>
+<path style="fill:white;stroke:white;" d="M618,-654C624,-654 630,-660 630,-666"/>
+<path style="fill:white;stroke:white;" d="M630,-678C630,-684 624,-690 618,-690"/>
+<polyline style="fill:none;stroke:gray;" points="618,-690 588,-690 "/>
+<path style="fill:none;stroke:gray;" d="M588,-690C582,-690 576,-684 576,-678"/>
+<polyline style="fill:none;stroke:gray;" points="576,-678 576,-666 "/>
+<path style="fill:none;stroke:gray;" d="M576,-666C576,-660 582,-654 588,-654"/>
+<polyline style="fill:none;stroke:gray;" points="588,-654 618,-654 "/>
+<path style="fill:none;stroke:gray;" d="M618,-654C624,-654 630,-660 630,-666"/>
+<polyline style="fill:none;stroke:gray;" points="630,-666 630,-678 "/>
+<path style="fill:none;stroke:gray;" d="M630,-678C630,-684 624,-690 618,-690"/>
+<text text-anchor="middle" x="603" y="-670" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiMDM_T10_v_0 -->
+<g id="edge62" class="edge"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiMDM_T10_v_0</title>
+<path style="fill:none;stroke:black;" d="M441,-738C466,-729 516,-711 567,-690"/>
+<polygon style="fill:black;stroke:black;" points="568.283,-693.26 576,-686 565.44,-686.863 568.283,-693.26"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA05_v_0 -->
+<g id="node27" class="node"><title>FromADT2FSA_xsl.trasformaDatiA05_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="690,-690 660,-690 648,-678 648,-666 660,-654 690,-654 702,-666 702,-678 690,-690"/>
+<path style="fill:white;stroke:white;" d="M660,-690C654,-690 648,-684 648,-678"/>
+<path style="fill:white;stroke:white;" d="M648,-666C648,-660 654,-654 660,-654"/>
+<path style="fill:white;stroke:white;" d="M690,-654C696,-654 702,-660 702,-666"/>
+<path style="fill:white;stroke:white;" d="M702,-678C702,-684 696,-690 690,-690"/>
+<polyline style="fill:none;stroke:gray;" points="690,-690 660,-690 "/>
+<path style="fill:none;stroke:gray;" d="M660,-690C654,-690 648,-684 648,-678"/>
+<polyline style="fill:none;stroke:gray;" points="648,-678 648,-666 "/>
+<path style="fill:none;stroke:gray;" d="M648,-666C648,-660 654,-654 660,-654"/>
+<polyline style="fill:none;stroke:gray;" points="660,-654 690,-654 "/>
+<path style="fill:none;stroke:gray;" d="M690,-654C696,-654 702,-660 702,-666"/>
+<polyline style="fill:none;stroke:gray;" points="702,-666 702,-678 "/>
+<path style="fill:none;stroke:gray;" d="M702,-678C702,-684 696,-690 690,-690"/>
+<text text-anchor="middle" x="675" y="-670" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA05_v_0 -->
+<g id="edge76" class="edge"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA05_v_0</title>
+<path style="fill:none;stroke:black;" d="M445,-740C482,-733 563,-716 638,-690"/>
+<polygon style="fill:black;stroke:black;" points="640.015,-692.964 648,-686 637.415,-686.464 640.015,-692.964"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA45_v_0 -->
+<g id="node31" class="node"><title>FromADT2FSA_xsl.trasformaDatiA45_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="762,-690 732,-690 720,-678 720,-666 732,-654 762,-654 774,-666 774,-678 762,-690"/>
+<path style="fill:white;stroke:white;" d="M732,-690C726,-690 720,-684 720,-678"/>
+<path style="fill:white;stroke:white;" d="M720,-666C720,-660 726,-654 732,-654"/>
+<path style="fill:white;stroke:white;" d="M762,-654C768,-654 774,-660 774,-666"/>
+<path style="fill:white;stroke:white;" d="M774,-678C774,-684 768,-690 762,-690"/>
+<polyline style="fill:none;stroke:gray;" points="762,-690 732,-690 "/>
+<path style="fill:none;stroke:gray;" d="M732,-690C726,-690 720,-684 720,-678"/>
+<polyline style="fill:none;stroke:gray;" points="720,-678 720,-666 "/>
+<path style="fill:none;stroke:gray;" d="M720,-666C720,-660 726,-654 732,-654"/>
+<polyline style="fill:none;stroke:gray;" points="732,-654 762,-654 "/>
+<path style="fill:none;stroke:gray;" d="M762,-654C768,-654 774,-660 774,-666"/>
+<polyline style="fill:none;stroke:gray;" points="774,-666 774,-678 "/>
+<path style="fill:none;stroke:gray;" d="M774,-678C774,-684 768,-690 762,-690"/>
+<text text-anchor="middle" x="747" y="-670" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA45_v_0 -->
+<g id="edge80" class="edge"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA45_v_0</title>
+<path style="fill:none;stroke:black;" d="M447,-742C495,-737 609,-723 711,-689"/>
+<polygon style="fill:black;stroke:black;" points="711.62,-692.483 720,-686 709.406,-685.842 711.62,-692.483"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA38_v_0 -->
+<g id="node32" class="node"><title>FromADT2FSA_xsl.trasformaDatiA38_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="834,-690 804,-690 792,-678 792,-666 804,-654 834,-654 846,-666 846,-678 834,-690"/>
+<path style="fill:white;stroke:white;" d="M804,-690C798,-690 792,-684 792,-678"/>
+<path style="fill:white;stroke:white;" d="M792,-666C792,-660 798,-654 804,-654"/>
+<path style="fill:white;stroke:white;" d="M834,-654C840,-654 846,-660 846,-666"/>
+<path style="fill:white;stroke:white;" d="M846,-678C846,-684 840,-690 834,-690"/>
+<polyline style="fill:none;stroke:gray;" points="834,-690 804,-690 "/>
+<path style="fill:none;stroke:gray;" d="M804,-690C798,-690 792,-684 792,-678"/>
+<polyline style="fill:none;stroke:gray;" points="792,-678 792,-666 "/>
+<path style="fill:none;stroke:gray;" d="M792,-666C792,-660 798,-654 804,-654"/>
+<polyline style="fill:none;stroke:gray;" points="804,-654 834,-654 "/>
+<path style="fill:none;stroke:gray;" d="M834,-654C840,-654 846,-660 846,-666"/>
+<polyline style="fill:none;stroke:gray;" points="846,-666 846,-678 "/>
+<path style="fill:none;stroke:gray;" d="M846,-678C846,-684 840,-690 834,-690"/>
+<text text-anchor="middle" x="819" y="-670" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA38_v_0 -->
+<g id="edge78" class="edge"><title>FromADT2FSA_xsl.RouterTypeMsg_v_0&#45;&gt;FromADT2FSA_xsl.trasformaDatiA38_v_0</title>
+<path style="fill:none;stroke:black;" d="M448,-743C507,-740 654,-729 782,-689"/>
+<polygon style="fill:black;stroke:black;" points="783.427,-692.226 792,-686 781.416,-685.521 783.427,-692.226"/>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA01A08_v_0 -->
+<g id="node8" class="node"><title>FromADT2FSA_xsl.groovyupdatemsgA01A08_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="114,-618 84,-618 72,-606 72,-594 84,-582 114,-582 126,-594 126,-606 114,-618"/>
+<path style="fill:white;stroke:white;" d="M84,-618C78,-618 72,-612 72,-606"/>
+<path style="fill:white;stroke:white;" d="M72,-594C72,-588 78,-582 84,-582"/>
+<path style="fill:white;stroke:white;" d="M114,-582C120,-582 126,-588 126,-594"/>
+<path style="fill:white;stroke:white;" d="M126,-606C126,-612 120,-618 114,-618"/>
+<polyline style="fill:none;stroke:gray;" points="114,-618 84,-618 "/>
+<path style="fill:none;stroke:gray;" d="M84,-618C78,-618 72,-612 72,-606"/>
+<polyline style="fill:none;stroke:gray;" points="72,-606 72,-594 "/>
+<path style="fill:none;stroke:gray;" d="M72,-594C72,-588 78,-582 84,-582"/>
+<polyline style="fill:none;stroke:gray;" points="84,-582 114,-582 "/>
+<path style="fill:none;stroke:gray;" d="M114,-582C120,-582 126,-588 126,-594"/>
+<polyline style="fill:none;stroke:gray;" points="126,-594 126,-606 "/>
+<path style="fill:none;stroke:gray;" d="M126,-606C126,-612 120,-618 114,-618"/>
+<text text-anchor="middle" x="99" y="-598" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA01_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA01A08_v_0 -->
+<g id="edge10" class="edge"><title>FromADT2FSA_xsl.trasformaDatiA01_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA01A08_v_0</title>
+<path style="fill:none;stroke:black;" d="M45,-654C54,-645 64,-635 74,-625"/>
+<polygon style="fill:black;stroke:black;" points="76.4038,-627.546 81,-618 71.454,-622.596 76.4038,-627.546"/>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA02A12_v_0 -->
+<g id="node9" class="node"><title>FromADT2FSA_xsl.groovyupdatemsgA02A12_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="258,-618 228,-618 216,-606 216,-594 228,-582 258,-582 270,-594 270,-606 258,-618"/>
+<path style="fill:white;stroke:white;" d="M228,-618C222,-618 216,-612 216,-606"/>
+<path style="fill:white;stroke:white;" d="M216,-594C216,-588 222,-582 228,-582"/>
+<path style="fill:white;stroke:white;" d="M258,-582C264,-582 270,-588 270,-594"/>
+<path style="fill:white;stroke:white;" d="M270,-606C270,-612 264,-618 258,-618"/>
+<polyline style="fill:none;stroke:gray;" points="258,-618 228,-618 "/>
+<path style="fill:none;stroke:gray;" d="M228,-618C222,-618 216,-612 216,-606"/>
+<polyline style="fill:none;stroke:gray;" points="216,-606 216,-594 "/>
+<path style="fill:none;stroke:gray;" d="M216,-594C216,-588 222,-582 228,-582"/>
+<polyline style="fill:none;stroke:gray;" points="228,-582 258,-582 "/>
+<path style="fill:none;stroke:gray;" d="M258,-582C264,-582 270,-588 270,-594"/>
+<polyline style="fill:none;stroke:gray;" points="270,-594 270,-606 "/>
+<path style="fill:none;stroke:gray;" d="M270,-606C270,-612 264,-618 258,-618"/>
+<text text-anchor="middle" x="243" y="-598" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA02_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA02A12_v_0 -->
+<g id="edge12" class="edge"><title>FromADT2FSA_xsl.trasformaDatiA02_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA02A12_v_0</title>
+<path style="fill:none;stroke:black;" d="M189,-654C198,-645 208,-635 218,-625"/>
+<polygon style="fill:black;stroke:black;" points="220.404,-627.546 225,-618 215.454,-622.596 220.404,-627.546"/>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA03A13_v_0 -->
+<g id="node10" class="node"><title>FromADT2FSA_xsl.groovyupdatemsgA03A13_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="402,-618 372,-618 360,-606 360,-594 372,-582 402,-582 414,-594 414,-606 402,-618"/>
+<path style="fill:white;stroke:white;" d="M372,-618C366,-618 360,-612 360,-606"/>
+<path style="fill:white;stroke:white;" d="M360,-594C360,-588 366,-582 372,-582"/>
+<path style="fill:white;stroke:white;" d="M402,-582C408,-582 414,-588 414,-594"/>
+<path style="fill:white;stroke:white;" d="M414,-606C414,-612 408,-618 402,-618"/>
+<polyline style="fill:none;stroke:gray;" points="402,-618 372,-618 "/>
+<path style="fill:none;stroke:gray;" d="M372,-618C366,-618 360,-612 360,-606"/>
+<polyline style="fill:none;stroke:gray;" points="360,-606 360,-594 "/>
+<path style="fill:none;stroke:gray;" d="M360,-594C360,-588 366,-582 372,-582"/>
+<polyline style="fill:none;stroke:gray;" points="372,-582 402,-582 "/>
+<path style="fill:none;stroke:gray;" d="M402,-582C408,-582 414,-588 414,-594"/>
+<polyline style="fill:none;stroke:gray;" points="414,-594 414,-606 "/>
+<path style="fill:none;stroke:gray;" d="M414,-606C414,-612 408,-618 402,-618"/>
+<text text-anchor="middle" x="387" y="-598" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA03_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA03A13_v_0 -->
+<g id="edge14" class="edge"><title>FromADT2FSA_xsl.trasformaDatiA03_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA03A13_v_0</title>
+<path style="fill:none;stroke:black;" d="M333,-654C342,-645 352,-635 362,-625"/>
+<polygon style="fill:black;stroke:black;" points="364.404,-627.546 369,-618 359.454,-622.596 364.404,-627.546"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA08_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA01A08_v_0 -->
+<g id="edge16" class="edge"><title>FromADT2FSA_xsl.trasformaDatiA08_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA01A08_v_0</title>
+<path style="fill:none;stroke:black;" d="M99,-654C99,-646 99,-637 99,-628"/>
+<polygon style="fill:black;stroke:black;" points="102.5,-628 99,-618 95.5001,-628 102.5,-628"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA01A08_v_0 -->
+<g id="node11" class="node"><title>FromADT2FSA_xsl.FromXmlToPlainA01A08_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="168,-546 138,-546 126,-534 126,-522 138,-510 168,-510 180,-522 180,-534 168,-546"/>
+<path style="fill:white;stroke:white;" d="M138,-546C132,-546 126,-540 126,-534"/>
+<path style="fill:white;stroke:white;" d="M126,-522C126,-516 132,-510 138,-510"/>
+<path style="fill:white;stroke:white;" d="M168,-510C174,-510 180,-516 180,-522"/>
+<path style="fill:white;stroke:white;" d="M180,-534C180,-540 174,-546 168,-546"/>
+<polyline style="fill:none;stroke:gray;" points="168,-546 138,-546 "/>
+<path style="fill:none;stroke:gray;" d="M138,-546C132,-546 126,-540 126,-534"/>
+<polyline style="fill:none;stroke:gray;" points="126,-534 126,-522 "/>
+<path style="fill:none;stroke:gray;" d="M126,-522C126,-516 132,-510 138,-510"/>
+<polyline style="fill:none;stroke:gray;" points="138,-510 168,-510 "/>
+<path style="fill:none;stroke:gray;" d="M168,-510C174,-510 180,-516 180,-522"/>
+<polyline style="fill:none;stroke:gray;" points="180,-522 180,-534 "/>
+<path style="fill:none;stroke:gray;" d="M180,-534C180,-540 174,-546 168,-546"/>
+<text text-anchor="middle" x="153" y="-526" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA01A08_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA01A08_v_0 -->
+<g id="edge18" class="edge"><title>FromADT2FSA_xsl.groovyupdatemsgA01A08_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA01A08_v_0</title>
+<path style="fill:none;stroke:black;" d="M113,-582C119,-574 127,-563 134,-554"/>
+<polygon style="fill:black;stroke:black;" points="136.8,-556.1 140,-546 131.2,-551.9 136.8,-556.1"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA02A12_v_0 -->
+<g id="node12" class="node"><title>FromADT2FSA_xsl.FromXmlToPlainA02A12_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="294,-546 264,-546 252,-534 252,-522 264,-510 294,-510 306,-522 306,-534 294,-546"/>
+<path style="fill:white;stroke:white;" d="M264,-546C258,-546 252,-540 252,-534"/>
+<path style="fill:white;stroke:white;" d="M252,-522C252,-516 258,-510 264,-510"/>
+<path style="fill:white;stroke:white;" d="M294,-510C300,-510 306,-516 306,-522"/>
+<path style="fill:white;stroke:white;" d="M306,-534C306,-540 300,-546 294,-546"/>
+<polyline style="fill:none;stroke:gray;" points="294,-546 264,-546 "/>
+<path style="fill:none;stroke:gray;" d="M264,-546C258,-546 252,-540 252,-534"/>
+<polyline style="fill:none;stroke:gray;" points="252,-534 252,-522 "/>
+<path style="fill:none;stroke:gray;" d="M252,-522C252,-516 258,-510 264,-510"/>
+<polyline style="fill:none;stroke:gray;" points="264,-510 294,-510 "/>
+<path style="fill:none;stroke:gray;" d="M294,-510C300,-510 306,-516 306,-522"/>
+<polyline style="fill:none;stroke:gray;" points="306,-522 306,-534 "/>
+<path style="fill:none;stroke:gray;" d="M306,-534C306,-540 300,-546 294,-546"/>
+<text text-anchor="middle" x="279" y="-526" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA02A12_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA02A12_v_0 -->
+<g id="edge20" class="edge"><title>FromADT2FSA_xsl.groovyupdatemsgA02A12_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA02A12_v_0</title>
+<path style="fill:none;stroke:black;" d="M252,-582C256,-574 261,-564 266,-555"/>
+<polygon style="fill:black;stroke:black;" points="269.137,-556.56 270,-546 262.74,-553.717 269.137,-556.56"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA03A13_v_0 -->
+<g id="node13" class="node"><title>FromADT2FSA_xsl.FromXmlToPlainA03A13_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="402,-546 372,-546 360,-534 360,-522 372,-510 402,-510 414,-522 414,-534 402,-546"/>
+<path style="fill:white;stroke:white;" d="M372,-546C366,-546 360,-540 360,-534"/>
+<path style="fill:white;stroke:white;" d="M360,-522C360,-516 366,-510 372,-510"/>
+<path style="fill:white;stroke:white;" d="M402,-510C408,-510 414,-516 414,-522"/>
+<path style="fill:white;stroke:white;" d="M414,-534C414,-540 408,-546 402,-546"/>
+<polyline style="fill:none;stroke:gray;" points="402,-546 372,-546 "/>
+<path style="fill:none;stroke:gray;" d="M372,-546C366,-546 360,-540 360,-534"/>
+<polyline style="fill:none;stroke:gray;" points="360,-534 360,-522 "/>
+<path style="fill:none;stroke:gray;" d="M360,-522C360,-516 366,-510 372,-510"/>
+<polyline style="fill:none;stroke:gray;" points="372,-510 402,-510 "/>
+<path style="fill:none;stroke:gray;" d="M402,-510C408,-510 414,-516 414,-522"/>
+<polyline style="fill:none;stroke:gray;" points="414,-522 414,-534 "/>
+<path style="fill:none;stroke:gray;" d="M414,-534C414,-540 408,-546 402,-546"/>
+<text text-anchor="middle" x="387" y="-526" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA03A13_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA03A13_v_0 -->
+<g id="edge22" class="edge"><title>FromADT2FSA_xsl.groovyupdatemsgA03A13_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA03A13_v_0</title>
+<path style="fill:none;stroke:black;" d="M387,-582C387,-574 387,-565 387,-556"/>
+<polygon style="fill:black;stroke:black;" points="390.5,-556 387,-546 383.5,-556 390.5,-556"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA01A08_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0 -->
+<g id="edge36" class="edge"><title>FromADT2FSA_xsl.FromXmlToPlainA01A08_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0</title>
+<path style="fill:none;stroke:black;" d="M180,-522C241,-510 389,-478 458,-464"/>
+<polygon style="fill:black;stroke:black;" points="458.881,-467.393 468,-462 457.508,-460.529 458.881,-467.393"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA02A12_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0 -->
+<g id="edge34" class="edge"><title>FromADT2FSA_xsl.FromXmlToPlainA02A12_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0</title>
+<path style="fill:none;stroke:black;" d="M306,-519C344,-506 415,-483 458,-468"/>
+<polygon style="fill:black;stroke:black;" points="459.427,-471.226 468,-465 457.416,-464.521 459.427,-471.226"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA03A13_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0 -->
+<g id="edge38" class="edge"><title>FromADT2FSA_xsl.FromXmlToPlainA03A13_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0</title>
+<path style="fill:none;stroke:black;" d="M414,-510C428,-501 445,-490 459,-480"/>
+<polygon style="fill:black;stroke:black;" points="461.621,-482.459 468,-474 457.738,-476.635 461.621,-482.459"/>
+</g>
+<!-- FromADT2FSA_xsl.GroovyReadAck_v_0 -->
+<g id="node14" class="node"><title>FromADT2FSA_xsl.GroovyReadAck_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="438,-258 408,-258 396,-246 396,-234 408,-222 438,-222 450,-234 450,-246 438,-258"/>
+<path style="fill:white;stroke:white;" d="M408,-258C402,-258 396,-252 396,-246"/>
+<path style="fill:white;stroke:white;" d="M396,-234C396,-228 402,-222 408,-222"/>
+<path style="fill:white;stroke:white;" d="M438,-222C444,-222 450,-228 450,-234"/>
+<path style="fill:white;stroke:white;" d="M450,-246C450,-252 444,-258 438,-258"/>
+<polyline style="fill:none;stroke:gray;" points="438,-258 408,-258 "/>
+<path style="fill:none;stroke:gray;" d="M408,-258C402,-258 396,-252 396,-246"/>
+<polyline style="fill:none;stroke:gray;" points="396,-246 396,-234 "/>
+<path style="fill:none;stroke:gray;" d="M396,-234C396,-228 402,-222 408,-222"/>
+<polyline style="fill:none;stroke:gray;" points="408,-222 438,-222 "/>
+<path style="fill:none;stroke:gray;" d="M438,-222C444,-222 450,-228 450,-234"/>
+<polyline style="fill:none;stroke:gray;" points="450,-234 450,-246 "/>
+<path style="fill:none;stroke:gray;" d="M450,-246C450,-252 444,-258 438,-258"/>
+<text text-anchor="middle" x="423" y="-238" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.GroovyInsStorico_v_0 -->
+<g id="node15" class="node"><title>FromADT2FSA_xsl.GroovyInsStorico_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="438,-186 408,-186 396,-174 396,-162 408,-150 438,-150 450,-162 450,-174 438,-186"/>
+<path style="fill:white;stroke:white;" d="M408,-186C402,-186 396,-180 396,-174"/>
+<path style="fill:white;stroke:white;" d="M396,-162C396,-156 402,-150 408,-150"/>
+<path style="fill:white;stroke:white;" d="M438,-150C444,-150 450,-156 450,-162"/>
+<path style="fill:white;stroke:white;" d="M450,-174C450,-180 444,-186 438,-186"/>
+<polyline style="fill:none;stroke:gray;" points="438,-186 408,-186 "/>
+<path style="fill:none;stroke:gray;" d="M408,-186C402,-186 396,-180 396,-174"/>
+<polyline style="fill:none;stroke:gray;" points="396,-174 396,-162 "/>
+<path style="fill:none;stroke:gray;" d="M396,-162C396,-156 402,-150 408,-150"/>
+<polyline style="fill:none;stroke:gray;" points="408,-150 438,-150 "/>
+<path style="fill:none;stroke:gray;" d="M438,-150C444,-150 450,-156 450,-162"/>
+<polyline style="fill:none;stroke:gray;" points="450,-162 450,-174 "/>
+<path style="fill:none;stroke:gray;" d="M450,-174C450,-180 444,-186 438,-186"/>
+<text text-anchor="middle" x="423" y="-166" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.GroovyReadAck_v_0&#45;&gt;FromADT2FSA_xsl.GroovyInsStorico_v_0 -->
+<g id="edge26" class="edge"><title>FromADT2FSA_xsl.GroovyReadAck_v_0&#45;&gt;FromADT2FSA_xsl.GroovyInsStorico_v_0</title>
+<path style="fill:none;stroke:black;" d="M423,-222C423,-214 423,-205 423,-196"/>
+<polygon style="fill:black;stroke:black;" points="426.5,-196 423,-186 419.5,-196 426.5,-196"/>
+</g>
+<!-- FromADT2FSA_xsl.JdbcInsStorico_v_0 -->
+<g id="node16" class="node"><title>FromADT2FSA_xsl.JdbcInsStorico_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="438,-114 408,-114 396,-102 396,-90 408,-78 438,-78 450,-90 450,-102 438,-114"/>
+<path style="fill:white;stroke:white;" d="M408,-114C402,-114 396,-108 396,-102"/>
+<path style="fill:white;stroke:white;" d="M396,-90C396,-84 402,-78 408,-78"/>
+<path style="fill:white;stroke:white;" d="M438,-78C444,-78 450,-84 450,-90"/>
+<path style="fill:white;stroke:white;" d="M450,-102C450,-108 444,-114 438,-114"/>
+<polyline style="fill:none;stroke:gray;" points="438,-114 408,-114 "/>
+<path style="fill:none;stroke:gray;" d="M408,-114C402,-114 396,-108 396,-102"/>
+<polyline style="fill:none;stroke:gray;" points="396,-102 396,-90 "/>
+<path style="fill:none;stroke:gray;" d="M396,-90C396,-84 402,-78 408,-78"/>
+<polyline style="fill:none;stroke:gray;" points="408,-78 438,-78 "/>
+<path style="fill:none;stroke:gray;" d="M438,-78C444,-78 450,-84 450,-90"/>
+<polyline style="fill:none;stroke:gray;" points="450,-90 450,-102 "/>
+<path style="fill:none;stroke:gray;" d="M450,-102C450,-108 444,-114 438,-114"/>
+<text text-anchor="middle" x="423" y="-94" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.GroovyInsStorico_v_0&#45;&gt;FromADT2FSA_xsl.JdbcInsStorico_v_0 -->
+<g id="edge24" class="edge"><title>FromADT2FSA_xsl.GroovyInsStorico_v_0&#45;&gt;FromADT2FSA_xsl.JdbcInsStorico_v_0</title>
+<path style="fill:none;stroke:black;" d="M423,-150C423,-142 423,-133 423,-124"/>
+<polygon style="fill:black;stroke:black;" points="426.5,-124 423,-114 419.5,-124 426.5,-124"/>
+</g>
+<!-- FromADT2FSA_xsl.ConsoleEnd_v_0 -->
+<g id="node39" class="node"><title>FromADT2FSA_xsl.ConsoleEnd_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<ellipse style="fill:none;stroke:gray;stroke-width:2;" cx="423" cy="-21" rx="21.2132" ry="21.2132"/>
+<text text-anchor="middle" x="423" y="-19" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.JdbcInsStorico_v_0&#45;&gt;FromADT2FSA_xsl.ConsoleEnd_v_0 -->
+<g id="edge96" class="edge"><title>FromADT2FSA_xsl.JdbcInsStorico_v_0&#45;&gt;FromADT2FSA_xsl.ConsoleEnd_v_0</title>
+<path style="fill:none;stroke:black;" d="M423,-78C423,-70 423,-61 423,-52"/>
+<polygon style="fill:black;stroke:black;" points="426.5,-52 423,-42 419.5,-52 426.5,-52"/>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA11_v_0 -->
+<g id="node18" class="node"><title>FromADT2FSA_xsl.groovyupdatemsgA11_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="474,-618 444,-618 432,-606 432,-594 444,-582 474,-582 486,-594 486,-606 474,-618"/>
+<path style="fill:white;stroke:white;" d="M444,-618C438,-618 432,-612 432,-606"/>
+<path style="fill:white;stroke:white;" d="M432,-594C432,-588 438,-582 444,-582"/>
+<path style="fill:white;stroke:white;" d="M474,-582C480,-582 486,-588 486,-594"/>
+<path style="fill:white;stroke:white;" d="M486,-606C486,-612 480,-618 474,-618"/>
+<polyline style="fill:none;stroke:gray;" points="474,-618 444,-618 "/>
+<path style="fill:none;stroke:gray;" d="M444,-618C438,-618 432,-612 432,-606"/>
+<polyline style="fill:none;stroke:gray;" points="432,-606 432,-594 "/>
+<path style="fill:none;stroke:gray;" d="M432,-594C432,-588 438,-582 444,-582"/>
+<polyline style="fill:none;stroke:gray;" points="444,-582 474,-582 "/>
+<path style="fill:none;stroke:gray;" d="M474,-582C480,-582 486,-588 486,-594"/>
+<polyline style="fill:none;stroke:gray;" points="486,-594 486,-606 "/>
+<path style="fill:none;stroke:gray;" d="M486,-606C486,-612 480,-618 474,-618"/>
+<text text-anchor="middle" x="459" y="-598" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA11_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA11_v_0 -->
+<g id="edge30" class="edge"><title>FromADT2FSA_xsl.trasformaDatiA11_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA11_v_0</title>
+<path style="fill:none;stroke:black;" d="M459,-654C459,-646 459,-637 459,-628"/>
+<polygon style="fill:black;stroke:black;" points="462.5,-628 459,-618 455.5,-628 462.5,-628"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA11_v_0 -->
+<g id="node24" class="node"><title>FromADT2FSA_xsl.FromXmlToPlainA11_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="474,-546 444,-546 432,-534 432,-522 444,-510 474,-510 486,-522 486,-534 474,-546"/>
+<path style="fill:white;stroke:white;" d="M444,-546C438,-546 432,-540 432,-534"/>
+<path style="fill:white;stroke:white;" d="M432,-522C432,-516 438,-510 444,-510"/>
+<path style="fill:white;stroke:white;" d="M474,-510C480,-510 486,-516 486,-522"/>
+<path style="fill:white;stroke:white;" d="M486,-534C486,-540 480,-546 474,-546"/>
+<polyline style="fill:none;stroke:gray;" points="474,-546 444,-546 "/>
+<path style="fill:none;stroke:gray;" d="M444,-546C438,-546 432,-540 432,-534"/>
+<polyline style="fill:none;stroke:gray;" points="432,-534 432,-522 "/>
+<path style="fill:none;stroke:gray;" d="M432,-522C432,-516 438,-510 444,-510"/>
+<polyline style="fill:none;stroke:gray;" points="444,-510 474,-510 "/>
+<path style="fill:none;stroke:gray;" d="M474,-510C480,-510 486,-516 486,-522"/>
+<polyline style="fill:none;stroke:gray;" points="486,-522 486,-534 "/>
+<path style="fill:none;stroke:gray;" d="M486,-534C486,-540 480,-546 474,-546"/>
+<text text-anchor="middle" x="459" y="-526" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA11_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA11_v_0 -->
+<g id="edge48" class="edge"><title>FromADT2FSA_xsl.groovyupdatemsgA11_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA11_v_0</title>
+<path style="fill:none;stroke:black;" d="M459,-582C459,-574 459,-565 459,-556"/>
+<polygon style="fill:black;stroke:black;" points="462.5,-556 459,-546 455.5,-556 462.5,-556"/>
+</g>
+<!-- FromADT2FSA_xsl.GroovyGetUpdateDati_v_0&#45;&gt;FromADT2FSA_xsl.RouterTypeMsg_v_0 -->
+<g id="edge32" class="edge"><title>FromADT2FSA_xsl.GroovyGetUpdateDati_v_0&#45;&gt;FromADT2FSA_xsl.RouterTypeMsg_v_0</title>
+<path style="fill:none;stroke:black;" d="M423,-798C423,-790 423,-781 423,-772"/>
+<polygon style="fill:black;stroke:black;" points="426.5,-772 423,-762 419.5,-772 426.5,-772"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA12_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA02A12_v_0 -->
+<g id="edge40" class="edge"><title>FromADT2FSA_xsl.trasformaDatiA12_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA02A12_v_0</title>
+<path style="fill:none;stroke:black;" d="M243,-654C243,-646 243,-637 243,-628"/>
+<polygon style="fill:black;stroke:black;" points="246.5,-628 243,-618 239.5,-628 246.5,-628"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA13_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA03A13_v_0 -->
+<g id="edge42" class="edge"><title>FromADT2FSA_xsl.trasformaDatiA13_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA03A13_v_0</title>
+<path style="fill:none;stroke:black;" d="M387,-654C387,-646 387,-637 387,-628"/>
+<polygon style="fill:black;stroke:black;" points="390.5,-628 387,-618 383.5,-628 390.5,-628"/>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgMDM_TO2_v_0 -->
+<g id="node23" class="node"><title>FromADT2FSA_xsl.groovyupdatemsgMDM_TO2_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="546,-618 516,-618 504,-606 504,-594 516,-582 546,-582 558,-594 558,-606 546,-618"/>
+<path style="fill:white;stroke:white;" d="M516,-618C510,-618 504,-612 504,-606"/>
+<path style="fill:white;stroke:white;" d="M504,-594C504,-588 510,-582 516,-582"/>
+<path style="fill:white;stroke:white;" d="M546,-582C552,-582 558,-588 558,-594"/>
+<path style="fill:white;stroke:white;" d="M558,-606C558,-612 552,-618 546,-618"/>
+<polyline style="fill:none;stroke:gray;" points="546,-618 516,-618 "/>
+<path style="fill:none;stroke:gray;" d="M516,-618C510,-618 504,-612 504,-606"/>
+<polyline style="fill:none;stroke:gray;" points="504,-606 504,-594 "/>
+<path style="fill:none;stroke:gray;" d="M504,-594C504,-588 510,-582 516,-582"/>
+<polyline style="fill:none;stroke:gray;" points="516,-582 546,-582 "/>
+<path style="fill:none;stroke:gray;" d="M546,-582C552,-582 558,-588 558,-594"/>
+<polyline style="fill:none;stroke:gray;" points="558,-594 558,-606 "/>
+<path style="fill:none;stroke:gray;" d="M558,-606C558,-612 552,-618 546,-618"/>
+<text text-anchor="middle" x="531" y="-598" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiMDM_TO2_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgMDM_TO2_v_0 -->
+<g id="edge50" class="edge"><title>FromADT2FSA_xsl.trasformaDatiMDM_TO2_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgMDM_TO2_v_0</title>
+<path style="fill:none;stroke:black;" d="M531,-654C531,-646 531,-637 531,-628"/>
+<polygon style="fill:black;stroke:black;" points="534.5,-628 531,-618 527.5,-628 534.5,-628"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainMDMT02T10_v_0 -->
+<g id="node25" class="node"><title>FromADT2FSA_xsl.FromXmlToPlainMDMT02T10_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="546,-546 516,-546 504,-534 504,-522 516,-510 546,-510 558,-522 558,-534 546,-546"/>
+<path style="fill:white;stroke:white;" d="M516,-546C510,-546 504,-540 504,-534"/>
+<path style="fill:white;stroke:white;" d="M504,-522C504,-516 510,-510 516,-510"/>
+<path style="fill:white;stroke:white;" d="M546,-510C552,-510 558,-516 558,-522"/>
+<path style="fill:white;stroke:white;" d="M558,-534C558,-540 552,-546 546,-546"/>
+<polyline style="fill:none;stroke:gray;" points="546,-546 516,-546 "/>
+<path style="fill:none;stroke:gray;" d="M516,-546C510,-546 504,-540 504,-534"/>
+<polyline style="fill:none;stroke:gray;" points="504,-534 504,-522 "/>
+<path style="fill:none;stroke:gray;" d="M504,-522C504,-516 510,-510 516,-510"/>
+<polyline style="fill:none;stroke:gray;" points="516,-510 546,-510 "/>
+<path style="fill:none;stroke:gray;" d="M546,-510C552,-510 558,-516 558,-522"/>
+<polyline style="fill:none;stroke:gray;" points="558,-522 558,-534 "/>
+<path style="fill:none;stroke:gray;" d="M558,-534C558,-540 552,-546 546,-546"/>
+<text text-anchor="middle" x="531" y="-526" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgMDM_TO2_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainMDMT02T10_v_0 -->
+<g id="edge52" class="edge"><title>FromADT2FSA_xsl.groovyupdatemsgMDM_TO2_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainMDMT02T10_v_0</title>
+<path style="fill:none;stroke:black;" d="M531,-582C531,-574 531,-565 531,-556"/>
+<polygon style="fill:black;stroke:black;" points="534.5,-556 531,-546 527.5,-556 534.5,-556"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA11_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0 -->
+<g id="edge54" class="edge"><title>FromADT2FSA_xsl.FromXmlToPlainA11_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0</title>
+<path style="fill:none;stroke:black;" d="M468,-510C472,-502 477,-492 482,-483"/>
+<polygon style="fill:black;stroke:black;" points="485.137,-484.56 486,-474 478.74,-481.717 485.137,-484.56"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainMDMT02T10_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0 -->
+<g id="edge56" class="edge"><title>FromADT2FSA_xsl.FromXmlToPlainMDMT02T10_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0</title>
+<path style="fill:none;stroke:black;" d="M522,-510C518,-502 513,-492 508,-483"/>
+<polygon style="fill:black;stroke:black;" points="511.26,-481.717 504,-474 504.863,-484.56 511.26,-481.717"/>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiMDM_T10_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgMDM_TO2_v_0 -->
+<g id="edge60" class="edge"><title>FromADT2FSA_xsl.trasformaDatiMDM_T10_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgMDM_TO2_v_0</title>
+<path style="fill:none;stroke:black;" d="M585,-654C576,-645 566,-635 556,-625"/>
+<polygon style="fill:black;stroke:black;" points="558.546,-622.596 549,-618 553.596,-627.546 558.546,-622.596"/>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA05_v_0 -->
+<g id="node33" class="node"><title>FromADT2FSA_xsl.groovyupdatemsgA05_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="654,-618 624,-618 612,-606 612,-594 624,-582 654,-582 666,-594 666,-606 654,-618"/>
+<path style="fill:white;stroke:white;" d="M624,-618C618,-618 612,-612 612,-606"/>
+<path style="fill:white;stroke:white;" d="M612,-594C612,-588 618,-582 624,-582"/>
+<path style="fill:white;stroke:white;" d="M654,-582C660,-582 666,-588 666,-594"/>
+<path style="fill:white;stroke:white;" d="M666,-606C666,-612 660,-618 654,-618"/>
+<polyline style="fill:none;stroke:gray;" points="654,-618 624,-618 "/>
+<path style="fill:none;stroke:gray;" d="M624,-618C618,-618 612,-612 612,-606"/>
+<polyline style="fill:none;stroke:gray;" points="612,-606 612,-594 "/>
+<path style="fill:none;stroke:gray;" d="M612,-594C612,-588 618,-582 624,-582"/>
+<polyline style="fill:none;stroke:gray;" points="624,-582 654,-582 "/>
+<path style="fill:none;stroke:gray;" d="M654,-582C660,-582 666,-588 666,-594"/>
+<polyline style="fill:none;stroke:gray;" points="666,-594 666,-606 "/>
+<path style="fill:none;stroke:gray;" d="M666,-606C666,-612 660,-618 654,-618"/>
+<text text-anchor="middle" x="639" y="-598" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA05_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA05_v_0 -->
+<g id="edge64" class="edge"><title>FromADT2FSA_xsl.trasformaDatiA05_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA05_v_0</title>
+<path style="fill:none;stroke:black;" d="M666,-654C662,-646 657,-636 652,-627"/>
+<polygon style="fill:black;stroke:black;" points="655.26,-625.717 648,-618 648.863,-628.56 655.26,-625.717"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA05_v_0 -->
+<g id="node28" class="node"><title>FromADT2FSA_xsl.FromXmlToPlainA05_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="626,-546 596,-546 584,-534 584,-522 596,-510 626,-510 638,-522 638,-534 626,-546"/>
+<path style="fill:white;stroke:white;" d="M596,-546C590,-546 584,-540 584,-534"/>
+<path style="fill:white;stroke:white;" d="M584,-522C584,-516 590,-510 596,-510"/>
+<path style="fill:white;stroke:white;" d="M626,-510C632,-510 638,-516 638,-522"/>
+<path style="fill:white;stroke:white;" d="M638,-534C638,-540 632,-546 626,-546"/>
+<polyline style="fill:none;stroke:gray;" points="626,-546 596,-546 "/>
+<path style="fill:none;stroke:gray;" d="M596,-546C590,-546 584,-540 584,-534"/>
+<polyline style="fill:none;stroke:gray;" points="584,-534 584,-522 "/>
+<path style="fill:none;stroke:gray;" d="M584,-522C584,-516 590,-510 596,-510"/>
+<polyline style="fill:none;stroke:gray;" points="596,-510 626,-510 "/>
+<path style="fill:none;stroke:gray;" d="M626,-510C632,-510 638,-516 638,-522"/>
+<polyline style="fill:none;stroke:gray;" points="638,-522 638,-534 "/>
+<path style="fill:none;stroke:gray;" d="M638,-534C638,-540 632,-546 626,-546"/>
+<text text-anchor="middle" x="611" y="-526" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA05_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0 -->
+<g id="edge90" class="edge"><title>FromADT2FSA_xsl.FromXmlToPlainA05_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0</title>
+<path style="fill:none;stroke:black;" d="M584,-511C569,-502 548,-489 531,-478"/>
+<polygon style="fill:black;stroke:black;" points="532.441,-474.797 522,-473 529.042,-480.916 532.441,-474.797"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA38_v_0 -->
+<g id="node29" class="node"><title>FromADT2FSA_xsl.FromXmlToPlainA38_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="817,-546 787,-546 775,-534 775,-522 787,-510 817,-510 829,-522 829,-534 817,-546"/>
+<path style="fill:white;stroke:white;" d="M787,-546C781,-546 775,-540 775,-534"/>
+<path style="fill:white;stroke:white;" d="M775,-522C775,-516 781,-510 787,-510"/>
+<path style="fill:white;stroke:white;" d="M817,-510C823,-510 829,-516 829,-522"/>
+<path style="fill:white;stroke:white;" d="M829,-534C829,-540 823,-546 817,-546"/>
+<polyline style="fill:none;stroke:gray;" points="817,-546 787,-546 "/>
+<path style="fill:none;stroke:gray;" d="M787,-546C781,-546 775,-540 775,-534"/>
+<polyline style="fill:none;stroke:gray;" points="775,-534 775,-522 "/>
+<path style="fill:none;stroke:gray;" d="M775,-522C775,-516 781,-510 787,-510"/>
+<polyline style="fill:none;stroke:gray;" points="787,-510 817,-510 "/>
+<path style="fill:none;stroke:gray;" d="M817,-510C823,-510 829,-516 829,-522"/>
+<polyline style="fill:none;stroke:gray;" points="829,-522 829,-534 "/>
+<path style="fill:none;stroke:gray;" d="M829,-534C829,-540 823,-546 817,-546"/>
+<text text-anchor="middle" x="802" y="-526" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA38_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0 -->
+<g id="edge92" class="edge"><title>FromADT2FSA_xsl.FromXmlToPlainA38_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0</title>
+<path style="fill:none;stroke:black;" d="M775,-520C763,-517 748,-513 735,-510 663,-491 579,-474 532,-464"/>
+<polygon style="fill:black;stroke:black;" points="532.492,-460.529 522,-462 531.119,-467.393 532.492,-460.529"/>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA45_v_0 -->
+<g id="node30" class="node"><title>FromADT2FSA_xsl.FromXmlToPlainA45_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="714,-546 684,-546 672,-534 672,-522 684,-510 714,-510 726,-522 726,-534 714,-546"/>
+<path style="fill:white;stroke:white;" d="M684,-546C678,-546 672,-540 672,-534"/>
+<path style="fill:white;stroke:white;" d="M672,-522C672,-516 678,-510 684,-510"/>
+<path style="fill:white;stroke:white;" d="M714,-510C720,-510 726,-516 726,-522"/>
+<path style="fill:white;stroke:white;" d="M726,-534C726,-540 720,-546 714,-546"/>
+<polyline style="fill:none;stroke:gray;" points="714,-546 684,-546 "/>
+<path style="fill:none;stroke:gray;" d="M684,-546C678,-546 672,-540 672,-534"/>
+<polyline style="fill:none;stroke:gray;" points="672,-534 672,-522 "/>
+<path style="fill:none;stroke:gray;" d="M672,-522C672,-516 678,-510 684,-510"/>
+<polyline style="fill:none;stroke:gray;" points="684,-510 714,-510 "/>
+<path style="fill:none;stroke:gray;" d="M714,-510C720,-510 726,-516 726,-522"/>
+<polyline style="fill:none;stroke:gray;" points="726,-522 726,-534 "/>
+<path style="fill:none;stroke:gray;" d="M726,-534C726,-540 720,-546 714,-546"/>
+<text text-anchor="middle" x="699" y="-526" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.FromXmlToPlainA45_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0 -->
+<g id="edge94" class="edge"><title>FromADT2FSA_xsl.FromXmlToPlainA45_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0</title>
+<path style="fill:none;stroke:black;" d="M672,-518C636,-506 572,-483 532,-469"/>
+<polygon style="fill:black;stroke:black;" points="532.584,-465.521 522,-466 530.573,-472.226 532.584,-465.521"/>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA45_v_0 -->
+<g id="node35" class="node"><title>FromADT2FSA_xsl.groovyupdatemsgA45_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="744,-618 714,-618 702,-606 702,-594 714,-582 744,-582 756,-594 756,-606 744,-618"/>
+<path style="fill:white;stroke:white;" d="M714,-618C708,-618 702,-612 702,-606"/>
+<path style="fill:white;stroke:white;" d="M702,-594C702,-588 708,-582 714,-582"/>
+<path style="fill:white;stroke:white;" d="M744,-582C750,-582 756,-588 756,-594"/>
+<path style="fill:white;stroke:white;" d="M756,-606C756,-612 750,-618 744,-618"/>
+<polyline style="fill:none;stroke:gray;" points="744,-618 714,-618 "/>
+<path style="fill:none;stroke:gray;" d="M714,-618C708,-618 702,-612 702,-606"/>
+<polyline style="fill:none;stroke:gray;" points="702,-606 702,-594 "/>
+<path style="fill:none;stroke:gray;" d="M702,-594C702,-588 708,-582 714,-582"/>
+<polyline style="fill:none;stroke:gray;" points="714,-582 744,-582 "/>
+<path style="fill:none;stroke:gray;" d="M744,-582C750,-582 756,-588 756,-594"/>
+<polyline style="fill:none;stroke:gray;" points="756,-594 756,-606 "/>
+<path style="fill:none;stroke:gray;" d="M756,-606C756,-612 750,-618 744,-618"/>
+<text text-anchor="middle" x="729" y="-598" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA45_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA45_v_0 -->
+<g id="edge68" class="edge"><title>FromADT2FSA_xsl.trasformaDatiA45_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA45_v_0</title>
+<path style="fill:none;stroke:black;" d="M742,-654C740,-646 738,-637 736,-628"/>
+<polygon style="fill:black;stroke:black;" points="739.226,-626.573 733,-618 732.521,-628.584 739.226,-626.573"/>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA38_v_0 -->
+<g id="node34" class="node"><title>FromADT2FSA_xsl.groovyupdatemsgA38_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="825,-618 795,-618 783,-606 783,-594 795,-582 825,-582 837,-594 837,-606 825,-618"/>
+<path style="fill:white;stroke:white;" d="M795,-618C789,-618 783,-612 783,-606"/>
+<path style="fill:white;stroke:white;" d="M783,-594C783,-588 789,-582 795,-582"/>
+<path style="fill:white;stroke:white;" d="M825,-582C831,-582 837,-588 837,-594"/>
+<path style="fill:white;stroke:white;" d="M837,-606C837,-612 831,-618 825,-618"/>
+<polyline style="fill:none;stroke:gray;" points="825,-618 795,-618 "/>
+<path style="fill:none;stroke:gray;" d="M795,-618C789,-618 783,-612 783,-606"/>
+<polyline style="fill:none;stroke:gray;" points="783,-606 783,-594 "/>
+<path style="fill:none;stroke:gray;" d="M783,-594C783,-588 789,-582 795,-582"/>
+<polyline style="fill:none;stroke:gray;" points="795,-582 825,-582 "/>
+<path style="fill:none;stroke:gray;" d="M825,-582C831,-582 837,-588 837,-594"/>
+<polyline style="fill:none;stroke:gray;" points="837,-594 837,-606 "/>
+<path style="fill:none;stroke:gray;" d="M837,-606C837,-612 831,-618 825,-618"/>
+<text text-anchor="middle" x="810" y="-598" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.trasformaDatiA38_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA38_v_0 -->
+<g id="edge66" class="edge"><title>FromADT2FSA_xsl.trasformaDatiA38_v_0&#45;&gt;FromADT2FSA_xsl.groovyupdatemsgA38_v_0</title>
+<path style="fill:none;stroke:black;" d="M817,-654C816,-646 815,-637 814,-628"/>
+<polygon style="fill:black;stroke:black;" points="817.393,-627.119 812,-618 810.529,-628.492 817.393,-627.119"/>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA05_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA05_v_0 -->
+<g id="edge70" class="edge"><title>FromADT2FSA_xsl.groovyupdatemsgA05_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA05_v_0</title>
+<path style="fill:none;stroke:black;" d="M632,-582C629,-574 625,-564 622,-556"/>
+<polygon style="fill:black;stroke:black;" points="624.964,-553.985 618,-546 618.464,-556.585 624.964,-553.985"/>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA38_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA38_v_0 -->
+<g id="edge72" class="edge"><title>FromADT2FSA_xsl.groovyupdatemsgA38_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA38_v_0</title>
+<path style="fill:none;stroke:black;" d="M808,-582C807,-574 806,-565 805,-556"/>
+<polygon style="fill:black;stroke:black;" points="808.478,-555.602 804,-546 801.512,-556.299 808.478,-555.602"/>
+</g>
+<!-- FromADT2FSA_xsl.groovyupdatemsgA45_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA45_v_0 -->
+<g id="edge74" class="edge"><title>FromADT2FSA_xsl.groovyupdatemsgA45_v_0&#45;&gt;FromADT2FSA_xsl.FromXmlToPlainA45_v_0</title>
+<path style="fill:none;stroke:black;" d="M721,-582C718,-574 714,-564 711,-556"/>
+<polygon style="fill:black;stroke:black;" points="713.964,-553.985 707,-546 707.464,-556.585 713.964,-553.985"/>
+</g>
+<!-- FromADT2FSA_xsl.RtAck_v_0&#45;&gt;FromADT2FSA_xsl.GroovyReadAck_v_0 -->
+<g id="edge84" class="edge"><title>FromADT2FSA_xsl.RtAck_v_0&#45;&gt;FromADT2FSA_xsl.GroovyReadAck_v_0</title>
+<path style="fill:none;stroke:black;" d="M420,-368C418,-357 416,-343 415,-330 413,-314 413,-309 415,-294 415,-286 416,-276 417,-268"/>
+<polygon style="fill:black;stroke:black;" points="420.471,-268.492 419,-258 413.607,-267.119 420.471,-268.492"/>
+</g>
+<!-- FromADT2FSA_xsl.ACK2XML_v_0 -->
+<g id="node37" class="node"><title>FromADT2FSA_xsl.ACK2XML_v_0</title>
+<a xlink:href="null" xlink:title="Detail">
+<polygon style="fill:white;stroke:white;" points="466,-330 436,-330 424,-318 424,-306 436,-294 466,-294 478,-306 478,-318 466,-330"/>
+<path style="fill:white;stroke:white;" d="M436,-330C430,-330 424,-324 424,-318"/>
+<path style="fill:white;stroke:white;" d="M424,-306C424,-300 430,-294 436,-294"/>
+<path style="fill:white;stroke:white;" d="M466,-294C472,-294 478,-300 478,-306"/>
+<path style="fill:white;stroke:white;" d="M478,-318C478,-324 472,-330 466,-330"/>
+<polyline style="fill:none;stroke:gray;" points="466,-330 436,-330 "/>
+<path style="fill:none;stroke:gray;" d="M436,-330C430,-330 424,-324 424,-318"/>
+<polyline style="fill:none;stroke:gray;" points="424,-318 424,-306 "/>
+<path style="fill:none;stroke:gray;" d="M424,-306C424,-300 430,-294 436,-294"/>
+<polyline style="fill:none;stroke:gray;" points="436,-294 466,-294 "/>
+<path style="fill:none;stroke:gray;" d="M466,-294C472,-294 478,-300 478,-306"/>
+<polyline style="fill:none;stroke:gray;" points="478,-306 478,-318 "/>
+<path style="fill:none;stroke:gray;" d="M478,-318C478,-324 472,-330 466,-330"/>
+<text text-anchor="middle" x="451" y="-310" style="font-family:Tahoma;font-size:6.00;">###</text>
+</a>
+</g>
+<!-- FromADT2FSA_xsl.RtAck_v_0&#45;&gt;FromADT2FSA_xsl.ACK2XML_v_0 -->
+<g id="edge86" class="edge"><title>FromADT2FSA_xsl.RtAck_v_0&#45;&gt;FromADT2FSA_xsl.ACK2XML_v_0</title>
+<path style="fill:none;stroke:black;" d="M429,-369C432,-361 436,-349 440,-339"/>
+<polygon style="fill:black;stroke:black;" points="443.137,-340.56 444,-330 436.74,-337.717 443.137,-340.56"/>
+</g>
+<!-- FromADT2FSA_xsl.ACK2XML_v_0&#45;&gt;FromADT2FSA_xsl.GroovyReadAck_v_0 -->
+<g id="edge88" class="edge"><title>FromADT2FSA_xsl.ACK2XML_v_0&#45;&gt;FromADT2FSA_xsl.GroovyReadAck_v_0</title>
+<path style="fill:none;stroke:black;" d="M444,-294C441,-286 437,-276 434,-268"/>
+<polygon style="fill:black;stroke:black;" points="436.964,-265.985 430,-258 430.464,-268.585 436.964,-265.985"/>
+</g>
+<!-- FromADT2FSA_xsl.TCP&#45;Snd_Transformer_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0 -->
+<g id="edge102" class="edge"><title>FromADT2FSA_xsl.TCP&#45;Snd_Transformer_v_0&#45;&gt;FromADT2FSA_xsl.TCP&#45;Snd_v_0</title>
+<path style="fill:none;stroke:black;" d="M501,-402C502,-410 502,-419 502,-428"/>
+<polygon style="fill:black;stroke:black;" points="498.512,-427.701 501,-438 505.478,-428.398 498.512,-427.701"/>
+</g>
+</g>
+</svg>
+</GRAPH>
+</PROCESS>
+</DEPLOY>

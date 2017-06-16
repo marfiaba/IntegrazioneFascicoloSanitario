@@ -1,0 +1,1108 @@
+<?xml version="1.0" encoding="ASCII"?>
+<im:StpIntermediateModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:im="http://eclipse.org/stp/im">
+  <properties key="im.iter.version">
+    <value xsi:type="im:BasicProperty" key="im.iter.version" value="0"/>
+  </properties>
+  <processCollection>
+    <processes name="FromADT2FSA_xsl">
+      <properties key="im.process.version">
+        <value xsi:type="im:BasicProperty" key="im.process.version" value="0"/>
+      </properties>
+      <properties key="TechnologyName">
+        <value xsi:type="im:BasicProperty" key="TechnologyName" value="JBI - Apache ServiceMix"/>
+      </properties>
+      <properties key="im.pool.runtimeID">
+        <value xsi:type="im:BasicProperty" key="im.pool.runtimeID" value="runtime.jbi.smx"/>
+      </properties>
+      <properties key="im.process.parameters">
+        <value xsi:type="im:MapProperty" key="im.process.parameters">
+          <value key="maxMessagesPerPollingUnit">
+            <value xsi:type="im:BasicProperty" key="maxMessagesPerPollingUnit" value="1"/>
+          </value>
+          <value key="retryNumber">
+            <value xsi:type="im:BasicProperty" key="retryNumber" value="2"/>
+          </value>
+          <value key="remoteHost">
+            <value xsi:type="im:BasicProperty" key="remoteHost" value="127.0.0.1"/>
+          </value>
+          <value key="retryCount">
+            <value xsi:type="im:BasicProperty" key="retryCount" value="2"/>
+          </value>
+          <value key="responseTimeout">
+            <value xsi:type="im:BasicProperty" key="responseTimeout" value="30000"/>
+          </value>
+          <value key="periodoPoller">
+            <value xsi:type="im:BasicProperty" key="periodoPoller" value="10000"/>
+          </value>
+          <value key="retryDelay">
+            <value xsi:type="im:BasicProperty" key="retryDelay" value="10000"/>
+          </value>
+          <value key="queryPoller">
+            <value xsi:type="im:BasicProperty" key="queryPoller" value="select to_char(a.ah_dt_ins,'yyyy-mm-dd hh24:mi:ss') DATAINS,to_char(a.ah_dt_contatto,'yyyymmddhh24mi') AH_DT_CONTATTOC,to_char(a.ah_dt_evento,'yyyymmddhh24mi') AH_DT_EVENTOC,  a.*, b.at_file, c.SA_VERSIONE VERSIONEREFERTO from aa_ADT2HL7 a, si_attach b , aa_stampe_attach c, si_attachfile d where  to_char(a.ah_dt_ins,'yyyy-mm-dd hh24:mi:ss')>=? and a.ah_dt_var is null and a.ah_at_id = c.sa_id (+) and  c.SA_REPORT  || '_' || c.SA_PRESIDIO || '_' || c.SA_NOSOLOGICO || '_' || c.SA_ID = d.AT_CHIAVE (+) and d.AT_ID  = b. AT_ID (+) order by a.ah_dt_ins"/>
+          </value>
+          <value key="remotePort">
+            <value xsi:type="im:BasicProperty" key="remotePort" value="8082"/>
+          </value>
+          <value key="dataInizioElaborazione">
+            <value xsi:type="im:BasicProperty" key="dataInizioElaborazione" value="2015-01-01 08:00:00"/>
+          </value>
+        </value>
+      </properties>
+      <steps serviceModel="//@serviceCollection/@services.2" name="TCP-Snd" description=" Description for TCP-Snd" sourceTransitions="//@processCollection/@processes.0/@transitions.40" targetTransitions="//@processCollection/@processes.0/@transitions.16 //@processCollection/@processes.0/@transitions.17 //@processCollection/@processes.0/@transitions.18 //@processCollection/@processes.0/@transitions.26 //@processCollection/@processes.0/@transitions.27 //@processCollection/@processes.0/@transitions.44 //@processCollection/@processes.0/@transitions.45 //@processCollection/@processes.0/@transitions.46" stepbindings="//@servicebindings.9">
+        <properties key="RemoteHost">
+          <value xsi:type="im:BasicProperty" key="RemoteHost" value="${remoteHost}"/>
+        </properties>
+        <properties key="OutgoingEndianness">
+          <value xsi:type="im:BasicProperty" key="OutgoingEndianness" value="true"/>
+        </properties>
+        <properties key="ResponseTimeOut">
+          <value xsi:type="im:BasicProperty" key="ResponseTimeOut" value="${responseTimeout}"/>
+        </properties>
+        <properties key="FlagBase64EncodeMessage">
+          <value xsi:type="im:BasicProperty" key="FlagBase64EncodeMessage" value="TRUE"/>
+        </properties>
+        <properties key="RetryType">
+          <value xsi:type="im:BasicProperty" key="RetryType" value="RETRY_TYPE_NO_RETRY"/>
+        </properties>
+        <properties key="OutgoingHeader">
+          <value xsi:type="im:BasicProperty" key="OutgoingHeader" value="0x0B"/>
+        </properties>
+        <properties key="FlagBase64DecodeMessage">
+          <value xsi:type="im:BasicProperty" key="FlagBase64DecodeMessage" value="TRUE"/>
+        </properties>
+        <properties key="LogData">
+          <value xsi:type="im:BasicProperty" key="LogData" value="false"/>
+        </properties>
+        <properties key="RemotePort">
+          <value xsi:type="im:BasicProperty" key="RemotePort" value="${remotePort}"/>
+        </properties>
+        <properties key="ConnectionPointType">
+          <value xsi:type="im:BasicProperty" key="ConnectionPointType" value="POINT_TYPE_CLIENT"/>
+        </properties>
+        <properties key="StripWrapping">
+          <value xsi:type="im:BasicProperty" key="StripWrapping" value="true"/>
+        </properties>
+        <properties key="ConnectionMode">
+          <value xsi:type="im:BasicProperty" key="ConnectionMode" value="CONN_MODE_DISCONNECT"/>
+        </properties>
+        <properties key="IncomingHeader">
+          <value xsi:type="im:BasicProperty" key="IncomingHeader" value="0x0B"/>
+        </properties>
+        <properties key="RetryNumber">
+          <value xsi:type="im:BasicProperty" key="RetryNumber" value="${retryNumber}"/>
+        </properties>
+        <properties key="IncomingWrapper">
+          <value xsi:type="im:BasicProperty" key="IncomingWrapper" value="WRAPPER_USER"/>
+        </properties>
+        <properties key="LogDataInExadecimal">
+          <value xsi:type="im:BasicProperty" key="LogDataInExadecimal" value="false"/>
+        </properties>
+        <properties key="FlagIsSslEnabled">
+          <value xsi:type="im:BasicProperty" key="FlagIsSslEnabled" value="false"/>
+        </properties>
+        <properties key="NormalizedMessageOutputEnvelope">
+          <value xsi:type="im:BasicProperty" key="NormalizedMessageOutputEnvelope" value="PLAIN-HL7"/>
+        </properties>
+        <properties key="TcpOutInReceiverClassName">
+          <value xsi:type="im:BasicProperty" key="TcpOutInReceiverClassName" value="org.spagic.smx.components.tcp.ConsoleTCPReceiver"/>
+        </properties>
+        <properties key="OutgoingTrailer">
+          <value xsi:type="im:BasicProperty" key="OutgoingTrailer" value="0x1C 0x0D"/>
+        </properties>
+        <properties key="ConnectionPointMode">
+          <value xsi:type="im:BasicProperty" key="ConnectionPointMode" value="OPERATION_MODE_BIDIRECTIONAL"/>
+        </properties>
+        <properties key="RetryCount">
+          <value xsi:type="im:BasicProperty" key="RetryCount" value="${retryCount}"/>
+        </properties>
+        <properties key="RetryDelay">
+          <value xsi:type="im:BasicProperty" key="RetryDelay" value="${retryDelay}"/>
+        </properties>
+        <properties key="LogFileName">
+          <value xsi:type="im:BasicProperty" key="LogFileName"/>
+        </properties>
+        <properties key="LogExtraInfo">
+          <value xsi:type="im:BasicProperty" key="LogExtraInfo" value="false"/>
+        </properties>
+        <properties key="NormalizedMessageInputEnvelope">
+          <value xsi:type="im:BasicProperty" key="NormalizedMessageInputEnvelope" value="PLAIN-HL7"/>
+        </properties>
+        <properties key="LogConnections">
+          <value xsi:type="im:BasicProperty" key="LogConnections" value="false"/>
+        </properties>
+        <properties key="IncomingTrailer">
+          <value xsi:type="im:BasicProperty" key="IncomingTrailer" value="0x1C 0x0D"/>
+        </properties>
+        <properties key="sendFaultsToTarget">
+          <value xsi:type="im:BasicProperty" key="sendFaultsToTarget" value="false"/>
+        </properties>
+        <properties key="FailAction">
+          <value xsi:type="im:BasicProperty" key="FailAction" value="FAIL_ACTION_CLOSE_CONN"/>
+        </properties>
+        <properties key="OutgoingWrapper">
+          <value xsi:type="im:BasicProperty" key="OutgoingWrapper" value="WRAPPER_USER"/>
+        </properties>
+        <properties key="IncomingEndianness">
+          <value xsi:type="im:BasicProperty" key="IncomingEndianness" value="true"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.3" name="RouterTypeMsg" description=" Description for RouterTypeMsg" sourceTransitions="//@processCollection/@processes.0/@transitions.0 //@processCollection/@processes.0/@transitions.1 //@processCollection/@processes.0/@transitions.2 //@processCollection/@processes.0/@transitions.3 //@processCollection/@processes.0/@transitions.13 //@processCollection/@processes.0/@transitions.21 //@processCollection/@processes.0/@transitions.22 //@processCollection/@processes.0/@transitions.28 //@processCollection/@processes.0/@transitions.30 //@processCollection/@processes.0/@transitions.37 //@processCollection/@processes.0/@transitions.38 //@processCollection/@processes.0/@transitions.39" targetTransitions="//@processCollection/@processes.0/@transitions.15" stepbindings="//@servicebindings.43">
+        <properties key="im.isExclusiveGateway">
+          <value xsi:type="im:BasicProperty" key="im.isExclusiveGateway" value="true"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA01" description=" Description for trasformaDatiA01" sourceTransitions="//@processCollection/@processes.0/@transitions.4" targetTransitions="//@processCollection/@processes.0/@transitions.0" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA02" description=" Description for trasformaDatiA02" sourceTransitions="//@processCollection/@processes.0/@transitions.5" targetTransitions="//@processCollection/@processes.0/@transitions.1" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA03" description=" Description for trasformaDatiA03" sourceTransitions="//@processCollection/@processes.0/@transitions.6" targetTransitions="//@processCollection/@processes.0/@transitions.2" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA08" description=" Description for trasformaDatiA08" sourceTransitions="//@processCollection/@processes.0/@transitions.7" targetTransitions="//@processCollection/@processes.0/@transitions.3" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA01A08" description=" Description for groovyupdatemsgA01A08" sourceTransitions="//@processCollection/@processes.0/@transitions.8" targetTransitions="//@processCollection/@processes.0/@transitions.4 //@processCollection/@processes.0/@transitions.7" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA02A12" description=" Description for groovyupdatemsgA02A12" sourceTransitions="//@processCollection/@processes.0/@transitions.9" targetTransitions="//@processCollection/@processes.0/@transitions.5 //@processCollection/@processes.0/@transitions.19" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA03A13" description=" Description for groovyupdatemsgA03A13" sourceTransitions="//@processCollection/@processes.0/@transitions.10" targetTransitions="//@processCollection/@processes.0/@transitions.6 //@processCollection/@processes.0/@transitions.20" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA01A08" description=" Description for FromXmlToPlainA01A08" sourceTransitions="//@processCollection/@processes.0/@transitions.17" targetTransitions="//@processCollection/@processes.0/@transitions.8" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA01"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA02A12" description=" Description for FromXmlToPlainA02A12" sourceTransitions="//@processCollection/@processes.0/@transitions.16" targetTransitions="//@processCollection/@processes.0/@transitions.9" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA01"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA03A13" description=" Description for FromXmlToPlainA03A13" sourceTransitions="//@processCollection/@processes.0/@transitions.18" targetTransitions="//@processCollection/@processes.0/@transitions.10" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA01"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="GroovyReadAck" description=" Description for GroovyReadAck" sourceTransitions="//@processCollection/@processes.0/@transitions.12" targetTransitions="//@processCollection/@processes.0/@transitions.41 //@processCollection/@processes.0/@transitions.43" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_ReadACK.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="GroovyInsStorico" description=" Description for GroovyInsStorico" sourceTransitions="//@processCollection/@processes.0/@transitions.11" targetTransitions="//@processCollection/@processes.0/@transitions.12" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_preInsertStorico.groovy"/>
+        </properties>
+        <observableAttributes idAttribute="21" name="EsitoAck">
+          <observableAttributeExtractRule idRule="21" name="/esitoack" expression="/esitoack" expressionLanguage="XPath"/>
+        </observableAttributes>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="JdbcInsStorico" description=" Description for JdbcInsStorico" sourceTransitions="//@processCollection/@processes.0/@transitions.47" targetTransitions="//@processCollection/@processes.0/@transitions.11" stepbindings="//@servicebindings.56">
+        <properties key="SqlQueryParameters[pazcogn].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[pazcogn].ParameterName" value="pazcogn"/>
+        </properties>
+        <properties key="SqlQueryParameters[erroreSintDesc].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[erroreSintDesc].ParameterName" value="erroreSintDesc"/>
+        </properties>
+        <properties key="SqlQueryParameters[repcode].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[repcode].XPathExpression" value="/msgstorico/repcode"/>
+        </properties>
+        <properties key="SqlQueryParameters[tipomsg].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[tipomsg].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[facsnd].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[facsnd].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[pazcode].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[pazcode].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[repcode].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[repcode].ParameterName" value="repcode"/>
+        </properties>
+        <properties key="SqlQueryParameters[facsnd].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[facsnd].XPathExpression" value="/msgstorico/facsnd"/>
+        </properties>
+        <properties key="SqlQueryParameters[apprcv].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[apprcv].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[idack].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[idack].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="ErrorHandlingPolicy">
+          <value xsi:type="im:BasicProperty" key="ErrorHandlingPolicy" value="FLOW"/>
+        </properties>
+        <properties key="SqlQueryParameters[idack].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[idack].XPathExpression" value="/msgstorico/idack"/>
+        </properties>
+        <properties key="SqlQueryParameters[pazcogn].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[pazcogn].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[paznome].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[paznome].XPathExpression" value="/msgstorico/paznome"/>
+        </properties>
+        <properties key="SqlQueryParameters[paznome].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[paznome].ParameterName" value="paznome"/>
+        </properties>
+        <properties key="FlagEnrichInputMessage">
+          <value xsi:type="im:BasicProperty" key="FlagEnrichInputMessage" value="false"/>
+        </properties>
+        <properties key="SqlQueryParameters[erroreSintDesc].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[erroreSintDesc].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="RowXmlEnvelop">
+          <value xsi:type="im:BasicProperty" key="RowXmlEnvelop" value="row"/>
+        </properties>
+        <properties key="SqlQueryParameters[repcode].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[repcode].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[erroreSemDesc].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[erroreSemDesc].ParameterName" value="erroreSemDesc"/>
+        </properties>
+        <properties key="SqlQueryParameters[paznome].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[paznome].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[esito].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[esito].ParameterName" value="esito"/>
+        </properties>
+        <properties key="SqlQueryParameters[pazcode].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[pazcode].XPathExpression" value="/msgstorico/pazcode"/>
+        </properties>
+        <properties key="SqlQueryParameters[apprcv].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[apprcv].XPathExpression" value="/msgstorico/apprcv"/>
+        </properties>
+        <properties key="SqlQueryParameters[facrcv].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[facrcv].ParameterName" value="facrcv"/>
+        </properties>
+        <properties key="SqlQueryParameters[richiestaid].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[richiestaid].ParameterName" value="richiestaid"/>
+        </properties>
+        <properties key="FlagIsStoredProcdure">
+          <value xsi:type="im:BasicProperty" key="FlagIsStoredProcdure" value="false"/>
+        </properties>
+        <properties key="SqlQueryParameters[noso].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[noso].XPathExpression" value="/msgstorico/noso"/>
+        </properties>
+        <properties key="SqlQueryParameters[erroreSemDesc].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[erroreSemDesc].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[esito].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[esito].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[facrcv].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[facrcv].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[pazcogn].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[pazcogn].XPathExpression" value="/msgstorico/pazcogn"/>
+        </properties>
+        <properties key="SqlQueryParameters[richiestaid].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[richiestaid].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[tipomsg].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[tipomsg].XPathExpression" value="/msgstorico/tipomsg"/>
+        </properties>
+        <properties key="SqlQueryParameters[timemsg].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[timemsg].ParameterName" value="timemsg"/>
+        </properties>
+        <properties key="SqlQueryParameters[noso].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[noso].ParameterName" value="noso"/>
+        </properties>
+        <properties key="SqlQueryParameters[appsnd].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[appsnd].ParameterName" value="appsnd"/>
+        </properties>
+        <properties key="SqlQueryParameters[erroreSintDesc].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[erroreSintDesc].XPathExpression" value="/msgstorico/erroreSintDesc"/>
+        </properties>
+        <properties key="SqlQueryParameters[appsnd].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[appsnd].XPathExpression" value="/msgstorico/appsnd"/>
+        </properties>
+        <properties key="SqlQueryParameters[timemsg].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[timemsg].XPathExpression" value="/msgstorico/timemsg"/>
+        </properties>
+        <properties key="SqlQueryParameters[esito].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[esito].XPathExpression" value="/msgstorico/esito"/>
+        </properties>
+        <properties key="SqlQueryParameters[richiestaid].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[richiestaid].XPathExpression" value="/msgstorico/richiestaid"/>
+        </properties>
+        <properties key="SqlQueryParameters[timemsg].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[timemsg].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[noso].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[noso].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="SqlQueryParameters[appsnd].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[appsnd].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <properties key="Query">
+          <value xsi:type="im:BasicProperty" key="Query" value="insert into STORICOMSG (IDMESSAGGIOHL7,COGNOMEPAZIENTE,NOMEPAZIENTE,CODICEPAZIENTE,TIPOMSGHL7,CODICERICHIESTA,CODICECONTATTO,CODICEREPARTO,ORATIMEMESSAGGIO,ERRCOD,APPLICATIONSENDHL7,FACILITYSENDHL7,APPLICATIONRECVHL7,FACILITYRECVHL7,IDMESSAGGIOACKHL7,ERRORESINTATTICO,ERRORESEMANTICO) values ($idmsghl7,$pazcogn,$paznome,$pazcode,$tipomsg,$richiestaid,$noso,$repcode,to_date($timemsg,'yyyymmddhh24miss'),$esito,$appsnd,$facsnd,$apprcv,$facrcv,$idack,$erroreSintDesc, $erroreSemDesc)"/>
+        </properties>
+        <properties key="RowsXmlEnvelop">
+          <value xsi:type="im:BasicProperty" key="RowsXmlEnvelop" value="rows"/>
+        </properties>
+        <properties key="DatabaseType">
+          <value xsi:type="im:BasicProperty" key="DatabaseType" value="Oracle"/>
+        </properties>
+        <properties key="SqlQueryParameters[idmsghl7].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[idmsghl7].XPathExpression" value="/msgstorico/idmsghl7"/>
+        </properties>
+        <properties key="SqlQueryParameters[erroreSemDesc].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[erroreSemDesc].XPathExpression" value="/msgstorico/erroreSemDesc"/>
+        </properties>
+        <properties key="SqlQueryParameters[facrcv].XPathExpression">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[facrcv].XPathExpression" value="/msgstorico/facrcv"/>
+        </properties>
+        <properties key="SqlQueryParameters[idmsghl7].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[idmsghl7].ParameterName" value="idmsghl7"/>
+        </properties>
+        <properties key="SqlQueryParameters[tipomsg].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[tipomsg].ParameterName" value="tipomsg"/>
+        </properties>
+        <properties key="SqlQueryParameters[facsnd].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[facsnd].ParameterName" value="facsnd"/>
+        </properties>
+        <properties key="SqlQueryParameters[pazcode].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[pazcode].ParameterName" value="pazcode"/>
+        </properties>
+        <properties key="JndiDataSource">
+          <value xsi:type="im:BasicProperty" key="JndiDataSource" value="metadb"/>
+        </properties>
+        <properties key="SqlQueryParameters[apprcv].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[apprcv].ParameterName" value="apprcv"/>
+        </properties>
+        <properties key="SqlQueryParameters[idack].ParameterName">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[idack].ParameterName" value="idack"/>
+        </properties>
+        <properties key="RequireJndiDataSource">
+          <value xsi:type="im:BasicProperty" key="RequireJndiDataSource" value="true"/>
+        </properties>
+        <properties key="XmlEnvelop">
+          <value xsi:type="im:BasicProperty" key="XmlEnvelop"/>
+        </properties>
+        <properties key="SqlQueryParameters[idmsghl7].ParameterType">
+          <value xsi:type="im:BasicProperty" key="SqlQueryParameters[idmsghl7].ParameterType" value="Input(java.lang.String)"/>
+        </properties>
+        <observableAttributes idAttribute="3" name="PazCognome">
+          <observableAttributeExtractRule idRule="3" name="/msgstorico/pazcogn" expression="/msgstorico/pazcogn" expressionLanguage="XPath"/>
+        </observableAttributes>
+        <observableAttributes idAttribute="4" name="PazNome">
+          <observableAttributeExtractRule idRule="4" name="/msgstorico/paznome" expression="/msgstorico/paznome" expressionLanguage="XPath"/>
+        </observableAttributes>
+        <observableAttributes idAttribute="2" name="IdPaziente">
+          <observableAttributeExtractRule idRule="2" name="/msgstorico/pazcode" expression="/msgstorico/pazcode" expressionLanguage="XPath"/>
+        </observableAttributes>
+        <observableAttributes idAttribute="143" name="SDO">
+          <observableAttributeExtractRule idRule="144" name="/msgstorico/noso" expression="/msgstorico/noso" expressionLanguage="XPath"/>
+        </observableAttributes>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA11" description=" Description for trasformaDatiA11" sourceTransitions="//@processCollection/@processes.0/@transitions.14" targetTransitions="//@processCollection/@processes.0/@transitions.13" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA11" description=" Description for groovyupdatemsgA11" sourceTransitions="//@processCollection/@processes.0/@transitions.23" targetTransitions="//@processCollection/@processes.0/@transitions.14" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="GroovyGetUpdateDati" description=" Description for GroovyGetUpdateDati" sourceTransitions="//@processCollection/@processes.0/@transitions.15" targetTransitions="//@processCollection/@processes.0/@transitions.48" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_decodifiche_WS.groovy"/>
+        </properties>
+        <observableAttributes idAttribute="123" name="TipoMsgADT">
+          <observableAttributeExtractRule idRule="123" name="//AH_TIPO_MSG" expression="//AH_TIPO_MSG" expressionLanguage="XPath"/>
+        </observableAttributes>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA12" description=" Description for trasformaDatiA12" sourceTransitions="//@processCollection/@processes.0/@transitions.19" targetTransitions="//@processCollection/@processes.0/@transitions.28" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA13" description=" Description for trasformaDatiA13" sourceTransitions="//@processCollection/@processes.0/@transitions.20" targetTransitions="//@processCollection/@processes.0/@transitions.21" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatiDB2ADT.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiMDM_TO2" description=" Description for trasformaDatiMDM_TO2" sourceTransitions="//@processCollection/@processes.0/@transitions.24" targetTransitions="//@processCollection/@processes.0/@transitions.22" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatoDB2MDM.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgMDM_TO2" description=" Description for groovyupdatemsgMDM_TO2" sourceTransitions="//@processCollection/@processes.0/@transitions.25" targetTransitions="//@processCollection/@processes.0/@transitions.24 //@processCollection/@processes.0/@transitions.29" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA11" description=" Description for FromXmlToPlainA11" sourceTransitions="//@processCollection/@processes.0/@transitions.26" targetTransitions="//@processCollection/@processes.0/@transitions.23" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA01"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainMDMT02T10" description=" Description for FromXmlToPlainMDMT02T10" sourceTransitions="//@processCollection/@processes.0/@transitions.27" targetTransitions="//@processCollection/@processes.0/@transitions.25" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7mdmT02"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.1" name="ConsoleEnd" description=" Description for ConsoleEnd" targetTransitions="//@processCollection/@processes.0/@transitions.47" stepbindings="//@servicebindings.55">
+        <properties key="im.isStepEndEvent">
+          <value xsi:type="im:BasicProperty" key="im.isStepEndEvent" value="true"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiMDM_T10" description=" Description for trasformaDatiMDM_T10" sourceTransitions="//@processCollection/@processes.0/@transitions.29" targetTransitions="//@processCollection/@processes.0/@transitions.30" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/MappaDatoDB2MDM.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA05" description=" Description for trasformaDatiA05" sourceTransitions="//@processCollection/@processes.0/@transitions.31" targetTransitions="//@processCollection/@processes.0/@transitions.37" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/vuoto.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA05" description=" Description for FromXmlToPlainA05" sourceTransitions="//@processCollection/@processes.0/@transitions.44" targetTransitions="//@processCollection/@processes.0/@transitions.34" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA01"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA38" description=" Description for FromXmlToPlainA38" sourceTransitions="//@processCollection/@processes.0/@transitions.45" targetTransitions="//@processCollection/@processes.0/@transitions.35" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA11"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="FromXmlToPlainA45" description=" Description for FromXmlToPlainA45" sourceTransitions="//@processCollection/@processes.0/@transitions.46" targetTransitions="//@processCollection/@processes.0/@transitions.36" stepbindings="//@servicebindings.57">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToHl7adtA40"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="xml2plain"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA45" description=" Description for trasformaDatiA45" sourceTransitions="//@processCollection/@processes.0/@transitions.33" targetTransitions="//@processCollection/@processes.0/@transitions.39" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/vuoto.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="trasformaDatiA38" description=" Description for trasformaDatiA38" sourceTransitions="//@processCollection/@processes.0/@transitions.32" targetTransitions="//@processCollection/@processes.0/@transitions.38" stepbindings="//@servicebindings.50">
+        <properties key="XSLT-Path">
+          <value xsi:type="im:BasicProperty" key="XSLT-Path" value="Mappings/vuoto.xslt"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA05" description=" Description for groovyupdatemsgA05" sourceTransitions="//@processCollection/@processes.0/@transitions.34" targetTransitions="//@processCollection/@processes.0/@transitions.31" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA38" description=" Description for groovyupdatemsgA38" sourceTransitions="//@processCollection/@processes.0/@transitions.35" targetTransitions="//@processCollection/@processes.0/@transitions.32" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.2" name="groovyupdatemsgA45" description=" Description for groovyupdatemsgA45" sourceTransitions="//@processCollection/@processes.0/@transitions.36" targetTransitions="//@processCollection/@processes.0/@transitions.33" stepbindings="//@servicebindings.2">
+        <properties key="GroovyScript">
+          <value xsi:type="im:BasicProperty" key="GroovyScript" value="Scripts/FromADT2FSA_xsl_updMsg.groovy"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.3" name="RtAck" description=" Description for RtAck" sourceTransitions="//@processCollection/@processes.0/@transitions.41 //@processCollection/@processes.0/@transitions.42" targetTransitions="//@processCollection/@processes.0/@transitions.40" stepbindings="//@servicebindings.43">
+        <properties key="im.isExclusiveGateway">
+          <value xsi:type="im:BasicProperty" key="im.isExclusiveGateway" value="true"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.15" name="ACK2XML" description=" Description for ACK2XML" sourceTransitions="//@processCollection/@processes.0/@transitions.43" targetTransitions="//@processCollection/@processes.0/@transitions.42" stepbindings="//@servicebindings.70">
+        <properties key="Transformation">
+          <value xsi:type="im:BasicProperty" key="Transformation" value="com.mapforce.MappingMapToACK"/>
+        </properties>
+        <properties key="TransformationType">
+          <value xsi:type="im:BasicProperty" key="TransformationType" value="plain2xml"/>
+        </properties>
+      </steps>
+      <steps serviceModel="//@serviceCollection/@services.0" name="JDBCPoller" description=" Description for JDBCPoller" sourceTransitions="//@processCollection/@processes.0/@transitions.48" stepbindings="//@servicebindings.23">
+        <properties key="im.isStepStartEvent">
+          <value xsi:type="im:BasicProperty" key="im.isStepStartEvent" value="true"/>
+        </properties>
+        <properties key="CommPointID">
+          <value xsi:type="im:BasicProperty" key="CommPointID" value="ELABORAZIONEADT"/>
+        </properties>
+        <properties key="MainQueryName">
+          <value xsi:type="im:BasicProperty" key="MainQueryName" value="MainQuery"/>
+        </properties>
+        <properties key="ValueAsAttribute">
+          <value xsi:type="im:BasicProperty" key="ValueAsAttribute" value="false"/>
+        </properties>
+        <properties key="JndiDataSource">
+          <value xsi:type="im:BasicProperty" key="JndiDataSource" value="ADTdb"/>
+        </properties>
+        <properties key="MainQuerySQL">
+          <value xsi:type="im:BasicProperty" key="MainQuerySQL" value="${queryPoller}"/>
+        </properties>
+        <properties key="DatabaseType">
+          <value xsi:type="im:BasicProperty" key="DatabaseType" value="Oracle"/>
+        </properties>
+        <properties key="RowsForEachMessage">
+          <value xsi:type="im:BasicProperty" key="RowsForEachMessage" value="1"/>
+        </properties>
+        <properties key="NumberOfSubQueries">
+          <value xsi:type="im:BasicProperty" key="NumberOfSubQueries" value="0"/>
+        </properties>
+        <properties key="Period">
+          <value xsi:type="im:BasicProperty" key="Period" value="${periodoPoller}"/>
+        </properties>
+        <properties key="InitialKeyValue">
+          <value xsi:type="im:BasicProperty" key="InitialKeyValue" value="${dataInizioElaborazione}"/>
+        </properties>
+        <properties key="ColNameAsAttribute">
+          <value xsi:type="im:BasicProperty" key="ColNameAsAttribute" value="false"/>
+        </properties>
+        <properties key="RequireJndiDataSource">
+          <value xsi:type="im:BasicProperty" key="RequireJndiDataSource" value="true"/>
+        </properties>
+        <properties key="KeyColumn">
+          <value xsi:type="im:BasicProperty" key="KeyColumn" value="DATAINS"/>
+        </properties>
+        <properties key="maxMessagesPerUnit">
+          <value xsi:type="im:BasicProperty" key="maxMessagesPerUnit" value="${maxMessagesPerPollingUnit}"/>
+        </properties>
+        <properties key="RowNameAsAttribute">
+          <value xsi:type="im:BasicProperty" key="RowNameAsAttribute" value="false"/>
+        </properties>
+      </steps>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.2">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A01"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.3">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A02"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.4">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A03"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.5">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A08"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.2" target="//@processCollection/@processes.0/@steps.6"/>
+      <transitions source="//@processCollection/@processes.0/@steps.3" target="//@processCollection/@processes.0/@steps.7"/>
+      <transitions source="//@processCollection/@processes.0/@steps.4" target="//@processCollection/@processes.0/@steps.8"/>
+      <transitions source="//@processCollection/@processes.0/@steps.5" target="//@processCollection/@processes.0/@steps.6"/>
+      <transitions source="//@processCollection/@processes.0/@steps.6" target="//@processCollection/@processes.0/@steps.9"/>
+      <transitions source="//@processCollection/@processes.0/@steps.7" target="//@processCollection/@processes.0/@steps.10"/>
+      <transitions source="//@processCollection/@processes.0/@steps.8" target="//@processCollection/@processes.0/@steps.11"/>
+      <transitions source="//@processCollection/@processes.0/@steps.13" target="//@processCollection/@processes.0/@steps.14"/>
+      <transitions source="//@processCollection/@processes.0/@steps.12" target="//@processCollection/@processes.0/@steps.13"/>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.15">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A11"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.15" target="//@processCollection/@processes.0/@steps.16"/>
+      <transitions source="//@processCollection/@processes.0/@steps.17" target="//@processCollection/@processes.0/@steps.1"/>
+      <transitions source="//@processCollection/@processes.0/@steps.10" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.9" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.11" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.18" target="//@processCollection/@processes.0/@steps.7"/>
+      <transitions source="//@processCollection/@processes.0/@steps.19" target="//@processCollection/@processes.0/@steps.8"/>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.19">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A13"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.20">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="MDMT02"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.16" target="//@processCollection/@processes.0/@steps.22"/>
+      <transitions source="//@processCollection/@processes.0/@steps.20" target="//@processCollection/@processes.0/@steps.21"/>
+      <transitions source="//@processCollection/@processes.0/@steps.21" target="//@processCollection/@processes.0/@steps.23"/>
+      <transitions source="//@processCollection/@processes.0/@steps.22" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.23" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.18">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A12"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.25" target="//@processCollection/@processes.0/@steps.21"/>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.25">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="MDMT10"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.26" target="//@processCollection/@processes.0/@steps.32"/>
+      <transitions source="//@processCollection/@processes.0/@steps.31" target="//@processCollection/@processes.0/@steps.33"/>
+      <transitions source="//@processCollection/@processes.0/@steps.30" target="//@processCollection/@processes.0/@steps.34"/>
+      <transitions source="//@processCollection/@processes.0/@steps.32" target="//@processCollection/@processes.0/@steps.27"/>
+      <transitions source="//@processCollection/@processes.0/@steps.33" target="//@processCollection/@processes.0/@steps.28"/>
+      <transitions source="//@processCollection/@processes.0/@steps.34" target="//@processCollection/@processes.0/@steps.29"/>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.26">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A05"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.31">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A38"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.1" target="//@processCollection/@processes.0/@steps.30">
+        <condition xsi:type="im:PropertyCondition" propertyName="evento" operator="equals" propertyValue="A45"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.0" target="//@processCollection/@processes.0/@steps.35"/>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.35" target="//@processCollection/@processes.0/@steps.12">
+        <condition xsi:type="im:ExpressionCondition" expression="count(//ERROR)>0" expressionLanguage="XPath"/>
+      </transitions>
+      <transitions xsi:type="im:TransitionUnderCondition" source="//@processCollection/@processes.0/@steps.35" target="//@processCollection/@processes.0/@steps.36">
+        <condition xsi:type="im:ExpressionCondition" expression="count(//ERROR)=0" expressionLanguage="XPath"/>
+      </transitions>
+      <transitions source="//@processCollection/@processes.0/@steps.36" target="//@processCollection/@processes.0/@steps.12"/>
+      <transitions source="//@processCollection/@processes.0/@steps.27" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.28" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.29" target="//@processCollection/@processes.0/@steps.0"/>
+      <transitions source="//@processCollection/@processes.0/@steps.14" target="//@processCollection/@processes.0/@steps.24"/>
+      <transitions source="//@processCollection/@processes.0/@steps.37" target="//@processCollection/@processes.0/@steps.17"/>
+    </processes>
+  </processCollection>
+  <servicebindings name="JBI-HumanTaskEvent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-Deployer">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-GroovyScriptingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-AttachmentSplitter">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="Start-Component">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-AdvancedEmailSender">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="VelocityTemplate">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-SignalEvent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-Access">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-TCPIP-Pipeline">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-JMSInputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-HTTPInputOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-JdbcSimpleService">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-SplitterAggregator">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="SAP-ProducerBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-ProcessSynchronizer">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-SubProcessBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JDBCStore-SyncComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-EncodeAttachments">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-EventMatcher">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-XPathSplitter">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-CXF-InputOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="SMS-Sender">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-JDBCPollerBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JavaCaller-SyncComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-FTP-WriterBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-Restart">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="SAP-ConsumerBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-SubProcess">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-JMSAdvancedInputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-JMSAdvancedOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-DroolsValidator">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-QuartzTimer">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="WebserviceEventBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-SchematronValidator">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-Empty">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="WS-Invoke">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="FileEventBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-HTTPInputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-DecodeAttachments">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-WaitExternalEvent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-FTP-PollerBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBPMWorkflowService">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-Router">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-ServiceRegistryInvoker">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="Fax-Sender">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-RecipientList">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-MessageFilter">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-FileInputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-AdvancedWebServicePipeline">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-XSLT-Transformer">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-EndpointManager">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-FileOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-CXF-OutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-EventJobComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-ConsoleOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-AdvancedJDBCService">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-XML2HL7">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="ProcessControl-Component">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-Reply">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-TcpIp-InputOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-QueueChecker">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-TalendScript">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-RecipientListAggregator">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-HibernateTransactedReply">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-ServiceResolver">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-AdvancedEmailInputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-XSD-SyntaxValidator">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-JMSOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="FTPEventBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-HL72XML">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-WrapToEvent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-WebServicePipeline">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-RestartOnFailure">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-GetResources">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-AdvancedHTTPInputOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-CXF-InputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-HTTPOutputBindingComponent">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-CXF-Pipeline">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="JBI-GenericSignalInvoker">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <servicebindings name="BAPICaller">
+    <properties key="im.stepbinding.runtimeID">
+      <value xsi:type="im:BasicProperty" key="im.stepbinding.runtimeID" value="runtime.jbi.smx"/>
+    </properties>
+  </servicebindings>
+  <serviceCollection>
+    <services serviceName="StartService" serviceType="BPMN-Service" bindings="//@servicebindings.38 //@servicebindings.11 //@servicebindings.60 //@servicebindings.66 //@servicebindings.10 //@servicebindings.29 //@servicebindings.23 //@servicebindings.48 //@servicebindings.32 //@servicebindings.76 //@servicebindings.21 //@servicebindings.41 //@servicebindings.16 //@servicebindings.75"/>
+    <services serviceName="EndService" serviceType="BPMN-Service" bindings="//@servicebindings.55 //@servicebindings.77 //@servicebindings.68 //@servicebindings.30 //@servicebindings.52 //@servicebindings.53 //@servicebindings.25 //@servicebindings.59 //@servicebindings.64 //@servicebindings.35 //@servicebindings.5"/>
+    <services serviceName="TaskService" serviceType="BPMN-Service" bindings="//@servicebindings.67 //@servicebindings.31 //@servicebindings.50 //@servicebindings.3 //@servicebindings.18 //@servicebindings.39 //@servicebindings.2 //@servicebindings.62 //@servicebindings.12 //@servicebindings.56 //@servicebindings.47 //@servicebindings.72 //@servicebindings.9 //@servicebindings.78 //@servicebindings.20 //@servicebindings.13 //@servicebindings.6 //@servicebindings.44 //@servicebindings.28 //@servicebindings.34 //@servicebindings.49"/>
+    <services xsi:type="im:RouterControl" serviceName="RouterService" serviceType="BPMN-Service" bindings="//@servicebindings.43"/>
+    <services xsi:type="im:SplitControl" serviceName="ParallelSplitService" serviceType="BPMN-Service" bindings="//@servicebindings.46"/>
+    <services xsi:type="im:JoinControl" serviceName="JoinParallelSplitService" serviceType="BPMN-Service" bindings="//@servicebindings.63"/>
+    <services serviceName="WaitForEventService" serviceType="BPMN-Service" bindings="//@servicebindings.0 //@servicebindings.40"/>
+    <services serviceName="EventUtilitiesService" serviceType="BPMN-Service" bindings="//@servicebindings.79 //@servicebindings.54 //@servicebindings.71"/>
+    <services serviceName="WorkflowService" serviceType="BPMN-Service" bindings="//@servicebindings.42"/>
+    <services serviceName="ExternalEventService" serviceType="BPMN-Service" bindings="//@servicebindings.37 //@servicebindings.33 //@servicebindings.69"/>
+    <services serviceName="InternalUseService" serviceType="BPMN-Service" bindings="//@servicebindings.1 //@servicebindings.7 //@servicebindings.74 //@servicebindings.26 //@servicebindings.73 //@servicebindings.65 //@servicebindings.51 //@servicebindings.8 //@servicebindings.61 //@servicebindings.15"/>
+    <services serviceName="Syncronous Support Components" serviceType="BPMN-Service" bindings="//@servicebindings.4 //@servicebindings.58"/>
+    <services serviceName="SAPServices" serviceType="BPMN-Service" bindings="//@servicebindings.80"/>
+    <services serviceName="SMSServices" serviceType="BPMN-Service" bindings="//@servicebindings.22"/>
+    <services serviceName="FaxServices" serviceType="BPMN-Service" bindings="//@servicebindings.45"/>
+    <services serviceName="HealthCareService" serviceType="BPMN-Service" bindings="//@servicebindings.70 //@servicebindings.57"/>
+    <services serviceName="Syncronous Components" serviceType="BPMN-Service" bindings="//@servicebindings.17 //@servicebindings.24"/>
+    <services serviceName="WebServiceInvoker" serviceType="BPMN-Service" bindings="//@servicebindings.36"/>
+  </serviceCollection>
+</im:StpIntermediateModel>

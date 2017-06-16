@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Scripts
+END
+FROMADT2FSA_decodifiche_WS.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/Spagic/!svn/ver/4688/IntegrazioneFascicoloSanitario/trunk/Scripts/FROMADT2FSA_decodifiche_WS.groovy
+END
+FROMADT2FSA_updMsg.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Scripts/FROMADT2FSA_updMsg.groovy
+END
+SetPayloadInProperties.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Scripts/SetPayloadInProperties.groovy
+END
+FROMADT2FSA_mappingADTToHL7.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Scripts/FROMADT2FSA_mappingADTToHL7.groovy
+END
+AggiuntaProcessProperties.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Scripts/AggiuntaProcessProperties.groovy
+END
+FROMADT2FSA_preInsertRecupero.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Scripts/FROMADT2FSA_preInsertRecupero.groovy
+END
+FROMADT2FSA_ReadACK.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Scripts/FROMADT2FSA_ReadACK.groovy
+END
+FROMADT2FSA_preInsertStorico_oldxls.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Scripts/FROMADT2FSA_preInsertStorico_oldxls.groovy
+END
+FROMADT2FSA_mappingMDMToHL7.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Scripts/FROMADT2FSA_mappingMDMToHL7.groovy
+END

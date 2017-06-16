@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Mappings
+END
+vuoto.xslt
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Mappings/vuoto.xslt
+END
+MappaDatiDB2ADT.xslt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Mappings/MappaDatiDB2ADT.xslt
+END
+MappaDatoDB2MDM.xslt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/Spagic/!svn/ver/4193/IntegrazioneFascicoloSanitario/trunk/Mappings/MappaDatoDB2MDM.xslt
+END

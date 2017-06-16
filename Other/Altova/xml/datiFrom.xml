@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+	<MainQuery>
+		<DATAINS>2009-04-07 13:25:00</DATAINS>
+		<AH_DT_CONTATTOC>200904071325</AH_DT_CONTATTOC>
+		<AH_DT_EVENTOC>200904071325</AH_DT_EVENTOC>
+		<AH_ID>102</AH_ID>
+		<AH_TIPO_MSG>A03</AH_TIPO_MSG>
+		<AH_PSD_ID>186</AH_PSD_ID>
+		<AH_CODNOSO>2009000002</AH_CODNOSO>
+		<AH_PSD_PREN>null</AH_PSD_PREN>
+		<AH_PREN_SCHEDA_ID>null</AH_PREN_SCHEDA_ID>
+		<AH_PZ_ID>60</AH_PZ_ID>
+		<AH_DT_CONTATTO>2009-04-07 00:00:00.0</AH_DT_CONTATTO>
+		<AH_DT_EVENTO>2009-04-07 13:20:00.0</AH_DT_EVENTO>
+		<AH_REP_RIC_ID>1815</AH_REP_RIC_ID>
+		<AH_REP_OSP_ID>1815</AH_REP_OSP_ID>
+		<AH_REGIME>1</AH_REGIME>
+		<AH_TIPO_RIC_ID>4</AH_TIPO_RIC_ID>
+		<AH_PROP_RIC_ID>3</AH_PROP_RIC_ID>
+		<AH_MOTI_RIC_ID>8</AH_MOTI_RIC_ID>
+		<AH_ONERE_ID>20000000013</AH_ONERE_ID>
+		<AH_PR_URG_ID>null</AH_PR_URG_ID>
+		<AH_PR_DIA_ID>2583</AH_PR_DIA_ID>
+		<AH_PR_INT_ID>null</AH_PR_INT_ID>
+		<AH_NOTE_CONTATTO>diagnosi di ingresso ...</AH_NOTE_CONTATTO>
+		<AH_MODA_DIM_ID>33</AH_MODA_DIM_ID>
+		<AH_ISTI_TRASF_ID>null</AH_ISTI_TRASF_ID>
+		<AH_LETTO_ID>null</AH_LETTO_ID>
+		<AH_REP_TRASF_ID>1848</AH_REP_TRASF_ID>
+		<AH_MED_DIM_ID>1848</AH_MED_DIM_ID>
+		<AH_DT_INS>2009-04-07 13:25:00.0</AH_DT_INS>
+		<AH_UT_INS>pp</AH_UT_INS>
+		<AH_AT_ID>null</AH_AT_ID>
+		<AH_AT_ID_SOSTITUITO>null</AH_AT_ID_SOSTITUITO>
+		<AH_FL_LETTO>null</AH_FL_LETTO>
+		<AT_FILE>dfafafdafa</AT_FILE>
+		<sianc.paziente.PazienteBean>
+			<medici/>
+			<esenzioni>
+				<sianc.paziente.PazienteRigaEsenzioneBean>
+					<aslCertificante type="String" visibility="editable"/>
+					<codClasse type="String" visibility="mandatory">94D</codClasse>
+					<codPatologia type="String" visibility="mandatory">94D</codPatologia>
+					<codPaziente type="String" visibility="visible" foreignClass="sianc.paziente.PazienteBean">CSI62243</codPaziente>
+					<dataAttivazione type="Date" visibility="mandatory">20090302000000</dataAttivazione>
+					<dataDisattivazione type="Date" visibility="editable"/>
+					<durata type="Integer" visibility="editable"/>
+					<id type="String" isKey="true" visibility="editable">1</id>
+					<idPatologia type="String" visibility="mandatory">909</idPatologia>
+					<livello type="String" visibility="editable">1</livello>
+					<numeroTesserino type="String" visibility="editable"/>
+					<personaCertificanteId type="String" visibility="editable" foreignClass="sianc.persone.PersonaFisicaBean"/>
+					<rappIndivId type="String" visibility="editable"/>
+					<scadenza type="String" visibility="editable"/>
+					<stato type="String" visibility="editable"/>
+					<tipoEsenzione type="Long" visibility="editable">3500001053</tipoEsenzione>
+				</sianc.paziente.PazienteRigaEsenzioneBean>
+				<sianc.paziente.PazienteRigaEsenzioneBean>
+					<aslCertificante type="String" visibility="editable"/>
+					<codClasse type="String" visibility="mandatory">11X</codClasse>
+					<codPatologia type="String" visibility="mandatory">94D</codPatologia>
+					<codPaziente type="String" visibility="visible" foreignClass="sianc.paziente.PazienteBean">CSI62243</codPaziente>
+					<dataAttivazione type="Date" visibility="mandatory">20090302000000</dataAttivazione>
+					<dataDisattivazione type="Date" visibility="editable">20090302000000</dataDisattivazione>
+					<durata type="Integer" visibility="editable"/>
+					<id type="String" isKey="true" visibility="editable">2</id>
+					<idPatologia type="String" visibility="mandatory">993</idPatologia>
+					<livello type="String" visibility="editable">1</livello>
+					<numeroTesserino type="String" visibility="editable"/>
+					<personaCertificanteId type="String" visibility="editable" foreignClass="sianc.persone.PersonaFisicaBean"/>
+					<rappIndivId type="String" visibility="editable"/>
+					<scadenza type="String" visibility="editable"/>
+					<stato type="String" visibility="editable"/>
+					<tipoEsenzione type="Long" visibility="editable">3500001053</tipoEsenzione>
+				</sianc.paziente.PazienteRigaEsenzioneBean>
+			</esenzioni>
+			<proposte/>
+			<storico/>
+			<idPaziente type="String" isKey="true" visibility="editable">CSI62243</idPaziente>
+			<cognomePaziente type="String" visibility="editable">ARILLI</cognomePaziente>
+			<nomePaziente type="String" visibility="editable">GIUSEPPE</nomePaziente>
+			<nomeCognomeNormalizzato type="String" visibility="editable">ARILIGIUSEPE</nomeCognomeNormalizzato>
+			<dataNascita type="Date" visibility="editable">19690805000000</dataNascita>
+			<sesso type="String" visibility="editable">F</sesso>
+			<codiceComuneNascita type="String" visibility="editable">001272</codiceComuneNascita>
+			<codiceFiscale type="String" visibility="editable">RLLGPP76S15L219E</codiceFiscale>
+			<flagCFVerificato type="String" visibility="editable"/>
+			<codiceComuneResidenza type="String" visibility="editable">001272</codiceComuneResidenza>
+			<capResidenza type="String" visibility="editable">10135</capResidenza>
+			<indirizzoResidenza type="String" visibility="editable">VCORSO GARIBALDI8 100</indirizzoResidenza>
+			<numeroCivicoResidenza type="String" visibility="editable">1</numeroCivicoResidenza>
+			<codiceZonaSubComunaleResidenza type="String" visibility="editable"/>
+			<codiceQuartiereResidenza type="String" visibility="editable"/>
+			<codiceCircoscrizioneResidenza type="String" visibility="editable"/>
+			<codiceDistrettoResidenza type="String" visibility="editable" foreignClass="sianc.strutture.StrutturaBean"/>
+			<numeroTesseraSanitaria type="String" visibility="editable">23P00397574</numeroTesseraSanitaria>
+			<aslAppartenenza type="String" visibility="editable">010201</aslAppartenenza>
+			<aslProvenienza type="String" visibility="editable">010201</aslProvenienza>
+			<aslAssistenza type="String" visibility="editable">010201</aslAssistenza>
+			<regioneAssistenza type="String" visibility="editable">010</regioneAssistenza>
+			<codiceAIRE type="String" visibility="editable"/>
+			<scadenzaTesseraAIRE type="Date" visibility="editable"/>
+			<scadenzaSTP type="Date" visibility="editable">2009070600000</scadenzaSTP>
+			<rilascioSTP type="Date" visibility="editable">2009070600000</rilascioSTP>
+			<scadenzaTessera type="Date" visibility="editable">2009070600000</scadenzaTessera>
+			<posizioneISE type="String" visibility="editable"/>
+			<flagPrivacy type="String" visibility="editable">1</flagPrivacy>
+			<classeTopografica type="Long" visibility="editable"/>
+			<fonte type="String" visibility="editable">fdafa</fonte>
+			<codiceCittadinanza type="String" visibility="editable">100</codiceCittadinanza>
+			<codiceIndirizzoResidenza type="String" visibility="editable"/>
+			<parentelaContatto type="Long" visibility="editable"/>
+			<codiceStatoCivile type="Long" visibility="editable">1</codiceStatoCivile>
+			<tipoTessera type="Long" visibility="editable"/>
+			<idTeam type="String" visibility="editable">fdafa</idTeam>
+			<scadenzaTesseraTeam type="Date" visibility="editable">2009070600000</scadenzaTesseraTeam>
+			<tesseraTeam type="String" visibility="editable">4555555532777</tesseraTeam>
+			<codiceComuneDomicilio type="String" visibility="editable">001272</codiceComuneDomicilio>
+			<capDomicilio type="String" visibility="editable">10135</capDomicilio>
+			<indirizzoDomicilio type="String" visibility="editable">VIA FARINELLI</indirizzoDomicilio>
+			<numeroCivicoDomicilio type="String" visibility="editable">26</numeroCivicoDomicilio>
+			<codiceIndirizzoDomicilio type="String" visibility="editable"/>
+			<codiceZonaSubComunaleDomicilio type="String" visibility="editable"/>
+			<codiceQuartiereDomicilio type="String" visibility="editable"/>
+			<codiceCircoscrizioneDomicilio type="String" visibility="editable"/>
+			<codiceDistrettoDomicilio type="String" visibility="editable" foreignClass="sianc.strutture.StrutturaBean"/>
+			<codiceTitoloStudi type="Long" visibility="editable"/>
+			<codiceSituazioneProfessionale type="Long" visibility="editable"/>
+			<codicePosizioneProfessionale type="Long" visibility="editable"/>
+			<codiceAttivitaProfessionale type="Long" visibility="editable"/>
+			<ultimaProfessione type="String" visibility="editable"/>
+			<nomeDatoreLavoro type="String" visibility="editable"/>
+			<codiceTipoAzienda type="Long" visibility="editable"/>
+			<codiceDitta type="Long" visibility="editable"/>
+			<codiceComuneLavoro type="String" visibility="editable"/>
+			<dataDecesso type="Date" visibility="editable">2009070600000</dataDecesso>
+			<codiceComuneDecesso type="String" visibility="editable"/>
+			<istituzioneCompetenteTeam type="Long" visibility="editable">>2342</istituzioneCompetenteTeam>
+			<qualificaBeneficiario type="Long" visibility="editable">dffda</qualificaBeneficiario>
+			<quartiereResidenza type="Long" visibility="visible"/>
+			<flagSconosciuto type="String" visibility="editable"/>
+			<codiceCausaDecesso type="Long" visibility="editable"/>
+			<codiceMessaggioHL7 type="String" visibility="editable"/>
+			<flagCertificato type="String" visibility="editable">C</flagCertificato>
+			<flagCompleto type="String" visibility="editable">C</flagCompleto>
+			<flagStato type="String" visibility="editable">A</flagStato>
+			<codiceISI type="String" visibility="editable"/>
+			<codiceSTP type="String" visibility="editable">asfsa</codiceSTP>
+			<descrizioneComuneNascita type="String" visibility="visible"/>
+			<descrizioneComuneResidenza type="String" visibility="visible"/>
+			<descrizioneComuneDomicilio type="String" visibility="visible"/>
+			<numeroDocumento type="String" visibility="editable"/>
+			<tipoDocumento type="Long" visibility="editable"/>
+			<rilascioDocumento type="Date" visibility="editable"/>
+			<daDocumento type="String" visibility="editable"/>
+			<diDocumento type="String" visibility="editable"/>
+			<distrettoDomicilio type="String" visibility="editable"/>
+			<distrettoResidenza type="String" visibility="editable"/>
+			<numeroTelefono1 type="String" visibility="editable">34523424</numeroTelefono1>
+			<numeroTelefono2 type="String" visibility="editable">erewrwrw</numeroTelefono2>
+			<numeroTelefono3 type="String" visibility="editable"/>
+			<numeroTelefono1Nota type="String" visibility="editable"/>
+			<numeroTelefono2Nota type="String" visibility="editable"/>
+			<numeroTelefono3Nota type="String" visibility="editable"/>
+			<cognomeConiuge type="String" visibility="editable">fdfsa</cognomeConiuge>
+			<presenzaStraniero type="String" visibility="editable"/>
+			<contatto type="String" visibility="editable"/>
+			<recapitoTelefonicoContatto type="String" visibility="editable"/>
+			<codiceComuneDomicilioPostale type="String" visibility="editable"/>
+			<capDomicilioPostale type="String" visibility="editable"/>
+			<indirizzoDomicilioPostale type="String" visibility="editable"/>
+			<numCivicoDomicilioPostale type="String" visibility="editable"/>
+			<motivoCessazioneAssistenza type="Long" visibility="editable"/>
+			<regioneAppartenenza type="String" visibility="editable">010</regioneAppartenenza>
+			<note type="String" visibility="editable"/>
+			<codiceComuneImmigrazione type="String" visibility="editable"/>
+			<descrizioneComuneImmigrazione type="String" visibility="visible"/>
+			<codiceComuneEmigrazione type="String" visibility="editable"/>
+			<descrizioneComuneEmigrazione type="String" visibility="visible"/>
+			<dataImmigrazione type="Date" visibility="editable"/>
+			<dataEmigrazione type="Date" visibility="editable"/>
+			<aslDestinazione type="String" visibility="editable"/>
+			<codiceComuneDatoreLavoro type="String" visibility="editable"/>
+			<dataSceltaMedico type="Date" visibility="editable">20090301000000</dataSceltaMedico>
+			<codiceMedico type="String" visibility="editable">020044Z</codiceMedico>
+			<codiceRegionaleMedico type="String" visibility="editable"/>
+			<codiceRMedico type="Long" visibility="editable">12265</codiceRMedico>
+			<zonaSubcomunale type="String" visibility="editable"/>
+			<circoscrizione type="String" visibility="editable"/>
+			<sezioneElettorale type="String" visibility="editable"/>
+			<quartiere type="String" visibility="editable"/>
+			<codicePosizioneAnagrafica type="Long" visibility="editable"/>
+			<nucleoFamiliare type="String" visibility="editable"/>
+			<pazienteNonAutosufficiente type="String" visibility="editable"/>
+			<flagCEE type="String" visibility="editable"/>
+			<flagTutore type="String" visibility="editable"/>
+			<tutore type="String" visibility="editable"/>
+			<assicurazione type="String" visibility="editable"/>
+			<polizza type="String" visibility="editable"/>
+			<identificativoAnagrafeComunale type="String" visibility="editable"/>
+			<dataAggiornamento type="Date" visibility="editable"/>
+			<identificativoBPR type="String" visibility="editable"/>
+			<comuneAnagrafe type="String" visibility="editable"/>
+			<dataCancellazioneAnagrafica type="Date" visibility="editable"/>
+			<codiceComunita type="String" visibility="editable"/>
+			<codiceRComunita type="Long" visibility="editable"/>
+			<flagModificabile type="String" visibility="editable"/>
+			<idSorgenteHL7 type="String" visibility="editable"/>
+			<categoriaCittadino type="Long" visibility="editable"/>
+			<codiceAlternativo type="String" visibility="editable">CSI62243</codiceAlternativo>
+			<idMadrePaziente type="String" visibility="editable" foreignClass="sianc.paziente.PazienteBean"/>
+			<codicePosizioneProfessionaleSacs type="String" visibility="editable"/>
+			<codiceSituazioneProfessionaleSacs type="String" visibility="editable"/>
+			<codiceStatoCivileSacs type="String" visibility="editable"/>
+			<codiceTitoloStudiSacs type="String" visibility="editable"/>
+			<categoriaCittadinoSacs type="String" visibility="editable"/>
+			<classeTopograficaSacs type="String" visibility="editable"/>
+			<parentelaContattoSacs type="String" visibility="editable"/>
+			<codiceTipoAziendaSacs type="String" visibility="editable"/>
+			<codiceCausaDecessoSacs type="String" visibility="editable"/>
+			<motivoCessazioneAssistenzaSacs type="String" visibility="editable"/>
+			<codicePosizioneAnagraficaSacs type="String" visibility="editable"/>
+			<numIdIstituzioneTeamSacs type="String" visibility="editable"/>
+			<nomeIstituzioneTeamSacs type="String" visibility="editable"/>
+			<emittenteTeamSacs type="String" visibility="editable"/>
+			<codiceAttivitaProfessionaleSacs type="String" visibility="editable"/>
+			<qualificaBeneficiarioSacs type="String" visibility="editable"/>
+			<withAlias type="boolean" visibility="visible">false</withAlias>
+			<master type="String" visibility="visible"/>
+			<aliasStatus type="String" visibility="editable"/>
+			<codiceRMedicoSacs type="Long" visibility="editable">12265</codiceRMedicoSacs>
+			<dataInizioSSN type="Date" visibility="editable"/>
+			<dataFineSSN type="Date" visibility="editable"/>
+			<dataInizioASL type="Date" visibility="editable"/>
+			<dataFineASL type="Date" visibility="editable"/>
+			<dataScadenzaDocumento type="Date" visibility="editable"/>
+			<codiceDistrettoProvenienza type="String" visibility="visible" foreignClass="sianc.strutture.StrutturaBean"/>
+			<codiceDistrettoAssistenza type="String" visibility="editable" foreignClass="sianc.strutture.StrutturaBean"/>
+			<fonteVariazione type="String" visibility="editable">PS_SYNCOS</fonteVariazione>
+			<idSorgenteHL7Variazione type="String" visibility="editable"/>
+			<codiceISTATComuneDecesso type="String" visibility="editable"/>
+			<codiceISTATComuneDomicilio type="String" visibility="editable">001272</codiceISTATComuneDomicilio>
+			<codiceISTATComuneLavoro type="String" visibility="editable"/>
+			<codiceISTATComuneNascita type="String" visibility="editable">999272</codiceISTATComuneNascita>
+			<codiceISTATComuneResidenza type="String" visibility="editable">001272</codiceISTATComuneResidenza>
+			<codiceISTATComuneImmigrazione type="String" visibility="editable"/>
+			<codiceISTATComuneEmigrazione type="String" visibility="editable"/>
+			<codiceISTATComuneDatoreLavoro type="String" visibility="editable"/>
+			<codiceAttestatoTeam type="Long" visibility="editable"/>
+		</sianc.paziente.PazienteBean>
+	</MainQuery>
+	<DatiFissi>
+	<AuthorityDomicilio>H</AuthorityDomicilio>
+<AuthorityResidenza>L</AuthorityResidenza>
+<AuthorityNascita>B</AuthorityNascita>
+<AuthorityAnagCentrale>PZCE</AuthorityAnagCentrale>
+<AuthorityAnagLocale>PZLO</AuthorityAnagLocale>
+<AuthorityCodFisc>NNITA</AuthorityCodFisc>
+<AuthoritySTP>PNT</AuthoritySTP>
+<AuthorityTessSan>SS</AuthorityTessSan>
+<AuthorityTeam>HC</AuthorityTeam>
+<SendingFacility>ESEL</SendingFacility>
+<SendingApplication>ADTWEB</SendingApplication>
+<ReceivingApplication>FSATO2</ReceivingApplication>
+<ReceivingFacility>CSI</ReceivingFacility>
+<AuthorityIdentificativo>SDO</AuthorityIdentificativo>
+<TipoAccesso>I</TipoAccesso>
+<TipoDocumento>RIC</TipoDocumento>
+<DocStatoVal>AU</DocStatoVal>
+<FormatoDoc>MU</FormatoDoc>
+<ConfidentailStatusDoc>R</ConfidentailStatusDoc>
+<OBXSistemaCodifica>99CDO</OBXSistemaCodifica>
+</DatiFissi>
+<DatiCalcolati>
+  <DataMessaggio>20090501123712</DataMessaggio>
+  <TipoMessaggio>ADT^A01</TipoMessaggio>
+  <StruttSan>aaa</StruttSan>
+  <UO>rr</UO>
+  <MatricolaUP>sds</MatricolaUP>
+   <StruttSanPrec>prec</StruttSanPrec>
+  <UOPrec>rrprec</UOPrec>
+  <MatricolaUPPrec>sdsprec</MatricolaUPPrec>
+  <CognomeMedDim>ROSSIdim</CognomeMedDim>
+  <NomeMedDim>MArio Dim</NomeMedDim>
+  </DatiCalcolati>
+</message>
